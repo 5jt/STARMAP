@@ -968,6 +968,59 @@ ALGOL          236  β PER   936    3   8  11    40  57     2.20  .031
                248    PLE  1149    3  49  48    23  36     3.86  .000
                249    PLE  1178    3  49  10    24   3     3.62 ¯.028
 FOMALHAUT      250  α PSA  8728   22  57  39   ¯29 ¯37     1.16  .144
+
+               251  ε PUP
+               252  ζ PUP
+               253  ρ PUP
+               254  τ PUP
+               255  ν PUP
+               256  σ PUP
+               257    PUP
+ANTARES        258  α SCO
+DSCHUBBA       259  δ SCO
+               260  β SCO
+               261  ε SCO
+               262  η SCO
+               263  θ SCO
+               264  ι SCO
+               265  κ SCO
+               266  μ SCO
+               267  ν SCO
+SHAULA         268  λ SCO
+               269  π SCO
+               270  σ SCO
+               271  τ SCO
+               272  υ SCO
+               273  G SCO
+               274  Q SCO
+               275  α SCL
+               276  β SCL
+KAUS AUSTRALIS 277  ε SGR
+               278  δ SGR
+               279  γ SGR
+NUNKI          280  σ SGR
+               281  ζ SGR
+               282  λ SGR
+               283  φ SGR
+               284  τ SGR
+               285  π SGR
+ALDEBARAN      286  α TAU
+EL NATH        287  β TAU
+               288  γ TAU
+               289  δ TAU
+               290  ε TAU
+               291  ζ TAU
+               292  η TAU
+               293  θ TAU
+               294  α TRA
+               295  β TRA
+               296  γ TRA
+               297  α TRI
+               298  β TRI
+               299  γ TRI
+               300  α TUC
+
+
 MERAK          301  β UMA  4295   11   1  51    56  23     2.40  .042
 PHECDA         302  γ UMA  4554   11  53  49    53  42     2.90  .020
 MEGREZ         303  δ UMA  4660   12  15  26    57   2     3.30  .052
