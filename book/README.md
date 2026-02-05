@@ -11,3 +11,5 @@ The aim here is to replicate the content in Markdown so that
 -   used to inform a project to recreate the original software in Dyalog APL
 
 The starting point is a PDF containing scans of the book pages, in STARMAP.pdf.
+
+The Yale Bright Star Catalog is at http://tdc-www.harvard.edu/catalogs/bsc5.html.
