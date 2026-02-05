@@ -1,6 +1,8 @@
 STARMAP
 =======
 
+![Sample output of program to plot heliocentric coordinates](book/extracted-figures/figure-05.png)
+
 This is a project to recreate STARMAP, a classic example of Expository Programming:
 
 > the art of writing a program that is both executable by machine, and makes clear to a human reader what it does and how it works.
