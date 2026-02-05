@@ -2,16 +2,7 @@
 
 ## Active tasks
 
-### Star table reconstruction
-- [x] Create GitHub issue for star table work (#1)
-- [x] Download Yale Bright Star Catalog (BSC5) from Harvard/CfA
-- [x] Analyse catalog format and identify required fields
-- [x] Extract the 332 stars by Yale catalog number
-- [x] Verify J2000 coordinates (BSC5 provides J2000 directly)
-- [x] Format output to match book table structure
-- [x] Replace incomplete table in `book/markdown/starmap.md`
-- [x] Document decision to use BSC5 values over book values
-- [ ] Create PR for review
+None currently.
 
 ## Up next
 
@@ -24,10 +15,12 @@ None currently.
 
 ## Completed
 
+- **Star table reconstruction** (issue #1, PR #2 merged)
+  - Re-derived 332 rows from Yale BSC5 catalog
+  - Documented in `docs/star-table-reconstruction.md`
 - Initial transcription of book to Markdown
 - Extraction of figures from page images
 - Inclusion of "Expository Programming" article
-- Manual corrections to star table (partial)
 - Manual proofread of expository programming article
 
 ---
@@ -41,8 +34,9 @@ None currently.
 - Decision: use BSC5 values (current authoritative source)
 - Discrepancies documented in `docs/star-table-reconstruction.md`
 - Replaced table in `book/markdown/starmap.md` (332 rows)
-- Fixed Pleiades row formatting (PLE constellation)
-- Next: create PR for review
+- Fixed Pleiades row formatting, parallax column alignment
+- Created PR #2, merged to main
+- Issue #1 closed
 
 ### 2026-02-04
 - Read project files and CLAUDE.md standing instructions
