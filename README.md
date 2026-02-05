@@ -11,7 +11,7 @@ This is a project to recreate STARMAP, a classic example of Expository Programmi
 > 
 > The idea was to explain the movement of the stars and planets across the sky and to do it by writing programs that clearly stated the simple formulas that described their motion.
 > 
-> — from Paul Berry, “[Expository Programming](vector/expository-programming)” in *Vector*, Vol.22, No.3
+> — from Paul Berry, “[Expository Programming](/vector/expository-programming)” in *Vector*, Vol.22, No.3
 
 
 Background
