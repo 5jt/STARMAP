@@ -32,6 +32,11 @@ The transcribed star table has significant problems:
 - **APL notation**: Use high minus (¯) for negative values, not low minus (-)
   - In APL: `¯` is part of the number literal; `-` denotes negation/subtraction
   - Example: `-3 4` evaluates to `¯3 ¯4`
+- **Data source**: Use BSC5 (1991 revision) values, not original book values
+  - The book (1978) cites the Yale Catalog; BSC5 is the current authoritative edition
+  - Small discrepancies exist (typically 1 arcmin in position, ~0.1 in magnitude)
+  - We attribute these to improved measurements and catalog revisions since 1978, but this supposition is untested
+  - Decision: use BSC5 as the authoritative source for the reconstructed table
 
 ## Phase 2: Recreate code in Dyalog APL
 
