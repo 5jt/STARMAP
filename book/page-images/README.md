@@ -9,3 +9,5 @@ mkdir -p /Users/sjt/Projects/starmap/book/pages && pdftoppm -png /
       /Users/sjt/Projects/starmap/book/STARMAP.pdf /
       /Users/sjt/Projects/starmap/book/pages/page
 ```
+
+It includes in `errata/` scans from a later edition with corrections to both code and star position tables.
