@@ -10,3 +10,8 @@ output/
 # Yale Bright Star Catalog contents
 yale-catalog/bsc5.html
 yale-catalog/ybsc5
+
+book/.bifolia
+2026*.txt
+debug_*.py
+scripts/__pycache__/*

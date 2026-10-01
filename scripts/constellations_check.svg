@@ -1,0 +1,868 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="7800">
+<rect width="100%" height="100%" fill="#0a0a2a"/>
+<style>text{font-family:monospace;fill:#ccc;font-size:14px} .title{font-size:22px;fill:#fff;text-anchor:middle}</style>
+<text class="title" x="300.0" y="15">And</text>
+<line x1="515.4" y1="497.7" x2="400.0" y2="442.2" stroke="#446" stroke-width="1.5"/>
+<line x1="400.0" y1="442.2" x2="286.6" y2="292.6" stroke="#446" stroke-width="1.5"/>
+<line x1="286.6" y1="292.6" x2="84.6" y2="82.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="515.4" cy="497.7" r="5" fill="#ffd700"/>
+<text x="523.4" y="501.7">Alpheratz</text>
+<circle cx="286.6" cy="292.6" r="5" fill="#ffd700"/>
+<text x="294.6" y="296.6">Mirach</text>
+<circle cx="84.6" cy="82.3" r="5" fill="#ffd700"/>
+<text x="92.6" y="86.3">Almach</text>
+<circle cx="400.0" cy="442.2" r="3" fill="#aaa"/>
+<text x="408.0" y="446.2">dAnd</text>
+<text class="title" x="900.0" y="15">Aql</text>
+<line x1="1115.4" y1="82.3" x2="942.0" y2="320.9" stroke="#446" stroke-width="1.5"/>
+<line x1="942.0" y1="320.9" x2="723.7" y2="192.9" stroke="#446" stroke-width="1.5"/>
+<line x1="723.7" y1="192.9" x2="762.7" y2="154.4" stroke="#446" stroke-width="1.5"/>
+<line x1="723.7" y1="192.9" x2="684.6" y2="247.6" stroke="#446" stroke-width="1.5"/>
+<line x1="723.7" y1="192.9" x2="1108.2" y2="497.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="723.7" cy="192.9" r="5" fill="#ffd700"/>
+<text x="731.7" y="196.9">Altair</text>
+<circle cx="684.6" cy="247.6" r="3" fill="#aaa"/>
+<text x="692.6" y="251.6">bAql</text>
+<circle cx="762.7" cy="154.4" r="3" fill="#aaa"/>
+<text x="770.7" y="158.4">gAql</text>
+<circle cx="942.0" cy="320.9" r="3" fill="#aaa"/>
+<text x="950.0" y="324.9">dAql</text>
+<circle cx="1115.4" cy="82.3" r="3" fill="#aaa"/>
+<text x="1123.4" y="86.3">zAql</text>
+<circle cx="1108.2" cy="497.7" r="3" fill="#aaa"/>
+<text x="1116.2" y="501.7">lAql</text>
+<text class="title" x="1500.0" y="15">Aqr</text>
+<line x1="1538.0" y1="82.3" x2="1715.4" y2="223.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1715.4" y1="223.0" x2="1284.6" y2="497.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1538.0" cy="82.3" r="3" fill="#aaa"/>
+<text x="1546.0" y="86.3">aAqr</text>
+<circle cx="1715.4" cy="223.0" r="3" fill="#aaa"/>
+<text x="1723.4" y="227.0">bAqr</text>
+<circle cx="1284.6" cy="497.7" r="3" fill="#aaa"/>
+<text x="1292.6" y="501.7">dAqr</text>
+<text class="title" x="2100.0" y="15">Ara</text>
+<line x1="1886.2" y1="82.3" x2="1884.6" y2="497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="497.7" x2="2315.4" y2="310.4" stroke="#446" stroke-width="1.5"/>
+<circle cx="1886.2" cy="82.3" r="3" fill="#aaa"/>
+<text x="1894.2" y="86.3">bAra</text>
+<circle cx="1884.6" cy="497.7" r="3" fill="#aaa"/>
+<text x="1892.6" y="501.7">gAra</text>
+<circle cx="2315.4" cy="310.4" r="3" fill="#aaa"/>
+<text x="2323.4" y="314.4">zAra</text>
+<text class="title" x="300.0" y="615">Ari</text>
+<line x1="84.6" y1="682.3" x2="515.4" y2="1097.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="84.6" cy="682.3" r="5" fill="#ffd700"/>
+<text x="92.6" y="686.3">Hamal</text>
+<circle cx="515.4" cy="1097.7" r="5" fill="#ffd700"/>
+<text x="523.4" y="1101.7">Sheratan</text>
+<text class="title" x="900.0" y="615">Aur</text>
+<line x1="980.2" y1="682.3" x2="685.9" y2="716.3" stroke="#446" stroke-width="1.5"/>
+<line x1="685.9" y1="716.3" x2="684.6" y2="966.6" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="966.6" x2="1115.4" y2="1097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1115.4" y1="1097.7" x2="980.2" y2="682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="980.2" y1="682.3" x2="1081.3" y2="752.4" stroke="#446" stroke-width="1.5"/>
+<circle cx="980.2" cy="682.3" r="5" fill="#ffd700"/>
+<text x="988.2" y="686.3">Capella</text>
+<circle cx="685.9" cy="716.3" r="5" fill="#ffd700"/>
+<text x="693.9" y="720.3">Menkalinan</text>
+<circle cx="1081.3" cy="752.4" r="3" fill="#aaa"/>
+<text x="1089.3" y="756.4">eAur</text>
+<circle cx="684.6" cy="966.6" r="3" fill="#aaa"/>
+<text x="692.6" y="970.6">thAur</text>
+<circle cx="1115.4" cy="1097.7" r="3" fill="#aaa"/>
+<text x="1123.4" y="1101.7">iAur</text>
+<text class="title" x="1500.0" y="615">Boo</text>
+<line x1="1603.5" y1="1082.9" x2="1715.4" y2="1097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1715.4" y1="1097.7" x2="1517.4" y2="871.4" stroke="#446" stroke-width="1.5"/>
+<line x1="1517.4" y1="871.4" x2="1516.0" y2="721.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1516.0" y1="721.6" x2="1356.8" y2="682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1356.8" y1="682.3" x2="1284.6" y2="816.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="816.0" x2="1447.3" y2="933.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1447.3" y1="933.7" x2="1603.5" y2="1082.9" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="1097.7" r="3" fill="#aaa"/>
+<text x="1723.4" y="1101.7">etBoo</text>
+<circle cx="1517.4" cy="871.4" r="3" fill="#aaa"/>
+<text x="1525.4" y="875.4">rBoo</text>
+<circle cx="1603.5" cy="1082.9" r="5" fill="#ffd700"/>
+<text x="1611.5" y="1086.9">Arcturus</text>
+<circle cx="1356.8" cy="682.3" r="3" fill="#aaa"/>
+<text x="1364.8" y="686.3">bBoo</text>
+<circle cx="1516.0" cy="721.6" r="3" fill="#aaa"/>
+<text x="1524.0" y="725.6">gBoo</text>
+<circle cx="1284.6" cy="816.0" r="3" fill="#aaa"/>
+<text x="1292.6" y="820.0">dBoo</text>
+<circle cx="1447.3" cy="933.7" r="3" fill="#aaa"/>
+<text x="1455.3" y="937.7">eBoo</text>
+<text class="title" x="2100.0" y="615">CMa</text>
+<line x1="2147.7" y1="713.0" x2="2021.9" y2="682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2021.9" y1="682.3" x2="1884.6" y2="1076.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="1076.1" x2="1990.6" y2="992.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1990.6" y1="992.0" x2="2056.6" y2="1066.5" stroke="#446" stroke-width="1.5"/>
+<line x1="2056.6" y1="1066.5" x2="2315.4" y2="1097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2147.7" y1="713.0" x2="2299.3" y2="749.1" stroke="#446" stroke-width="1.5"/>
+<circle cx="2147.7" cy="713.0" r="5" fill="#ffd700"/>
+<text x="2155.7" y="717.0">Sirius</text>
+<circle cx="2299.3" cy="749.1" r="3" fill="#aaa"/>
+<text x="2307.3" y="753.1">bCMa</text>
+<circle cx="2021.9" cy="682.3" r="3" fill="#aaa"/>
+<text x="2029.9" y="686.3">gCMa</text>
+<circle cx="1990.6" cy="992.0" r="3" fill="#aaa"/>
+<text x="1998.6" y="996.0">dCMa</text>
+<circle cx="2056.6" cy="1066.5" r="5" fill="#ffd700"/>
+<text x="2064.6" y="1070.5">Adhara</text>
+<circle cx="2315.4" cy="1097.7" r="3" fill="#aaa"/>
+<text x="2323.4" y="1101.7">zCMa</text>
+<circle cx="1884.6" cy="1076.1" r="3" fill="#aaa"/>
+<text x="1892.6" y="1080.1">etCMa</text>
+<text class="title" x="300.0" y="1215">CMi</text>
+<line x1="84.6" y1="1697.7" x2="515.4" y2="1282.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="84.6" cy="1697.7" r="5" fill="#ffd700"/>
+<text x="92.6" y="1701.7">Procyon</text>
+<circle cx="515.4" cy="1282.3" r="3" fill="#aaa"/>
+<text x="523.4" y="1286.3">bCMi</text>
+<text class="title" x="900.0" y="1215">Cap</text>
+<line x1="1115.4" y1="1282.3" x2="1101.0" y2="1346.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1101.0" y1="1346.8" x2="684.6" y2="1385.8" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="1385.8" x2="951.9" y2="1697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="951.9" y1="1697.7" x2="1115.4" y2="1282.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="1115.4" cy="1282.3" r="3" fill="#aaa"/>
+<text x="1123.4" y="1286.3">aCap</text>
+<circle cx="1101.0" cy="1346.8" r="3" fill="#aaa"/>
+<text x="1109.0" y="1350.8">bCap</text>
+<circle cx="684.6" cy="1385.8" r="3" fill="#aaa"/>
+<text x="692.6" y="1389.8">dCap</text>
+<circle cx="951.9" cy="1697.7" r="3" fill="#aaa"/>
+<text x="959.9" y="1701.7">wCap</text>
+<text class="title" x="1500.0" y="1215">Car</text>
+<line x1="1715.4" y1="1282.3" x2="1336.3" y2="1697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1336.3" y1="1697.7" x2="1436.2" y2="1690.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1436.2" y1="1690.1" x2="1288.1" y2="1562.4" stroke="#446" stroke-width="1.5"/>
+<line x1="1288.1" y1="1562.4" x2="1429.8" y2="1439.9" stroke="#446" stroke-width="1.5"/>
+<line x1="1429.8" y1="1439.9" x2="1380.2" y2="1578.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1519.8" y1="1445.5" x2="1284.6" y2="1449.9" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="1282.3" r="5" fill="#ffd700"/>
+<text x="1723.4" y="1286.3">Canopus</text>
+<circle cx="1436.2" cy="1690.1" r="5" fill="#ffd700"/>
+<text x="1444.2" y="1694.1">Miaplacidus</text>
+<circle cx="1519.8" cy="1445.5" r="3" fill="#aaa"/>
+<text x="1527.8" y="1449.5">eCar</text>
+<circle cx="1284.6" cy="1449.9" r="3" fill="#aaa"/>
+<text x="1292.6" y="1453.9">etCar</text>
+<circle cx="1288.1" cy="1562.4" r="3" fill="#aaa"/>
+<text x="1296.1" y="1566.4">thCar</text>
+<circle cx="1429.8" cy="1439.9" r="3" fill="#aaa"/>
+<text x="1437.8" y="1443.9">iCar</text>
+<circle cx="1380.2" cy="1578.8" r="3" fill="#aaa"/>
+<text x="1388.2" y="1582.8">uCar</text>
+<circle cx="1336.3" cy="1697.7" r="3" fill="#aaa"/>
+<text x="1344.3" y="1701.7">wCar</text>
+<text class="title" x="2100.0" y="1215">Cas</text>
+<line x1="2315.4" y1="1546.3" x2="2187.2" y2="1697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2187.2" y1="1697.7" x2="2120.8" y2="1454.1" stroke="#446" stroke-width="1.5"/>
+<line x1="2120.8" y1="1454.1" x2="2001.6" y2="1482.2" stroke="#446" stroke-width="1.5"/>
+<line x1="2001.6" y1="1482.2" x2="1884.6" y2="1282.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="2187.2" cy="1697.7" r="5" fill="#ffd700"/>
+<text x="2195.2" y="1701.7">Schedir</text>
+<circle cx="2315.4" cy="1546.3" r="5" fill="#ffd700"/>
+<text x="2323.4" y="1550.3">Caph</text>
+<circle cx="2120.8" cy="1454.1" r="3" fill="#aaa"/>
+<text x="2128.8" y="1458.1">gCas</text>
+<circle cx="2001.6" cy="1482.2" r="5" fill="#ffd700"/>
+<text x="2009.6" y="1486.2">Ruchbah</text>
+<circle cx="1884.6" cy="1282.3" r="3" fill="#aaa"/>
+<text x="1892.6" y="1286.3">eCas</text>
+<text class="title" x="300.0" y="1815">Cen</text>
+<line x1="84.6" y1="2297.7" x2="186.5" y2="2289.8" stroke="#446" stroke-width="1.5"/>
+<line x1="186.5" y1="2289.8" x2="254.7" y2="2172.3" stroke="#446" stroke-width="1.5"/>
+<line x1="254.7" y1="2172.3" x2="210.1" y2="2067.6" stroke="#446" stroke-width="1.5"/>
+<line x1="210.1" y1="2067.6" x2="96.3" y2="1980.5" stroke="#446" stroke-width="1.5"/>
+<line x1="96.3" y1="1980.5" x2="178.4" y2="1882.3" stroke="#446" stroke-width="1.5"/>
+<line x1="421.0" y1="2095.9" x2="515.4" y2="2125.9" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="2125.9" x2="309.6" y2="1888.0" stroke="#446" stroke-width="1.5"/>
+<line x1="178.4" y1="1882.3" x2="309.6" y2="1888.0" stroke="#446" stroke-width="1.5"/>
+<circle cx="84.6" cy="2297.7" r="5" fill="#ffd700"/>
+<text x="92.6" y="2301.7">Rigil Kentaurus</text>
+<circle cx="186.5" cy="2289.8" r="3" fill="#aaa"/>
+<text x="194.5" y="2293.8">bCen</text>
+<circle cx="421.0" cy="2095.9" r="3" fill="#aaa"/>
+<text x="429.0" y="2099.9">gCen</text>
+<circle cx="515.4" cy="2125.9" r="3" fill="#aaa"/>
+<text x="523.4" y="2129.9">dCen</text>
+<circle cx="254.7" cy="2172.3" r="3" fill="#aaa"/>
+<text x="262.7" y="2176.3">eCen</text>
+<circle cx="210.1" cy="2067.6" r="3" fill="#aaa"/>
+<text x="218.1" y="2071.6">zCen</text>
+<circle cx="96.3" cy="1980.5" r="3" fill="#aaa"/>
+<text x="104.3" y="1984.5">etCen</text>
+<circle cx="178.4" cy="1882.3" r="3" fill="#aaa"/>
+<text x="186.4" y="1886.3">thCen</text>
+<circle cx="309.6" cy="1888.0" r="3" fill="#aaa"/>
+<text x="317.6" y="1892.0">iCen</text>
+<text class="title" x="900.0" y="1815">Cep</text>
+<line x1="1115.4" y1="2203.9" x2="1084.5" y2="2033.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1084.5" y1="2033.5" x2="836.6" y2="2126.5" stroke="#446" stroke-width="1.5"/>
+<line x1="836.6" y1="2126.5" x2="684.6" y2="1882.3" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="1882.3" x2="1115.4" y2="2203.9" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="1882.3" x2="955.4" y2="2297.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1115.4" cy="2203.9" r="5" fill="#ffd700"/>
+<text x="1123.4" y="2207.9">Alderamin</text>
+<circle cx="1084.5" cy="2033.5" r="3" fill="#aaa"/>
+<text x="1092.5" y="2037.5">bCep</text>
+<circle cx="684.6" cy="1882.3" r="3" fill="#aaa"/>
+<text x="692.6" y="1886.3">gCep</text>
+<circle cx="955.4" cy="2297.7" r="3" fill="#aaa"/>
+<text x="963.4" y="2301.7">zCep</text>
+<circle cx="836.6" cy="2126.5" r="3" fill="#aaa"/>
+<text x="844.6" y="2130.5">iCep</text>
+<text class="title" x="1500.0" y="1815">Cet</text>
+<line x1="1284.6" y1="1882.3" x2="1334.8" y2="1898.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1334.8" y1="1898.3" x2="1344.9" y2="1953.2" stroke="#446" stroke-width="1.5"/>
+<line x1="1344.9" y1="1953.2" x2="1398.2" y2="2015.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1398.2" y1="2015.0" x2="1471.9" y2="2153.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1471.9" y1="2153.7" x2="1544.5" y2="2113.2" stroke="#446" stroke-width="1.5"/>
+<line x1="1544.5" y1="2113.2" x2="1585.4" y2="2150.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1585.4" y1="2150.6" x2="1651.5" y2="2297.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1651.5" y1="2297.7" x2="1715.4" y2="2125.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1715.4" y1="2125.1" x2="1491.5" y2="2259.1" stroke="#446" stroke-width="1.5"/>
+<circle cx="1284.6" cy="1882.3" r="5" fill="#ffd700"/>
+<text x="1292.6" y="1886.3">Menkar</text>
+<circle cx="1651.5" cy="2297.7" r="5" fill="#ffd700"/>
+<text x="1659.5" y="2301.7">Deneb-Kaitos</text>
+<circle cx="1334.8" cy="1898.3" r="3" fill="#aaa"/>
+<text x="1342.8" y="1902.3">gCet</text>
+<circle cx="1344.9" cy="1953.2" r="3" fill="#aaa"/>
+<text x="1352.9" y="1957.2">dCet</text>
+<circle cx="1471.9" cy="2153.7" r="3" fill="#aaa"/>
+<text x="1479.9" y="2157.7">zCet</text>
+<circle cx="1585.4" cy="2150.6" r="3" fill="#aaa"/>
+<text x="1593.4" y="2154.6">etCet</text>
+<circle cx="1544.5" cy="2113.2" r="3" fill="#aaa"/>
+<text x="1552.5" y="2117.2">thCet</text>
+<circle cx="1715.4" cy="2125.1" r="3" fill="#aaa"/>
+<text x="1723.4" y="2129.1">iCet</text>
+<circle cx="1398.2" cy="2015.0" r="3" fill="#aaa"/>
+<text x="1406.2" y="2019.0">oCet</text>
+<circle cx="1491.5" cy="2259.1" r="3" fill="#aaa"/>
+<text x="1499.5" y="2263.1">tCet</text>
+<text class="title" x="2100.0" y="1815">Cnc</text>
+<line x1="1884.6" y1="2174.2" x2="2026.3" y2="1882.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2026.3" y1="1882.3" x2="2315.4" y2="2297.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1884.6" cy="2174.2" r="3" fill="#aaa"/>
+<text x="1892.6" y="2178.2">aCnc</text>
+<circle cx="2315.4" cy="2297.7" r="3" fill="#aaa"/>
+<text x="2323.4" y="2301.7">bCnc</text>
+<circle cx="2026.3" cy="1882.3" r="3" fill="#aaa"/>
+<text x="2034.3" y="1886.3">dCnc</text>
+<text class="title" x="300.0" y="2415">Col</text>
+<line x1="515.4" y1="2482.3" x2="84.6" y2="2897.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="515.4" cy="2482.3" r="5" fill="#ffd700"/>
+<text x="523.4" y="2486.3">Phact</text>
+<circle cx="84.6" cy="2897.7" r="3" fill="#aaa"/>
+<text x="92.6" y="2901.7">bCol</text>
+<text class="title" x="900.0" y="2415">CrB</text>
+<line x1="1115.4" y1="2482.3" x2="684.6" y2="2897.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="684.6" cy="2897.7" r="3" fill="#aaa"/>
+<text x="692.6" y="2901.7">ppCrB</text>
+<circle cx="1115.4" cy="2482.3" r="5" fill="#ffd700"/>
+<text x="1123.4" y="2486.3">Alpheca</text>
+<text class="title" x="1500.0" y="2415">Cru</text>
+<line x1="1563.9" y1="2897.7" x2="1503.5" y2="2482.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="2661.7" x2="1715.4" y2="2595.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1563.9" cy="2897.7" r="3" fill="#aaa"/>
+<text x="1571.9" y="2901.7">aCru</text>
+<circle cx="1284.6" cy="2661.7" r="3" fill="#aaa"/>
+<text x="1292.6" y="2665.7">bCru</text>
+<circle cx="1503.5" cy="2482.3" r="3" fill="#aaa"/>
+<text x="1511.5" y="2486.3">gCru</text>
+<circle cx="1715.4" cy="2595.7" r="3" fill="#aaa"/>
+<text x="1723.4" y="2599.7">dCru</text>
+<text class="title" x="2100.0" y="2415">Crv</text>
+<line x1="1884.6" y1="2897.7" x2="2214.7" y2="2544.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2214.7" y1="2544.7" x2="1964.8" y2="2482.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1964.8" y1="2482.3" x2="2315.4" y2="2851.4" stroke="#446" stroke-width="1.5"/>
+<line x1="2315.4" y1="2851.4" x2="1884.6" y2="2897.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="2897.7" x2="1964.8" y2="2482.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="2315.4" cy="2851.4" r="3" fill="#aaa"/>
+<text x="2323.4" y="2855.4">eCrv</text>
+<circle cx="1884.6" cy="2897.7" r="3" fill="#aaa"/>
+<text x="1892.6" y="2901.7">bCrv</text>
+<circle cx="2214.7" cy="2544.7" r="3" fill="#aaa"/>
+<text x="2222.7" y="2548.7">gCrv</text>
+<circle cx="1964.8" cy="2482.3" r="3" fill="#aaa"/>
+<text x="1972.8" y="2486.3">dCrv</text>
+<text class="title" x="300.0" y="3015">Cyg</text>
+<line x1="111.9" y1="3082.3" x2="221.5" y2="3202.6" stroke="#446" stroke-width="1.5"/>
+<line x1="221.5" y1="3202.6" x2="515.4" y2="3497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="434.1" y1="3085.9" x2="221.5" y2="3202.6" stroke="#446" stroke-width="1.5"/>
+<line x1="84.6" y1="3353.4" x2="221.5" y2="3202.6" stroke="#446" stroke-width="1.5"/>
+<circle cx="111.9" cy="3082.3" r="5" fill="#ffd700"/>
+<text x="119.9" y="3086.3">Deneb</text>
+<circle cx="515.4" cy="3497.7" r="5" fill="#ffd700"/>
+<text x="523.4" y="3501.7">Albireo</text>
+<circle cx="221.5" cy="3202.6" r="3" fill="#aaa"/>
+<text x="229.5" y="3206.6">gCyg</text>
+<circle cx="434.1" cy="3085.9" r="3" fill="#aaa"/>
+<text x="442.1" y="3089.9">dCyg</text>
+<circle cx="84.6" cy="3353.4" r="3" fill="#aaa"/>
+<text x="92.6" y="3357.4">eCyg</text>
+<text class="title" x="900.0" y="3015">Del</text>
+<line x1="909.6" y1="3101.0" x2="976.4" y2="3214.5" stroke="#446" stroke-width="1.5"/>
+<line x1="976.4" y1="3214.5" x2="684.6" y2="3082.3" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="3082.3" x2="1115.4" y2="3497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1115.4" y1="3497.7" x2="909.6" y2="3101.0" stroke="#446" stroke-width="1.5"/>
+<circle cx="909.6" cy="3101.0" r="3" fill="#aaa"/>
+<text x="917.6" y="3105.0">aDel</text>
+<circle cx="976.4" cy="3214.5" r="3" fill="#aaa"/>
+<text x="984.4" y="3218.5">bDel</text>
+<circle cx="684.6" cy="3082.3" r="3" fill="#aaa"/>
+<text x="692.6" y="3086.3">gDel</text>
+<circle cx="1115.4" cy="3497.7" r="3" fill="#aaa"/>
+<text x="1123.4" y="3501.7">eDel</text>
+<text class="title" x="1500.0" y="3015">Dor</text>
+<line x1="1715.4" y1="3082.3" x2="1284.6" y2="3497.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="3082.3" r="3" fill="#aaa"/>
+<text x="1723.4" y="3086.3">aDor</text>
+<circle cx="1284.6" cy="3497.7" r="3" fill="#aaa"/>
+<text x="1292.6" y="3501.7">bDor</text>
+<text class="title" x="2100.0" y="3015">Dra</text>
+<line x1="2004.1" y1="3479.6" x2="1981.4" y2="3497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1981.4" y1="3497.7" x2="1984.0" y2="3378.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1984.0" y1="3378.6" x2="2002.5" y2="3415.9" stroke="#446" stroke-width="1.5"/>
+<line x1="2002.5" y1="3415.9" x2="2004.1" y2="3479.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1984.0" y1="3378.6" x2="1915.5" y2="3140.2" stroke="#446" stroke-width="1.5"/>
+<line x1="1915.5" y1="3140.2" x2="1884.6" y2="3082.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="3082.3" x2="2022.8" y2="3183.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2022.8" y1="3183.3" x2="2061.7" y2="3276.2" stroke="#446" stroke-width="1.5"/>
+<line x1="2061.7" y1="3276.2" x2="2080.8" y2="3341.4" stroke="#446" stroke-width="1.5"/>
+<line x1="2080.8" y1="3341.4" x2="2112.9" y2="3332.6" stroke="#446" stroke-width="1.5"/>
+<line x1="2112.9" y1="3332.6" x2="2182.7" y2="3212.8" stroke="#446" stroke-width="1.5"/>
+<line x1="2182.7" y1="3212.8" x2="2261.5" y2="3093.0" stroke="#446" stroke-width="1.5"/>
+<line x1="2261.5" y1="3093.0" x2="2315.4" y2="3103.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="2112.9" cy="3332.6" r="3" fill="#aaa"/>
+<text x="2120.9" y="3336.6">iDra</text>
+<circle cx="2261.5" cy="3093.0" r="3" fill="#aaa"/>
+<text x="2269.5" y="3097.0">kDra</text>
+<circle cx="2315.4" cy="3103.3" r="3" fill="#aaa"/>
+<text x="2323.4" y="3107.3">lDra</text>
+<circle cx="2002.5" cy="3415.9" r="3" fill="#aaa"/>
+<text x="2010.5" y="3419.9">nuDra</text>
+<circle cx="1984.0" cy="3378.6" r="3" fill="#aaa"/>
+<text x="1992.0" y="3382.6">zDra</text>
+<circle cx="2182.7" cy="3212.8" r="5" fill="#ffd700"/>
+<text x="2190.7" y="3216.8">Thuban</text>
+<circle cx="2004.1" cy="3479.6" r="3" fill="#aaa"/>
+<text x="2012.1" y="3483.6">bDra</text>
+<circle cx="1981.4" cy="3497.7" r="5" fill="#ffd700"/>
+<text x="1989.4" y="3501.7">Etamin</text>
+<circle cx="1915.5" cy="3140.2" r="3" fill="#aaa"/>
+<text x="1923.5" y="3144.2">dDra</text>
+<circle cx="1884.6" cy="3082.3" r="3" fill="#aaa"/>
+<text x="1892.6" y="3086.3">eDra</text>
+<circle cx="2022.8" cy="3183.3" r="3" fill="#aaa"/>
+<text x="2030.8" y="3187.3">zDra</text>
+<circle cx="2061.7" cy="3276.2" r="3" fill="#aaa"/>
+<text x="2069.7" y="3280.2">etDra</text>
+<circle cx="2080.8" cy="3341.4" r="3" fill="#aaa"/>
+<text x="2088.8" y="3345.4">thDra</text>
+<text class="title" x="300.0" y="3615">Eri</text>
+<line x1="84.6" y1="3682.3" x2="306.7" y2="3815.1" stroke="#446" stroke-width="1.5"/>
+<line x1="306.7" y1="3815.1" x2="279.2" y2="3717.1" stroke="#446" stroke-width="1.5"/>
+<line x1="279.2" y1="3717.1" x2="258.0" y2="3719.5" stroke="#446" stroke-width="1.5"/>
+<line x1="258.0" y1="3719.5" x2="227.7" y2="3749.3" stroke="#446" stroke-width="1.5"/>
+<line x1="227.7" y1="3749.3" x2="354.0" y2="3712.6" stroke="#446" stroke-width="1.5"/>
+<line x1="354.0" y1="3712.6" x2="350.3" y2="3962.8" stroke="#446" stroke-width="1.5"/>
+<line x1="350.3" y1="3962.8" x2="192.4" y2="3702.8" stroke="#446" stroke-width="1.5"/>
+<line x1="192.4" y1="3702.8" x2="435.8" y2="4052.0" stroke="#446" stroke-width="1.5"/>
+<line x1="435.8" y1="4052.0" x2="515.4" y2="4097.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="515.4" cy="4097.7" r="5" fill="#ffd700"/>
+<text x="523.4" y="4101.7">Achernar</text>
+<circle cx="84.6" cy="3682.3" r="3" fill="#aaa"/>
+<text x="92.6" y="3686.3">bEri</text>
+<circle cx="227.7" cy="3749.3" r="3" fill="#aaa"/>
+<text x="235.7" y="3753.3">gEri</text>
+<circle cx="258.0" cy="3719.5" r="3" fill="#aaa"/>
+<text x="266.0" y="3723.5">dEri</text>
+<circle cx="279.2" cy="3717.1" r="3" fill="#aaa"/>
+<text x="287.2" y="3721.1">eEri</text>
+<circle cx="354.0" cy="3712.6" r="3" fill="#aaa"/>
+<text x="362.0" y="3716.6">etEri</text>
+<circle cx="350.3" cy="3962.8" r="5" fill="#ffd700"/>
+<text x="358.3" y="3966.8">Acamar</text>
+<circle cx="192.4" cy="3702.8" r="3" fill="#aaa"/>
+<text x="200.4" y="3706.8">oEri</text>
+<circle cx="306.7" cy="3815.1" r="3" fill="#aaa"/>
+<text x="314.7" y="3819.1">tEri</text>
+<circle cx="435.8" cy="4052.0" r="3" fill="#aaa"/>
+<text x="443.8" y="4056.0">phEri</text>
+<text class="title" x="900.0" y="3615">Gem</text>
+<line x1="735.7" y1="3682.3" x2="684.6" y2="3785.9" stroke="#446" stroke-width="1.5"/>
+<line x1="735.7" y1="3682.3" x2="977.0" y2="3863.6" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="3785.9" x2="804.7" y2="3948.1" stroke="#446" stroke-width="1.5"/>
+<line x1="804.7" y1="3948.1" x2="1006.6" y2="4097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1006.6" y1="4097.7" x2="1115.4" y2="3933.8" stroke="#446" stroke-width="1.5"/>
+<circle cx="735.7" cy="3682.3" r="5" fill="#ffd700"/>
+<text x="743.7" y="3686.3">Castor</text>
+<circle cx="684.6" cy="3785.9" r="5" fill="#ffd700"/>
+<text x="692.6" y="3789.9">Pollux</text>
+<circle cx="1006.6" cy="4097.7" r="3" fill="#aaa"/>
+<text x="1014.6" y="4101.7">gGem</text>
+<circle cx="804.7" cy="3948.1" r="3" fill="#aaa"/>
+<text x="812.7" y="3952.1">dGem</text>
+<circle cx="977.0" cy="3863.6" r="3" fill="#aaa"/>
+<text x="985.0" y="3867.6">eGem</text>
+<circle cx="1115.4" cy="3933.8" r="3" fill="#aaa"/>
+<text x="1123.4" y="3937.8">etGem</text>
+<text class="title" x="1500.0" y="3615">Gru</text>
+<line x1="1589.0" y1="4097.7" x2="1284.6" y2="4094.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="4094.8" x2="1715.4" y2="3682.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="1589.0" cy="4097.7" r="5" fill="#ffd700"/>
+<text x="1597.0" y="4101.7">Al Nair</text>
+<circle cx="1284.6" cy="4094.8" r="3" fill="#aaa"/>
+<text x="1292.6" y="4098.8">bGru</text>
+<circle cx="1715.4" cy="3682.3" r="3" fill="#aaa"/>
+<text x="1723.4" y="3686.3">gGru</text>
+<text class="title" x="2100.0" y="3615">Her</text>
+<line x1="1999.6" y1="3882.5" x2="2147.6" y2="3873.6" stroke="#446" stroke-width="1.5"/>
+<line x1="2147.6" y1="3873.6" x2="2135.0" y2="3778.4" stroke="#446" stroke-width="1.5"/>
+<line x1="2135.0" y1="3778.4" x2="1884.6" y2="3805.9" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="3805.9" x2="1999.6" y2="3882.5" stroke="#446" stroke-width="1.5"/>
+<line x1="2135.0" y1="3778.4" x2="2298.4" y2="4035.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2298.4" y1="4035.7" x2="2233.7" y2="4005.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1999.6" y1="3882.5" x2="1884.7" y2="3961.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.7" y1="3961.7" x2="1887.7" y2="4097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="3805.9" x2="2315.4" y2="3682.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="2147.6" cy="3873.6" r="3" fill="#aaa"/>
+<text x="2155.6" y="3877.6">zHer</text>
+<circle cx="2135.0" cy="3778.4" r="3" fill="#aaa"/>
+<text x="2143.0" y="3782.4">etHer</text>
+<circle cx="1884.6" cy="3805.9" r="3" fill="#aaa"/>
+<text x="1892.6" y="3809.9">piHer</text>
+<circle cx="2315.4" cy="3682.3" r="3" fill="#aaa"/>
+<text x="2323.4" y="3686.3">tHer</text>
+<circle cx="1887.7" cy="4097.7" r="3" fill="#aaa"/>
+<text x="1895.7" y="4101.7">aHer</text>
+<circle cx="2233.7" cy="4005.3" r="3" fill="#aaa"/>
+<text x="2241.7" y="4009.3">bHer</text>
+<circle cx="2298.4" cy="4035.7" r="3" fill="#aaa"/>
+<text x="2306.4" y="4039.7">gHer</text>
+<circle cx="1884.7" cy="3961.7" r="3" fill="#aaa"/>
+<text x="1892.7" y="3965.7">dHer</text>
+<circle cx="1999.6" cy="3882.5" r="3" fill="#aaa"/>
+<text x="2007.6" y="3886.5">eHer</text>
+<text class="title" x="300.0" y="4215">Hya</text>
+<line x1="84.6" y1="4697.7" x2="489.1" y2="4328.6" stroke="#446" stroke-width="1.5"/>
+<line x1="489.1" y1="4328.6" x2="357.1" y2="4564.1" stroke="#446" stroke-width="1.5"/>
+<line x1="357.1" y1="4564.1" x2="515.4" y2="4282.3" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="4282.3" x2="470.8" y2="4468.1" stroke="#446" stroke-width="1.5"/>
+<line x1="470.8" y1="4468.1" x2="150.3" y2="4653.1" stroke="#446" stroke-width="1.5"/>
+<circle cx="470.8" cy="4468.1" r="5" fill="#ffd700"/>
+<text x="478.8" y="4472.1">Alphard</text>
+<circle cx="150.3" cy="4653.1" r="3" fill="#aaa"/>
+<text x="158.3" y="4657.1">gHya</text>
+<circle cx="515.4" cy="4282.3" r="3" fill="#aaa"/>
+<text x="523.4" y="4286.3">zHya</text>
+<circle cx="489.1" cy="4328.6" r="3" fill="#aaa"/>
+<text x="497.1" y="4332.6">dHya</text>
+<circle cx="357.1" cy="4564.1" r="3" fill="#aaa"/>
+<text x="365.1" y="4568.1">nuHya</text>
+<circle cx="84.6" cy="4697.7" r="3" fill="#aaa"/>
+<text x="92.6" y="4701.7">piHya</text>
+<text class="title" x="900.0" y="4215">Hyi</text>
+<line x1="916.5" y1="4282.3" x2="1115.4" y2="4697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1115.4" y1="4697.7" x2="684.6" y2="4617.8" stroke="#446" stroke-width="1.5"/>
+<circle cx="916.5" cy="4282.3" r="3" fill="#aaa"/>
+<text x="924.5" y="4286.3">aHyi</text>
+<circle cx="1115.4" cy="4697.7" r="3" fill="#aaa"/>
+<text x="1123.4" y="4701.7">bHyi</text>
+<circle cx="684.6" cy="4617.8" r="3" fill="#aaa"/>
+<text x="692.6" y="4621.8">gHyi</text>
+<text class="title" x="1500.0" y="4215">Leo</text>
+<line x1="1636.7" y1="4697.7" x2="1640.3" y2="4556.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1640.3" y1="4556.1" x2="1596.1" y2="4464.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1596.1" y1="4464.8" x2="1607.6" y2="4358.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1607.6" y1="4358.8" x2="1691.2" y2="4282.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1691.2" y1="4282.3" x2="1715.4" y2="4348.4" stroke="#446" stroke-width="1.5"/>
+<line x1="1596.1" y1="4464.8" x2="1406.9" y2="4444.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1406.9" y1="4444.6" x2="1284.6" y2="4620.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="4620.7" x2="1406.4" y2="4595.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1406.4" y1="4595.6" x2="1406.9" y2="4444.6" stroke="#446" stroke-width="1.5"/>
+<circle cx="1636.7" cy="4697.7" r="5" fill="#ffd700"/>
+<text x="1644.7" y="4701.7">Regulus</text>
+<circle cx="1284.6" cy="4620.7" r="5" fill="#ffd700"/>
+<text x="1292.6" y="4624.7">Denebola</text>
+<circle cx="1596.1" cy="4464.8" r="3" fill="#aaa"/>
+<text x="1604.1" y="4468.8">gLeo</text>
+<circle cx="1406.9" cy="4444.6" r="3" fill="#aaa"/>
+<text x="1414.9" y="4448.6">dLeo</text>
+<circle cx="1715.4" cy="4348.4" r="3" fill="#aaa"/>
+<text x="1723.4" y="4352.4">eLeo</text>
+<circle cx="1607.6" cy="4358.8" r="3" fill="#aaa"/>
+<text x="1615.6" y="4362.8">zLeo</text>
+<circle cx="1640.3" cy="4556.1" r="3" fill="#aaa"/>
+<text x="1648.3" y="4560.1">etLeo</text>
+<circle cx="1406.4" cy="4595.6" r="3" fill="#aaa"/>
+<text x="1414.4" y="4599.6">thLeo</text>
+<circle cx="1691.2" cy="4282.3" r="3" fill="#aaa"/>
+<text x="1699.2" y="4286.3">muLeo</text>
+<text class="title" x="2100.0" y="4215">Lep</text>
+<line x1="1884.6" y1="4391.2" x2="1955.4" y2="4588.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1955.4" y1="4588.8" x2="2315.4" y2="4697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2315.4" y1="4697.7" x2="2197.4" y2="4282.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2197.4" y1="4282.3" x2="1884.6" y2="4391.2" stroke="#446" stroke-width="1.5"/>
+<circle cx="1884.6" cy="4391.2" r="5" fill="#ffd700"/>
+<text x="1892.6" y="4395.2">Arneb</text>
+<circle cx="1955.4" cy="4588.8" r="3" fill="#aaa"/>
+<text x="1963.4" y="4592.8">bLep</text>
+<circle cx="2315.4" cy="4697.7" r="3" fill="#aaa"/>
+<text x="2323.4" y="4701.7">eLep</text>
+<circle cx="2197.4" cy="4282.3" r="3" fill="#aaa"/>
+<text x="2205.4" y="4286.3">muLep</text>
+<text class="title" x="300.0" y="4815">Lib</text>
+<line x1="515.4" y1="5017.0" x2="279.0" y2="4882.3" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="5017.0" x2="395.2" y2="5206.1" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="5017.0" x2="112.6" y2="4992.6" stroke="#446" stroke-width="1.5"/>
+<line x1="279.0" y1="4882.3" x2="84.6" y2="5297.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="395.2" cy="5206.1" r="3" fill="#aaa"/>
+<text x="403.2" y="5210.1">gLib</text>
+<circle cx="112.6" cy="4992.6" r="3" fill="#aaa"/>
+<text x="120.6" y="4996.6">siLib</text>
+<circle cx="84.6" cy="5297.7" r="3" fill="#aaa"/>
+<text x="92.6" y="5301.7">tLib</text>
+<circle cx="515.4" cy="5017.0" r="3" fill="#aaa"/>
+<text x="523.4" y="5021.0">aLib</text>
+<circle cx="279.0" cy="4882.3" r="3" fill="#aaa"/>
+<text x="287.0" y="4886.3">bLib</text>
+<text class="title" x="900.0" y="4815">Lup</text>
+<line x1="1115.4" y1="5127.2" x2="981.0" y2="4973.0" stroke="#446" stroke-width="1.5"/>
+<line x1="981.0" y1="4973.0" x2="684.6" y2="4901.7" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="4901.7" x2="796.1" y2="4882.3" stroke="#446" stroke-width="1.5"/>
+<line x1="796.1" y1="4882.3" x2="785.4" y2="5029.2" stroke="#446" stroke-width="1.5"/>
+<line x1="785.4" y1="5029.2" x2="869.6" y2="5297.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1115.4" cy="5127.2" r="3" fill="#aaa"/>
+<text x="1123.4" y="5131.2">aLup</text>
+<circle cx="981.0" cy="4973.0" r="3" fill="#aaa"/>
+<text x="989.0" y="4977.0">bLup</text>
+<circle cx="684.6" cy="4901.7" r="3" fill="#aaa"/>
+<text x="692.6" y="4905.7">gLup</text>
+<circle cx="796.1" cy="4882.3" r="3" fill="#aaa"/>
+<text x="804.1" y="4886.3">dLup</text>
+<circle cx="785.4" cy="5029.2" r="3" fill="#aaa"/>
+<text x="793.4" y="5033.2">eLup</text>
+<circle cx="869.6" cy="5297.7" r="3" fill="#aaa"/>
+<text x="877.6" y="5301.7">zLup</text>
+<text class="title" x="1500.0" y="4815">Lyr</text>
+<line x1="1715.4" y1="4882.3" x2="1284.6" y2="4955.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="4955.6" x2="1458.1" y2="4947.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1458.1" y1="4947.6" x2="1562.1" y2="4896.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1562.1" y1="4896.5" x2="1338.1" y2="5297.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1338.1" y1="5297.7" x2="1284.6" y2="4955.6" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="4882.3" r="5" fill="#ffd700"/>
+<text x="1723.4" y="4886.3">Vega</text>
+<circle cx="1458.1" cy="4947.6" r="3" fill="#aaa"/>
+<text x="1466.1" y="4951.6">bLyr</text>
+<circle cx="1284.6" cy="4955.6" r="3" fill="#aaa"/>
+<text x="1292.6" y="4959.6">gLyr</text>
+<circle cx="1338.1" cy="5297.7" r="3" fill="#aaa"/>
+<text x="1346.1" y="5301.7">dLyr</text>
+<circle cx="1562.1" cy="4896.5" r="3" fill="#aaa"/>
+<text x="1570.1" y="4900.5">zLyr</text>
+<text class="title" x="2100.0" y="4815">Oph</text>
+<line x1="1925.9" y1="4882.3" x2="2106.0" y2="4929.1" stroke="#446" stroke-width="1.5"/>
+<line x1="2106.0" y1="4929.1" x2="2044.5" y2="5297.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2044.5" y1="5297.7" x2="2205.1" y2="5222.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1925.9" y1="4882.3" x2="1884.6" y2="4999.6" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="4999.6" x2="2315.4" y2="5120.9" stroke="#446" stroke-width="1.5"/>
+<line x1="2315.4" y1="5120.9" x2="2296.2" y2="5135.6" stroke="#446" stroke-width="1.5"/>
+<line x1="2296.2" y1="5135.6" x2="2205.1" y2="5222.0" stroke="#446" stroke-width="1.5"/>
+<circle cx="1925.9" cy="4882.3" r="5" fill="#ffd700"/>
+<text x="1933.9" y="4886.3">Rasalague</text>
+<circle cx="1884.6" cy="4999.6" r="3" fill="#aaa"/>
+<text x="1892.6" y="5003.6">bOph</text>
+<circle cx="2315.4" cy="5120.9" r="3" fill="#aaa"/>
+<text x="2323.4" y="5124.9">dOph</text>
+<circle cx="2296.2" cy="5135.6" r="3" fill="#aaa"/>
+<text x="2304.2" y="5139.6">eOph</text>
+<circle cx="2205.1" cy="5222.0" r="3" fill="#aaa"/>
+<text x="2213.1" y="5226.0">zOph</text>
+<circle cx="2044.5" cy="5297.7" r="5" fill="#ffd700"/>
+<text x="2052.5" y="5301.7">Sabik</text>
+<circle cx="2106.0" cy="4929.1" r="3" fill="#aaa"/>
+<text x="2114.0" y="4933.1">kOph</text>
+<text class="title" x="300.0" y="5415">Ori</text>
+<line x1="297.0" y1="5482.3" x2="84.6" y2="5536.0" stroke="#446" stroke-width="1.5"/>
+<line x1="297.0" y1="5482.3" x2="403.0" y2="5558.6" stroke="#446" stroke-width="1.5"/>
+<line x1="84.6" y1="5536.0" x2="237.3" y2="5733.8" stroke="#446" stroke-width="1.5"/>
+<line x1="403.0" y1="5558.6" x2="330.2" y2="5698.8" stroke="#446" stroke-width="1.5"/>
+<line x1="330.2" y1="5698.8" x2="285.5" y2="5718.3" stroke="#446" stroke-width="1.5"/>
+<line x1="285.5" y1="5718.3" x2="237.3" y2="5733.8" stroke="#446" stroke-width="1.5"/>
+<line x1="237.3" y1="5733.8" x2="163.2" y2="5897.7" stroke="#446" stroke-width="1.5"/>
+<line x1="330.2" y1="5698.8" x2="515.4" y2="5866.6" stroke="#446" stroke-width="1.5"/>
+<circle cx="163.2" cy="5897.7" r="3" fill="#aaa"/>
+<text x="171.2" y="5901.7">kOri</text>
+<circle cx="297.0" cy="5482.3" r="3" fill="#aaa"/>
+<text x="305.0" y="5486.3">lOri</text>
+<circle cx="84.6" cy="5536.0" r="5" fill="#ffd700"/>
+<text x="92.6" y="5540.0">Betelgeux</text>
+<circle cx="515.4" cy="5866.6" r="5" fill="#ffd700"/>
+<text x="523.4" y="5870.6">Rigel</text>
+<circle cx="403.0" cy="5558.6" r="5" fill="#ffd700"/>
+<text x="411.0" y="5562.6">Bellatrix</text>
+<circle cx="330.2" cy="5698.8" r="3" fill="#aaa"/>
+<text x="338.2" y="5702.8">dOri</text>
+<circle cx="285.5" cy="5718.3" r="5" fill="#ffd700"/>
+<text x="293.5" y="5722.3">Alnilam</text>
+<circle cx="237.3" cy="5733.8" r="3" fill="#aaa"/>
+<text x="245.3" y="5737.8">zOri</text>
+<text class="title" x="900.0" y="5415">Peg</text>
+<line x1="684.6" y1="5788.8" x2="684.9" y2="5526.2" stroke="#446" stroke-width="1.5"/>
+<line x1="684.9" y1="5526.2" x2="691.5" y2="5482.3" stroke="#446" stroke-width="1.5"/>
+<line x1="691.5" y1="5482.3" x2="709.9" y2="5897.7" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="5788.8" x2="1115.4" y2="5789.2" stroke="#446" stroke-width="1.5"/>
+<circle cx="684.6" cy="5788.8" r="5" fill="#ffd700"/>
+<text x="692.6" y="5792.8">Markab</text>
+<circle cx="684.9" cy="5526.2" r="5" fill="#ffd700"/>
+<text x="692.9" y="5530.2">Scheat</text>
+<circle cx="1115.4" cy="5789.2" r="5" fill="#ffd700"/>
+<text x="1123.4" y="5793.2">Algenib</text>
+<circle cx="709.9" cy="5897.7" r="5" fill="#ffd700"/>
+<text x="717.9" y="5901.7">Enif</text>
+<circle cx="691.5" cy="5482.3" r="3" fill="#aaa"/>
+<text x="699.5" y="5486.3">etPeg</text>
+<text class="title" x="1500.0" y="5415">Per</text>
+<line x1="1511.8" y1="5552.4" x2="1385.7" y2="5592.2" stroke="#446" stroke-width="1.5"/>
+<line x1="1385.7" y1="5592.2" x2="1284.6" y2="5741.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="5741.7" x2="1309.8" y2="5897.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1309.8" y1="5897.7" x2="1715.4" y2="5496.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1511.8" y1="5552.4" x2="1621.2" y2="5723.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1621.2" y1="5723.5" x2="1644.0" y2="5482.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="1511.8" cy="5552.4" r="5" fill="#ffd700"/>
+<text x="1519.8" y="5556.4">Marfak</text>
+<circle cx="1621.2" cy="5723.5" r="5" fill="#ffd700"/>
+<text x="1629.2" y="5727.5">Algol</text>
+<circle cx="1644.0" cy="5482.3" r="3" fill="#aaa"/>
+<text x="1652.0" y="5486.3">gPer</text>
+<circle cx="1385.7" cy="5592.2" r="3" fill="#aaa"/>
+<text x="1393.7" y="5596.2">dPer</text>
+<circle cx="1284.6" cy="5741.7" r="3" fill="#aaa"/>
+<text x="1292.6" y="5745.7">ePer</text>
+<circle cx="1309.8" cy="5897.7" r="3" fill="#aaa"/>
+<text x="1317.8" y="5901.7">zPer</text>
+<circle cx="1715.4" cy="5496.7" r="3" fill="#aaa"/>
+<text x="1723.4" y="5500.7">tPer</text>
+<text class="title" x="2100.0" y="5415">Phe</text>
+<line x1="2315.4" y1="5482.3" x2="1884.6" y2="5897.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="2315.4" cy="5482.3" r="3" fill="#aaa"/>
+<text x="2323.4" y="5486.3">aPhe</text>
+<circle cx="1884.6" cy="5897.7" r="3" fill="#aaa"/>
+<text x="1892.6" y="5901.7">bPhe</text>
+<text class="title" x="300.0" y="6015">Pup</text>
+<line x1="103.6" y1="6330.3" x2="515.4" y2="6380.6" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="6380.6" x2="172.2" y2="6091.0" stroke="#446" stroke-width="1.5"/>
+<line x1="172.2" y1="6091.0" x2="326.4" y2="6284.2" stroke="#446" stroke-width="1.5"/>
+<line x1="326.4" y1="6284.2" x2="84.6" y2="6082.3" stroke="#446" stroke-width="1.5"/>
+<line x1="84.6" y1="6082.3" x2="268.5" y2="6382.4" stroke="#446" stroke-width="1.5"/>
+<line x1="268.5" y1="6382.4" x2="457.0" y2="6497.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="84.6" cy="6082.3" r="3" fill="#aaa"/>
+<text x="92.6" y="6086.3">rPup</text>
+<circle cx="268.5" cy="6382.4" r="3" fill="#aaa"/>
+<text x="276.5" y="6386.4">siPup</text>
+<circle cx="457.0" cy="6497.7" r="3" fill="#aaa"/>
+<text x="465.0" y="6501.7">tPup</text>
+<circle cx="103.6" cy="6330.3" r="3" fill="#aaa"/>
+<text x="111.6" y="6334.3">zPup</text>
+<circle cx="515.4" cy="6380.6" r="3" fill="#aaa"/>
+<text x="523.4" y="6384.6">nuPup</text>
+<circle cx="172.2" cy="6091.0" r="3" fill="#aaa"/>
+<text x="180.2" y="6095.0">xiPup</text>
+<circle cx="326.4" cy="6284.2" r="3" fill="#aaa"/>
+<text x="334.4" y="6288.2">piPup</text>
+<text class="title" x="900.0" y="6015">Sco</text>
+<line x1="1089.3" y1="6082.3" x2="1109.5" y2="6132.2" stroke="#446" stroke-width="1.5"/>
+<line x1="1109.5" y1="6132.2" x2="1115.4" y2="6194.0" stroke="#446" stroke-width="1.5"/>
+<line x1="1109.5" y1="6132.2" x2="994.4" y2="6199.6" stroke="#446" stroke-width="1.5"/>
+<line x1="994.4" y1="6199.6" x2="1026.9" y2="6184.8" stroke="#446" stroke-width="1.5"/>
+<line x1="1026.9" y1="6184.8" x2="968.7" y2="6231.2" stroke="#446" stroke-width="1.5"/>
+<line x1="968.7" y1="6231.2" x2="912.1" y2="6339.0" stroke="#446" stroke-width="1.5"/>
+<line x1="912.1" y1="6339.0" x2="905.3" y2="6405.5" stroke="#446" stroke-width="1.5"/>
+<line x1="905.3" y1="6405.5" x2="825.0" y2="6497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="825.0" y1="6497.7" x2="725.3" y2="6493.3" stroke="#446" stroke-width="1.5"/>
+<line x1="725.3" y1="6493.3" x2="684.6" y2="6442.4" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="6442.4" x2="704.8" y2="6422.9" stroke="#446" stroke-width="1.5"/>
+<line x1="704.8" y1="6422.9" x2="740.0" y2="6389.0" stroke="#446" stroke-width="1.5"/>
+<line x1="704.8" y1="6422.9" x2="751.2" y2="6392.2" stroke="#446" stroke-width="1.5"/>
+<circle cx="994.4" cy="6199.6" r="3" fill="#aaa"/>
+<text x="1002.4" y="6203.6">aSco</text>
+<circle cx="1089.3" cy="6082.3" r="3" fill="#aaa"/>
+<text x="1097.3" y="6086.3">bSco</text>
+<circle cx="1109.5" cy="6132.2" r="3" fill="#aaa"/>
+<text x="1117.5" y="6136.2">dSco</text>
+<circle cx="912.1" cy="6339.0" r="3" fill="#aaa"/>
+<text x="920.1" y="6343.0">eSco</text>
+<circle cx="825.0" cy="6497.7" r="3" fill="#aaa"/>
+<text x="833.0" y="6501.7">etSco</text>
+<circle cx="725.3" cy="6493.3" r="3" fill="#aaa"/>
+<text x="733.3" y="6497.3">thSco</text>
+<circle cx="684.6" cy="6442.4" r="3" fill="#aaa"/>
+<text x="692.6" y="6446.4">iSco</text>
+<circle cx="704.8" cy="6422.9" r="3" fill="#aaa"/>
+<text x="712.8" y="6426.9">kSco</text>
+<circle cx="740.0" cy="6389.0" r="3" fill="#aaa"/>
+<text x="748.0" y="6393.0">lSco</text>
+<circle cx="905.3" cy="6405.5" r="3" fill="#aaa"/>
+<text x="913.3" y="6409.5">muSco</text>
+<circle cx="751.2" cy="6392.2" r="3" fill="#aaa"/>
+<text x="759.2" y="6396.2">uSco</text>
+<circle cx="1115.4" cy="6194.0" r="3" fill="#aaa"/>
+<text x="1123.4" y="6198.0">piSco</text>
+<circle cx="1026.9" cy="6184.8" r="3" fill="#aaa"/>
+<text x="1034.9" y="6188.8">siSco</text>
+<circle cx="968.7" cy="6231.2" r="3" fill="#aaa"/>
+<text x="976.7" y="6235.2">tSco</text>
+<text class="title" x="1500.0" y="6015">Ser</text>
+<line x1="1715.4" y1="6082.3" x2="1284.6" y2="6497.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="6082.3" r="3" fill="#aaa"/>
+<text x="1723.4" y="6086.3">tSer</text>
+<circle cx="1284.6" cy="6497.7" r="3" fill="#aaa"/>
+<text x="1292.6" y="6501.7">etSer</text>
+<text class="title" x="2100.0" y="6015">Sgr</text>
+<line x1="2208.3" y1="6286.1" x2="2186.0" y2="6497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2186.0" y1="6497.7" x2="1966.8" y2="6122.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1966.8" y1="6122.5" x2="2159.2" y2="6082.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2159.2" y1="6082.3" x2="2208.3" y2="6286.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1915.0" y1="6288.5" x2="1884.6" y2="6186.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1884.6" y1="6186.5" x2="2186.0" y2="6497.7" stroke="#446" stroke-width="1.5"/>
+<line x1="2034.6" y1="6154.9" x2="1915.0" y2="6288.5" stroke="#446" stroke-width="1.5"/>
+<line x1="2034.6" y1="6154.9" x2="2159.2" y2="6082.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2208.3" y1="6286.1" x2="2315.4" y2="6313.9" stroke="#446" stroke-width="1.5"/>
+<circle cx="2315.4" cy="6313.9" r="3" fill="#aaa"/>
+<text x="2323.4" y="6317.9">gSgr</text>
+<circle cx="2208.3" cy="6286.1" r="3" fill="#aaa"/>
+<text x="2216.3" y="6290.1">dSgr</text>
+<circle cx="2186.0" cy="6497.7" r="3" fill="#aaa"/>
+<text x="2194.0" y="6501.7">eSgr</text>
+<circle cx="1915.0" cy="6288.5" r="3" fill="#aaa"/>
+<text x="1923.0" y="6292.5">zSgr</text>
+<circle cx="2159.2" cy="6082.3" r="3" fill="#aaa"/>
+<text x="2167.2" y="6086.3">lSgr</text>
+<circle cx="1966.8" cy="6122.5" r="3" fill="#aaa"/>
+<text x="1974.8" y="6126.5">siSgr</text>
+<circle cx="1884.6" cy="6186.5" r="3" fill="#aaa"/>
+<text x="1892.6" y="6190.5">tSgr</text>
+<circle cx="2034.6" cy="6154.9" r="3" fill="#aaa"/>
+<text x="2042.6" y="6158.9">phSgr</text>
+<text class="title" x="300.0" y="6615">Tau</text>
+<line x1="426.2" y1="7069.4" x2="466.9" y2="7087.0" stroke="#446" stroke-width="1.5"/>
+<line x1="466.9" y1="7087.0" x2="515.4" y2="7097.7" stroke="#446" stroke-width="1.5"/>
+<line x1="515.4" y1="7097.7" x2="498.0" y2="7036.4" stroke="#446" stroke-width="1.5"/>
+<line x1="426.2" y1="7069.4" x2="466.6" y2="6984.1" stroke="#446" stroke-width="1.5"/>
+<line x1="466.6" y1="6984.1" x2="84.6" y2="6921.2" stroke="#446" stroke-width="1.5"/>
+<line x1="84.6" y1="6921.2" x2="147.4" y2="6682.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="498.0" cy="7036.4" r="3" fill="#aaa"/>
+<text x="506.0" y="7040.4">dTau</text>
+<circle cx="466.6" cy="6984.1" r="3" fill="#aaa"/>
+<text x="474.6" y="6988.1">eTau</text>
+<circle cx="84.6" cy="6921.2" r="3" fill="#aaa"/>
+<text x="92.6" y="6925.2">zTau</text>
+<circle cx="466.9" cy="7087.0" r="3" fill="#aaa"/>
+<text x="474.9" y="7091.0">thTau</text>
+<circle cx="426.2" cy="7069.4" r="3" fill="#aaa"/>
+<text x="434.2" y="7073.4">aTau</text>
+<circle cx="147.4" cy="6682.3" r="3" fill="#aaa"/>
+<text x="155.4" y="6686.3">bTau</text>
+<circle cx="515.4" cy="7097.7" r="3" fill="#aaa"/>
+<text x="523.4" y="7101.7">gTau</text>
+<text class="title" x="900.0" y="6615">TrA</text>
+<line x1="684.6" y1="7097.7" x2="941.6" y2="6682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="941.6" y1="6682.3" x2="1115.4" y2="7071.7" stroke="#446" stroke-width="1.5"/>
+<line x1="1115.4" y1="7071.7" x2="684.6" y2="7097.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="684.6" cy="7097.7" r="3" fill="#aaa"/>
+<text x="692.6" y="7101.7">aTrA</text>
+<circle cx="941.6" cy="6682.3" r="3" fill="#aaa"/>
+<text x="949.6" y="6686.3">bTrA</text>
+<circle cx="1115.4" cy="7071.7" r="3" fill="#aaa"/>
+<text x="1123.4" y="7075.7">gTrA</text>
+<text class="title" x="1500.0" y="6615">Tri</text>
+<line x1="1715.4" y1="7097.7" x2="1422.7" y2="6682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1422.7" y1="6682.3" x2="1284.6" y2="6770.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="6770.5" x2="1715.4" y2="7097.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1715.4" cy="7097.7" r="3" fill="#aaa"/>
+<text x="1723.4" y="7101.7">aTri</text>
+<circle cx="1422.7" cy="6682.3" r="3" fill="#aaa"/>
+<text x="1430.7" y="6686.3">bTri</text>
+<circle cx="1284.6" cy="6770.5" r="3" fill="#aaa"/>
+<text x="1292.6" y="6774.5">gTri</text>
+<text class="title" x="2100.0" y="6615">UMa</text>
+<line x1="2310.4" y1="6682.3" x2="2315.4" y2="6861.9" stroke="#446" stroke-width="1.5"/>
+<line x1="2315.4" y1="6861.9" x2="2180.2" y2="6951.4" stroke="#446" stroke-width="1.5"/>
+<line x1="2180.2" y1="6951.4" x2="2124.0" y2="6840.2" stroke="#446" stroke-width="1.5"/>
+<line x1="2124.0" y1="6840.2" x2="2310.4" y2="6682.3" stroke="#446" stroke-width="1.5"/>
+<line x1="2124.0" y1="6840.2" x2="2023.7" y2="6875.8" stroke="#446" stroke-width="1.5"/>
+<line x1="2023.7" y1="6875.8" x2="1946.0" y2="6910.3" stroke="#446" stroke-width="1.5"/>
+<line x1="1946.0" y1="6910.3" x2="1884.6" y2="7097.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="2310.4" cy="6682.3" r="3" fill="#aaa"/>
+<text x="2318.4" y="6686.3">aUMa</text>
+<circle cx="2315.4" cy="6861.9" r="5" fill="#ffd700"/>
+<text x="2323.4" y="6865.9">Merak</text>
+<circle cx="2180.2" cy="6951.4" r="5" fill="#ffd700"/>
+<text x="2188.2" y="6955.4">Phecda</text>
+<circle cx="2124.0" cy="6840.2" r="5" fill="#ffd700"/>
+<text x="2132.0" y="6844.2">Megrez</text>
+<circle cx="2023.7" cy="6875.8" r="5" fill="#ffd700"/>
+<text x="2031.7" y="6879.8">Alioth</text>
+<circle cx="1946.0" cy="6910.3" r="5" fill="#ffd700"/>
+<text x="1954.0" y="6914.3">Mizar</text>
+<circle cx="1884.6" cy="7097.7" r="5" fill="#ffd700"/>
+<text x="1892.6" y="7101.7">Alkaid</text>
+<text class="title" x="300.0" y="7215">UMi</text>
+<line x1="161.9" y1="7369.6" x2="147.5" y2="7383.0" stroke="#446" stroke-width="1.5"/>
+<line x1="147.5" y1="7383.0" x2="120.4" y2="7360.4" stroke="#446" stroke-width="1.5"/>
+<line x1="120.4" y1="7360.4" x2="132.1" y2="7697.7" stroke="#446" stroke-width="1.5"/>
+<line x1="132.1" y1="7697.7" x2="161.9" y2="7369.6" stroke="#446" stroke-width="1.5"/>
+<line x1="132.1" y1="7697.7" x2="106.7" y2="7324.0" stroke="#446" stroke-width="1.5"/>
+<line x1="106.7" y1="7324.0" x2="84.6" y2="7297.7" stroke="#446" stroke-width="1.5"/>
+<line x1="84.6" y1="7297.7" x2="515.4" y2="7282.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="132.1" cy="7697.7" r="3" fill="#aaa"/>
+<text x="140.1" y="7701.7">zUMi</text>
+<circle cx="120.4" cy="7360.4" r="3" fill="#aaa"/>
+<text x="128.4" y="7364.4">etUMi</text>
+<circle cx="515.4" cy="7282.3" r="5" fill="#ffd700"/>
+<text x="523.4" y="7286.3">Polaris</text>
+<circle cx="161.9" cy="7369.6" r="3" fill="#aaa"/>
+<text x="169.9" y="7373.6">bUMi</text>
+<circle cx="147.5" cy="7383.0" r="3" fill="#aaa"/>
+<text x="155.5" y="7387.0">gUMi</text>
+<circle cx="84.6" cy="7297.7" r="3" fill="#aaa"/>
+<text x="92.6" y="7301.7">dUMi</text>
+<circle cx="106.7" cy="7324.0" r="3" fill="#aaa"/>
+<text x="114.7" y="7328.0">eUMi</text>
+<text class="title" x="900.0" y="7215">Vel</text>
+<line x1="1115.4" y1="7422.8" x2="955.2" y2="7282.3" stroke="#446" stroke-width="1.5"/>
+<line x1="955.2" y1="7282.3" x2="684.6" y2="7497.5" stroke="#446" stroke-width="1.5"/>
+<line x1="684.6" y1="7497.5" x2="1019.0" y2="7686.9" stroke="#446" stroke-width="1.5"/>
+<line x1="1019.0" y1="7686.9" x2="916.5" y2="7697.7" stroke="#446" stroke-width="1.5"/>
+<circle cx="1115.4" cy="7422.8" r="5" fill="#ffd700"/>
+<text x="1123.4" y="7426.8">Al Suhail</text>
+<circle cx="1019.0" cy="7686.9" r="3" fill="#aaa"/>
+<text x="1027.0" y="7690.9">dVel</text>
+<circle cx="916.5" cy="7697.7" r="3" fill="#aaa"/>
+<text x="924.5" y="7701.7">kVel</text>
+<circle cx="955.2" cy="7282.3" r="3" fill="#aaa"/>
+<text x="963.2" y="7286.3">lVel</text>
+<circle cx="684.6" cy="7497.5" r="3" fill="#aaa"/>
+<text x="692.6" y="7501.5">muVel</text>
+<text class="title" x="1500.0" y="7215">Vir</text>
+<line x1="1361.8" y1="7697.7" x2="1284.6" y2="7499.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1284.6" y1="7499.1" x2="1715.4" y2="7515.1" stroke="#446" stroke-width="1.5"/>
+<line x1="1715.4" y1="7515.1" x2="1602.2" y2="7424.5" stroke="#446" stroke-width="1.5"/>
+<line x1="1715.4" y1="7515.1" x2="1548.7" y2="7282.3" stroke="#446" stroke-width="1.5"/>
+<circle cx="1361.8" cy="7697.7" r="5" fill="#ffd700"/>
+<text x="1369.8" y="7701.7">Spica</text>
+<circle cx="1715.4" cy="7515.1" r="3" fill="#aaa"/>
+<text x="1723.4" y="7519.1">gVir</text>
+<circle cx="1602.2" cy="7424.5" r="3" fill="#aaa"/>
+<text x="1610.2" y="7428.5">dVir</text>
+<circle cx="1548.7" cy="7282.3" r="3" fill="#aaa"/>
+<text x="1556.7" y="7286.3">eVir</text>
+<circle cx="1284.6" cy="7499.1" r="3" fill="#aaa"/>
+<text x="1292.6" y="7503.1">zVir</text>
+</svg>
