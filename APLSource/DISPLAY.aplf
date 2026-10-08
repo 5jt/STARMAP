@@ -1,0 +1,5 @@
+ DISPLAY
+⍝ Main entry point - initiates the entire STARMAP task
+⍝ Calls ENTRY for input, pauses for paper alignment, then calls WORK
+ ENTRY
+ WORK

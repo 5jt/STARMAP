@@ -1,0 +1,3 @@
+ Z←AREADERIV X
+⍝ Derivative of AREA function
+ Z←(PERIDIST÷2)+(3×X*2)÷4×PERIDIST

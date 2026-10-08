@@ -1,0 +1,96 @@
+ PLOTSTARS;GRID;ROWS;COLS;CR;CC;RR;RC;A;HR;HC;IDX;I;R;C;BVIS;PCHARS;VPCHARS;N;VPNAMES;L;W;MARGIN;NAME;NR;NC;OK
+⍝ ASCII star map - stereographic projection centered on zenith
+⍝ Size adapts to ⎕PW. Matches book example layout:
+⍝ horizon circle, crosshairs, cardinal directions, planet labels
+⍝ Uses globals: STARCOORD, PLANETCOORD, VE, VP, BRIGHT, PHASE
+ W←⎕PW
+ MARGIN←4
+ COLS←W-2×MARGIN
+ ROWS←1+⌊COLS÷2
+ CR←1+⌊ROWS÷2 ⋄ CC←1+⌊COLS÷2
+ RR←⌊(ROWS-3)÷2 ⋄ RC←⌊(COLS-3)÷2
+ GRID←ROWS COLS⍴' '
+ ⍝
+ ⍝ --- Crosshairs ---
+ GRID[CR;]←'─'
+ GRID[;CC]←'│'
+ GRID[CR;CC]←'┼'
+ ⍝
+ ⍝ --- Horizon circle (360 points) ---
+ A←(⍳360)×(○2)÷360
+ HR←⌊0.5+CR-RR×2○A
+ HC←⌊0.5+CC+RC×1○A
+ HR←1⌈ROWS⌊HR ⋄ HC←1⌈COLS⌊HC
+ IDX←∪((HR-1)×COLS)+HC
+ (,GRID)[IDX]←'·'
+ ⍝
+ ⍝ --- Cardinal directions ---
+ :If 1≤CR-RR-1
+   GRID[CR-RR-1;CC]←'N'
+ :EndIf
+ :If ROWS≥CR+RR+1
+   GRID[CR+RR+1;CC]←'S'
+ :EndIf
+ :If 1≤CC-RC-1
+   GRID[CR;CC-RC-1]←'E'
+ :EndIf
+ :If COLS≥CC+RC+1
+   GRID[CR;CC+RC+1]←'W'
+ :EndIf
+ ⍝
+ ⍝ --- Scale mark ---
+ :If 1≤CC-RC-4
+   GRID[CR;(CC-RC-4)+⍳3]←'1.0'
+ :EndIf
+ ⍝
+ ⍝ --- Plot stars ---
+ :If 2=⍴⍴STARCOORD
+   BVIS←VE/BRIGHT
+   :For I :In ⍳⊃⍴STARCOORD
+     R←⌊0.5+CR-RR×STARCOORD[I;2]
+     C←⌊0.5+CC+RC×STARCOORD[I;1]
+     :If (R≥1)∧(R≤ROWS)∧(C≥1)∧(C≤COLS)
+       :If GRID[R;C]∊' ─│'
+         GRID[R;C]←'.*'[1+BVIS[I]]
+       :EndIf
+     :EndIf
+   :EndFor
+ :EndIf
+ ⍝
+ ⍝ --- Plot planets (symbol + name label) ---
+ PCHARS←(≢VP)↑'☾☉☿♀♂♃♄⛢♆♇☄'
+ VPCHARS←VP/PCHARS
+ N←(≢VP)↑PLANETNAMES
+ VPNAMES←VP/N
+ :If 2=⍴⍴PLANETCOORD
+   :For I :In ⍳⊃⍴PLANETCOORD
+     R←⌊0.5+CR-RR×PLANETCOORD[I;2]
+     C←⌊0.5+CC+RC×PLANETCOORD[I;1]
+     :If (R≥1)∧(R≤ROWS)∧(C≥1)∧(C≤COLS)
+       GRID[R;C]←VPCHARS[I]
+       ⍝ Place name label to the right if room
+       NAME←' ',⊃VPNAMES[I]
+       NC←C
+       :If (NC+≢NAME)≤COLS
+         OK←∧/GRID[R;NC+⍳≢NAME]∊' ─│┼'
+         :If OK
+           GRID[R;NC+⍳≢NAME]←NAME
+         :EndIf
+       :EndIf
+     :EndIf
+   :EndFor
+ :EndIf
+ ⍝
+ ⍝ --- Output with margin ---
+ :For I :In ⍳ROWS
+   ⎕←(MARGIN⍴' '),GRID[I;]
+ :EndFor
+ ⎕←''
+ ⎕←(MARGIN⍴' '),'  * bright   . faint   ┼ zenith   · horizon'
+ :If ∨/VP
+   L←' '
+   :For I :In ⍳≢VPCHARS
+     L←L,' ',VPCHARS[I],'=',⊃VPNAMES[I]
+   :EndFor
+   ⎕←(MARGIN⍴' '),L
+ :EndIf

@@ -1,0 +1,138 @@
+:Class WebApp
+⍝ HTTP server for star map animation
+⍝ Built on Stark — serves web UI, generates animations, serves video files
+⍝
+⍝   app←⎕NEW sm.WebApp (Stark.Stark #.sm)
+⍝   app.Start 8080
+
+    :Field Private router
+    :Field Private root
+    :Field Private ns
+
+    ∇ Make args;StarkClass
+      :Access Public
+      :Implements Constructor
+      (StarkClass ns)←args
+      root←(∊⊃⎕SHELL 'pwd')~⎕UCS 10 13
+      {}⎕SHELL 'mkdir -p ',root,'/output'
+      router←⎕NEW StarkClass
+      router.Handlers←⎕THIS
+      router.ThreadMode←'DEBUG'
+      '/' router.Get 'ServeUI'
+      '/api/generate' router.Post 'Generate'
+      '/api/generate-svg' router.Post 'GenerateSVG'
+      '/api/video/{id}/animation.mp4' router.Get 'ServeVideo'
+      '/api/svg/{id}' router.Get 'ServeSVG'
+    ∇
+
+    ∇ Start port
+      :Access Public
+      router.Start port
+      ⎕←'Star map server running on http://localhost:',(⍕port)
+    ∇
+
+    ∇ Stop
+      :Access Public
+      router.Stop
+      ⎕←'Server stopped'
+    ∇
+
+    ∇ result←ServeUI req
+      :Access Public
+      'Content-Type' req.SetHeader 'text/html; charset=utf-8'
+      req.Response.Payload←⊃⎕NGET(root,'/web/index.html')
+      result←⍬
+    ∇
+
+    ∇ result←Generate req;body;START;END;T;LA;LO;FPS;ID;DIR;VID
+      :Access Public
+      :Trap 0
+          body←req.Payload
+          START←body.start
+          END←body.end
+          T←body.time
+          LA←body.lat
+          LO←body.long
+          FPS←body.fps
+          ID←(∊⊃⎕SHELL 'date +%Y%m%d%H%M%S')~⎕UCS 10 13 32
+          DIR←root,'/output/',ID
+          {}⎕SHELL 'mkdir -p ',DIR
+          ⎕←'Generating frames for ',ID,'...'
+          START END T LA LO ns.ANIMATE DIR
+          ⎕←'Converting to video...'
+          VID←FPS ns.MAKEVIDEO DIR
+          :If 0<≢VID
+              result←(url: 'api/video/',ID,'/animation.mp4')
+          :Else
+              req.Fail 500
+              result←(error: 'Video generation failed')
+          :EndIf
+      :Else
+          req.Fail 400
+          result←(error: ⎕DMX.Message)
+      :EndTrap
+    ∇
+
+    ∇ result←ServeVideo req;id;path
+      :Access Public
+      id←req.PathParams.id
+      :If ∨/'..'⍷id
+          req.Fail 403
+          result←(error: 'Forbidden')
+          :Return
+      :EndIf
+      path←root,'/output/',id,'/animation.mp4'
+      :If ⎕NEXISTS path
+          'Content-Type' req.SetHeader 'video/mp4'
+          req.Response.Payload←'' path
+          result←⍬
+      :Else
+          req.Fail 404
+          result←(detail: 'Video not found')
+      :EndIf
+    ∇
+
+    ∇ result←GenerateSVG req;body;START;END;T;LA;LO;FPS;HIRES;SKIP;OPTS;SVG;ID;FN
+      :Access Public
+      :Trap 0
+          body←req.Payload
+          START←body.start
+          END←body.end
+          T←body.time
+          LA←body.lat
+          LO←body.long
+          FPS←body.fps
+          HIRES←body.hires
+          SKIP←body.skip
+          OPTS←FPS HIRES SKIP
+          SVG←OPTS ns.ANIMATEDSVG START END T LA LO
+          ID←(∊⊃⎕SHELL 'date +%Y%m%d%H%M%S')~⎕UCS 10 13 32
+          FN←root,'/output/',ID,'.svg'
+          (⊂SVG)⎕NPUT FN 1
+          result←(url: 'api/svg/',ID)
+      :Else
+          req.Fail 400
+          result←(error: ⎕DMX.Message)
+      :EndTrap
+    ∇
+
+    ∇ result←ServeSVG req;id;path
+      :Access Public
+      id←req.PathParams.id
+      :If ∨/'..'⍷id
+          req.Fail 403
+          result←(error: 'Forbidden')
+          :Return
+      :EndIf
+      path←root,'/output/',id,'.svg'
+      :If ⎕NEXISTS path
+          'Content-Type' req.SetHeader 'image/svg+xml; charset=utf-8'
+          req.Response.Payload←'' path
+          result←⍬
+      :Else
+          req.Fail 404
+          result←(detail: 'SVG not found')
+      :EndIf
+    ∇
+
+:EndClass

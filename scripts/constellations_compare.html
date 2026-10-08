@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Constellation stick figure comparison</title>
+<style>
+body { background: #1a1a2e; color: #ccc; font-family: system-ui, sans-serif; margin: 20px; }
+h1 { color: #88aadd; text-align: center; }
+h2 { color: #88aadd; margin: 0 0 4px 0; font-size: 16px; }
+.note { text-align: center; color: #667; font-size: 13px; margin-bottom: 30px; }
+.grid { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 0 auto; }
+.card { background: #12122a; border: 1px solid #334; border-radius: 8px; padding: 16px; }
+.pair { display: flex; gap: 16px; align-items: flex-start; }
+.ours { flex: 0 0 300px; }
+.ref { flex: 0 0 500px; }
+.ref img { width: 100%; border-radius: 4px; }
+.label { color: #667; font-size: 11px; margin-bottom: 4px; }
+.coverage { color: #556; font-size: 11px; }
+@media print {
+  body { background: white; color: #222; }
+  .card { border-color: #ccc; background: white; page-break-inside: avoid; }
+  .ref img { max-height: 300px; width: auto; }
+  h1, h2 { color: #335; }
+}
+</style>
+</head>
+<body>
+<h1>Constellation stick figure comparison</h1>
+<p class="note">Left: our rendering (Stellarium modern_iau data, matched to 332-star catalog)<br>
+Right: In-The-Sky.org reference charts (Dominic Ford, used for comparison only)</p>
+<div class="grid">
+<div class="card">
+<h2>And — Andromeda <span class="coverage">(3/16 segments, 18% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="265.4" x2="203.6" y2="234.6" stroke="#5577aa" stroke-width="1.5"/><line x1="203.6" y1="234.6" x2="142.8" y2="151.5" stroke="#5577aa" stroke-width="1.5"/><line x1="142.8" y1="151.5" x2="34.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="265.4" r="4" fill="#ffcc00"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Alpheratz</text><circle cx="142.8" cy="151.5" r="4" fill="#ffcc00"/><text x="148.8" y="154.5" fill="#99aabb" font-size="9" font-family="monospace">Mirach</text><circle cx="34.6" cy="34.6" r="4" fill="#ffcc00"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Almach</text><circle cx="203.6" cy="234.6" r="2.5" fill="#aabbcc"/><text x="209.6" y="237.6" fill="#99aabb" font-size="9" font-family="monospace">dAnd</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/AND_1.png" alt="Andromeda reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Aql — Aquila <span class="coverage">(9/14 segments, 64% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="90.6" y1="126.5" x2="106.5" y2="96.1" stroke="#5577aa" stroke-width="1.5"/><line x1="106.5" y1="96.1" x2="122.3" y2="74.7" stroke="#5577aa" stroke-width="1.5"/><line x1="122.3" y1="74.7" x2="195.0" y2="167.2" stroke="#5577aa" stroke-width="1.5"/><line x1="195.0" y1="167.2" x2="262.5" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="195.0" y1="167.2" x2="265.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="195.0" y1="167.2" x2="100.6" y2="193.1" stroke="#5577aa" stroke-width="1.5"/><line x1="100.6" y1="193.1" x2="34.6" y2="215.4" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="215.4" x2="262.5" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="262.5" y1="265.4" x2="265.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="106.5" cy="96.1" r="4" fill="#ffcc00"/><text x="112.5" y="99.1" fill="#99aabb" font-size="9" font-family="monospace">Altair</text><circle cx="90.6" cy="126.5" r="2.5" fill="#aabbcc"/><text x="96.6" y="129.5" fill="#99aabb" font-size="9" font-family="monospace">bAql</text><circle cx="122.3" cy="74.7" r="2.5" fill="#aabbcc"/><text x="128.3" y="77.7" fill="#99aabb" font-size="9" font-family="monospace">gAql</text><circle cx="195.0" cy="167.2" r="2.5" fill="#aabbcc"/><text x="201.0" y="170.2" fill="#99aabb" font-size="9" font-family="monospace">dAql</text><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">zAql</text><circle cx="100.6" cy="193.1" r="2.5" fill="#aabbcc"/><text x="106.6" y="196.1" fill="#99aabb" font-size="9" font-family="monospace">etAql</text><circle cx="34.6" cy="215.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="218.4" fill="#99aabb" font-size="9" font-family="monospace">thAql</text><circle cx="262.5" cy="265.4" r="2.5" fill="#aabbcc"/><text x="268.5" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">lAql</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/AQL_1.png" alt="Aquila reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Aqr — Aquarius <span class="coverage">(2/21 segments, 9% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="112.8" x2="170.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="170.3" y1="34.6" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="170.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="176.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">aAqr</text><circle cx="265.4" cy="112.8" r="2.5" fill="#aabbcc"/><text x="271.4" y="115.8" fill="#99aabb" font-size="9" font-family="monospace">bAqr</text><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">dAqr</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/AQR_1.png" alt="Aquarius reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Ara — Ara <span class="coverage">(2/8 segments, 25% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="37.7" y1="237.9" x2="262.3" y2="158.6" stroke="#5577aa" stroke-width="1.5"/><line x1="262.3" y1="158.6" x2="38.6" y2="62.1" stroke="#5577aa" stroke-width="1.5"/><circle cx="38.6" cy="62.1" r="2.5" fill="#aabbcc"/><text x="44.6" y="65.1" fill="#99aabb" font-size="9" font-family="monospace">bAra</text><circle cx="37.7" cy="237.9" r="2.5" fill="#aabbcc"/><text x="43.7" y="240.9" fill="#99aabb" font-size="9" font-family="monospace">gAra</text><circle cx="262.3" cy="158.6" r="2.5" fill="#aabbcc"/><text x="268.3" y="161.6" fill="#99aabb" font-size="9" font-family="monospace">zAra</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/ARA_1.png" alt="Ara reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Ari — Aries <span class="coverage">(1/3 segments, 33% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="237.3" y1="265.4" x2="62.7" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="62.7" cy="34.6" r="4" fill="#ffcc00"/><text x="68.7" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Hamal</text><circle cx="237.3" cy="265.4" r="4" fill="#ffcc00"/><text x="243.3" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Sheratan</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/ARI_1.png" alt="Aries reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Aur — Auriga <span class="coverage">(8/11 segments, 72% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="157.6" y1="265.4" x2="265.4" y2="224.5" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="224.5" x2="193.0" y2="109.2" stroke="#5577aa" stroke-width="1.5"/><line x1="193.0" y1="109.2" x2="35.3" y2="118.6" stroke="#5577aa" stroke-width="1.5"/><line x1="35.3" y1="118.6" x2="34.6" y2="188.1" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="188.1" x2="157.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="247.1" y1="128.7" x2="193.0" y2="109.2" stroke="#5577aa" stroke-width="1.5"/><line x1="193.0" y1="109.2" x2="35.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="35.3" y1="34.6" x2="35.3" y2="118.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="193.0" cy="109.2" r="4" fill="#ffcc00"/><text x="199.0" y="112.2" fill="#99aabb" font-size="9" font-family="monospace">Capella</text><circle cx="35.3" cy="118.6" r="4" fill="#ffcc00"/><text x="41.3" y="121.6" fill="#99aabb" font-size="9" font-family="monospace">Menkalinan</text><circle cx="35.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="41.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">dAur</text><circle cx="247.1" cy="128.7" r="2.5" fill="#aabbcc"/><text x="253.1" y="131.7" fill="#99aabb" font-size="9" font-family="monospace">eAur</text><circle cx="34.6" cy="188.1" r="2.5" fill="#aabbcc"/><text x="40.6" y="191.1" fill="#99aabb" font-size="9" font-family="monospace">thAur</text><circle cx="265.4" cy="224.5" r="2.5" fill="#aabbcc"/><text x="271.4" y="227.5" fill="#99aabb" font-size="9" font-family="monospace">iAur</text><circle cx="157.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="163.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bTau</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/AUR_1.png" alt="Auriga reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Boo — Bootes <span class="coverage">(8/13 segments, 61% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="205.5" y1="218.2" x2="121.8" y2="149.9" stroke="#5577aa" stroke-width="1.5"/><line x1="121.8" y1="149.9" x2="34.6" y2="95.9" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="95.9" x2="73.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="73.3" y1="34.6" x2="158.6" y2="52.6" stroke="#5577aa" stroke-width="1.5"/><line x1="158.6" y1="52.6" x2="159.3" y2="121.3" stroke="#5577aa" stroke-width="1.5"/><line x1="159.3" y1="121.3" x2="205.5" y2="218.2" stroke="#5577aa" stroke-width="1.5"/><line x1="205.5" y1="218.2" x2="265.4" y2="225.0" stroke="#5577aa" stroke-width="1.5"/><line x1="205.5" y1="218.2" x2="132.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="205.5" cy="218.2" r="4" fill="#ffcc00"/><text x="211.5" y="221.2" fill="#99aabb" font-size="9" font-family="monospace">Arcturus</text><circle cx="73.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="79.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bBoo</text><circle cx="158.6" cy="52.6" r="2.5" fill="#aabbcc"/><text x="164.6" y="55.6" fill="#99aabb" font-size="9" font-family="monospace">gBoo</text><circle cx="34.6" cy="95.9" r="2.5" fill="#aabbcc"/><text x="40.6" y="98.9" fill="#99aabb" font-size="9" font-family="monospace">dBoo</text><circle cx="121.8" cy="149.9" r="2.5" fill="#aabbcc"/><text x="127.8" y="152.9" fill="#99aabb" font-size="9" font-family="monospace">eBoo</text><circle cx="132.7" cy="265.4" r="2.5" fill="#aabbcc"/><text x="138.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">zBoo</text><circle cx="265.4" cy="225.0" r="2.5" fill="#aabbcc"/><text x="271.4" y="228.0" fill="#99aabb" font-size="9" font-family="monospace">etBoo</text><circle cx="159.3" cy="121.3" r="2.5" fill="#aabbcc"/><text x="165.3" y="124.3" fill="#99aabb" font-size="9" font-family="monospace">rBoo</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/BOO_1.png" alt="Bootes reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>CMa — Canis Major <span class="coverage">(6/12 segments, 50% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="73.7" x2="181.0" y2="52.6" stroke="#5577aa" stroke-width="1.5"/><line x1="181.0" y1="52.6" x2="93.6" y2="216.1" stroke="#5577aa" stroke-width="1.5"/><line x1="93.6" y1="216.1" x2="130.3" y2="259.8" stroke="#5577aa" stroke-width="1.5"/><line x1="93.6" y1="216.1" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="73.7" x2="130.3" y2="259.8" stroke="#5577aa" stroke-width="1.5"/><line x1="181.0" y1="52.6" x2="111.0" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="181.0" cy="52.6" r="4" fill="#ffcc00"/><text x="187.0" y="55.6" fill="#99aabb" font-size="9" font-family="monospace">Sirius</text><circle cx="265.4" cy="73.7" r="2.5" fill="#aabbcc"/><text x="271.4" y="76.7" fill="#99aabb" font-size="9" font-family="monospace">bCMa</text><circle cx="111.0" cy="34.6" r="2.5" fill="#aabbcc"/><text x="117.0" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gCMa</text><circle cx="93.6" cy="216.1" r="2.5" fill="#aabbcc"/><text x="99.6" y="219.1" fill="#99aabb" font-size="9" font-family="monospace">dCMa</text><circle cx="130.3" cy="259.8" r="4" fill="#ffcc00"/><text x="136.3" y="262.8" fill="#99aabb" font-size="9" font-family="monospace">Adhara</text><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">etCMa</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CMA_1.png" alt="Canis Major reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>CMi — Canis Minor <span class="coverage">(1/1 segments, 100% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="63.8" y1="265.4" x2="236.2" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="63.8" cy="265.4" r="4" fill="#ffcc00"/><text x="69.8" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Procyon</text><circle cx="236.2" cy="34.6" r="2.5" fill="#aabbcc"/><text x="242.2" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bCMi</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CMI_1.png" alt="Canis Minor reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cap — Capricornus <span class="coverage">(5/9 segments, 55% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="34.6" x2="257.7" y2="70.4" stroke="#5577aa" stroke-width="1.5"/><line x1="257.7" y1="70.4" x2="177.8" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="177.8" y1="265.4" x2="34.6" y2="92.1" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="92.1" x2="141.2" y2="109.8" stroke="#5577aa" stroke-width="1.5"/><line x1="141.2" y1="109.8" x2="265.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">aCap</text><circle cx="257.7" cy="70.4" r="2.5" fill="#aabbcc"/><text x="263.7" y="73.4" fill="#99aabb" font-size="9" font-family="monospace">bCap</text><circle cx="34.6" cy="92.1" r="2.5" fill="#aabbcc"/><text x="40.6" y="95.1" fill="#99aabb" font-size="9" font-family="monospace">dCap</text><circle cx="141.2" cy="109.8" r="2.5" fill="#aabbcc"/><text x="147.2" y="112.8" fill="#99aabb" font-size="9" font-family="monospace">thCap</text><circle cx="177.8" cy="265.4" r="2.5" fill="#aabbcc"/><text x="183.8" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">wCap</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CAP_1.png" alt="Capricornus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Car — Carina <span class="coverage">(9/15 segments, 60% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="89.0" x2="114.6" y2="262.2" stroke="#5577aa" stroke-width="1.5"/><line x1="114.6" y1="262.2" x2="60.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="60.6" y1="265.4" x2="34.6" y2="207.9" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="207.9" x2="57.7" y2="176.8" stroke="#5577aa" stroke-width="1.5"/><line x1="57.7" y1="176.8" x2="111.1" y2="155.9" stroke="#5577aa" stroke-width="1.5"/><line x1="111.1" y1="155.9" x2="140.0" y2="109.5" stroke="#5577aa" stroke-width="1.5"/><line x1="111.1" y1="155.9" x2="159.7" y2="158.3" stroke="#5577aa" stroke-width="1.5"/><line x1="159.7" y1="158.3" x2="182.7" y2="91.9" stroke="#5577aa" stroke-width="1.5"/><line x1="182.7" y1="91.9" x2="171.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="89.0" r="4" fill="#ffcc00"/><text x="271.4" y="92.0" fill="#99aabb" font-size="9" font-family="monospace">Canopus</text><circle cx="114.6" cy="262.2" r="4" fill="#ffcc00"/><text x="120.6" y="265.2" fill="#99aabb" font-size="9" font-family="monospace">Miaplacidus</text><circle cx="159.7" cy="158.3" r="2.5" fill="#aabbcc"/><text x="165.7" y="161.3" fill="#99aabb" font-size="9" font-family="monospace">eCar</text><circle cx="34.6" cy="207.9" r="2.5" fill="#aabbcc"/><text x="40.6" y="210.9" fill="#99aabb" font-size="9" font-family="monospace">thCar</text><circle cx="111.1" cy="155.9" r="2.5" fill="#aabbcc"/><text x="117.1" y="158.9" fill="#99aabb" font-size="9" font-family="monospace">iCar</text><circle cx="182.7" cy="91.9" r="2.5" fill="#aabbcc"/><text x="188.7" y="94.9" fill="#99aabb" font-size="9" font-family="monospace">xCar</text><circle cx="60.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="66.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">wCar</text><circle cx="57.7" cy="176.8" r="2.5" fill="#aabbcc"/><text x="63.7" y="179.8" fill="#99aabb" font-size="9" font-family="monospace">ppCar</text><circle cx="171.3" cy="34.6" r="4" fill="#ffcc00"/><text x="177.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Al Suhail</text><circle cx="140.0" cy="109.5" r="2.5" fill="#aabbcc"/><text x="146.0" y="112.5" fill="#99aabb" font-size="9" font-family="monospace">dVel</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CAR_1.png" alt="Carina reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cas — Cassiopeia <span class="coverage">(4/4 segments, 100% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="181.3" x2="196.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="196.7" y1="265.4" x2="161.2" y2="130.1" stroke="#5577aa" stroke-width="1.5"/><line x1="161.2" y1="130.1" x2="97.3" y2="145.7" stroke="#5577aa" stroke-width="1.5"/><line x1="97.3" y1="145.7" x2="34.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="196.7" cy="265.4" r="4" fill="#ffcc00"/><text x="202.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Schedir</text><circle cx="265.4" cy="181.3" r="4" fill="#ffcc00"/><text x="271.4" y="184.3" fill="#99aabb" font-size="9" font-family="monospace">Caph</text><circle cx="161.2" cy="130.1" r="2.5" fill="#aabbcc"/><text x="167.2" y="133.1" fill="#99aabb" font-size="9" font-family="monospace">gCas</text><circle cx="97.3" cy="145.7" r="4" fill="#ffcc00"/><text x="103.3" y="148.7" fill="#99aabb" font-size="9" font-family="monospace">Ruchbah</text><circle cx="34.6" cy="34.6" r="2.5" fill="#aabbcc"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">eCas</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CAS_1.png" alt="Cassiopeia reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cen — Centaurus <span class="coverage">(11/27 segments, 40% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="214.8" y1="153.3" x2="125.7" y2="195.7" stroke="#5577aa" stroke-width="1.5"/><line x1="125.7" y1="195.7" x2="89.2" y2="261.0" stroke="#5577aa" stroke-width="1.5"/><line x1="89.2" y1="261.0" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="125.7" y1="195.7" x2="101.9" y2="137.6" stroke="#5577aa" stroke-width="1.5"/><line x1="101.9" y1="137.6" x2="214.8" y2="153.3" stroke="#5577aa" stroke-width="1.5"/><line x1="101.9" y1="137.6" x2="40.9" y2="89.2" stroke="#5577aa" stroke-width="1.5"/><line x1="40.9" y1="89.2" x2="84.8" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="84.8" y1="34.6" x2="111.1" y2="84.8" stroke="#5577aa" stroke-width="1.5"/><line x1="111.1" y1="84.8" x2="101.9" y2="137.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="170.0" x2="214.8" y2="153.3" stroke="#5577aa" stroke-width="1.5"/><line x1="111.1" y1="84.8" x2="155.2" y2="37.8" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="265.4" r="4" fill="#ffcc00"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Rigil Kentaurus</text><circle cx="89.2" cy="261.0" r="2.5" fill="#aabbcc"/><text x="95.2" y="264.0" fill="#99aabb" font-size="9" font-family="monospace">bCen</text><circle cx="214.8" cy="153.3" r="2.5" fill="#aabbcc"/><text x="220.8" y="156.3" fill="#99aabb" font-size="9" font-family="monospace">gCen</text><circle cx="265.4" cy="170.0" r="2.5" fill="#aabbcc"/><text x="271.4" y="173.0" fill="#99aabb" font-size="9" font-family="monospace">dCen</text><circle cx="125.7" cy="195.7" r="2.5" fill="#aabbcc"/><text x="131.7" y="198.7" fill="#99aabb" font-size="9" font-family="monospace">eCen</text><circle cx="101.9" cy="137.6" r="2.5" fill="#aabbcc"/><text x="107.9" y="140.6" fill="#99aabb" font-size="9" font-family="monospace">zCen</text><circle cx="40.9" cy="89.2" r="2.5" fill="#aabbcc"/><text x="46.9" y="92.2" fill="#99aabb" font-size="9" font-family="monospace">etCen</text><circle cx="84.8" cy="34.6" r="2.5" fill="#aabbcc"/><text x="90.8" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">thCen</text><circle cx="155.2" cy="37.8" r="2.5" fill="#aabbcc"/><text x="161.2" y="40.8" fill="#99aabb" font-size="9" font-family="monospace">iCen</text><circle cx="111.1" cy="84.8" r="2.5" fill="#aabbcc"/><text x="117.1" y="87.8" fill="#99aabb" font-size="9" font-family="monospace">nuCen</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CEN_1.png" alt="Centaurus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cep — Cepheus <span class="coverage">(6/12 segments, 50% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="213.3" x2="248.9" y2="118.6" stroke="#5577aa" stroke-width="1.5"/><line x1="248.9" y1="118.6" x2="116.0" y2="170.3" stroke="#5577aa" stroke-width="1.5"/><line x1="248.9" y1="118.6" x2="34.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="34.6" x2="116.0" y2="170.3" stroke="#5577aa" stroke-width="1.5"/><line x1="116.0" y1="170.3" x2="179.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="179.7" y1="265.4" x2="265.4" y2="213.3" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="213.3" r="4" fill="#ffcc00"/><text x="271.4" y="216.3" fill="#99aabb" font-size="9" font-family="monospace">Alderamin</text><circle cx="248.9" cy="118.6" r="2.5" fill="#aabbcc"/><text x="254.9" y="121.6" fill="#99aabb" font-size="9" font-family="monospace">bCep</text><circle cx="34.6" cy="34.6" r="2.5" fill="#aabbcc"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gCep</text><circle cx="179.7" cy="265.4" r="2.5" fill="#aabbcc"/><text x="185.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">zCep</text><circle cx="116.0" cy="170.3" r="2.5" fill="#aabbcc"/><text x="122.0" y="173.3" fill="#99aabb" font-size="9" font-family="monospace">iCep</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CEP_1.png" alt="Cepheus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cet — Cetus <span class="coverage">(10/14 segments, 71% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="61.5" y1="43.5" x2="34.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="61.5" y1="43.5" x2="66.9" y2="74.0" stroke="#5577aa" stroke-width="1.5"/><line x1="66.9" y1="74.0" x2="95.5" y2="108.3" stroke="#5577aa" stroke-width="1.5"/><line x1="95.5" y1="108.3" x2="135.0" y2="185.4" stroke="#5577aa" stroke-width="1.5"/><line x1="135.0" y1="185.4" x2="145.5" y2="243.9" stroke="#5577aa" stroke-width="1.5"/><line x1="145.5" y1="243.9" x2="231.2" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="231.2" y1="265.4" x2="265.4" y2="169.5" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="169.5" x2="195.7" y2="183.6" stroke="#5577aa" stroke-width="1.5"/><line x1="195.7" y1="183.6" x2="173.9" y2="162.9" stroke="#5577aa" stroke-width="1.5"/><line x1="173.9" y1="162.9" x2="135.0" y2="185.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="34.6" r="4" fill="#ffcc00"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Menkar</text><circle cx="231.2" cy="265.4" r="4" fill="#ffcc00"/><text x="237.2" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Deneb-Kaitos</text><circle cx="61.5" cy="43.5" r="2.5" fill="#aabbcc"/><text x="67.5" y="46.5" fill="#99aabb" font-size="9" font-family="monospace">gCet</text><circle cx="66.9" cy="74.0" r="2.5" fill="#aabbcc"/><text x="72.9" y="77.0" fill="#99aabb" font-size="9" font-family="monospace">dCet</text><circle cx="135.0" cy="185.4" r="2.5" fill="#aabbcc"/><text x="141.0" y="188.4" fill="#99aabb" font-size="9" font-family="monospace">zCet</text><circle cx="195.7" cy="183.6" r="2.5" fill="#aabbcc"/><text x="201.7" y="186.6" fill="#99aabb" font-size="9" font-family="monospace">etCet</text><circle cx="173.9" cy="162.9" r="2.5" fill="#aabbcc"/><text x="179.9" y="165.9" fill="#99aabb" font-size="9" font-family="monospace">thCet</text><circle cx="265.4" cy="169.5" r="2.5" fill="#aabbcc"/><text x="271.4" y="172.5" fill="#99aabb" font-size="9" font-family="monospace">iCet</text><circle cx="95.5" cy="108.3" r="2.5" fill="#aabbcc"/><text x="101.5" y="111.3" fill="#99aabb" font-size="9" font-family="monospace">oCet</text><circle cx="145.5" cy="243.9" r="2.5" fill="#aabbcc"/><text x="151.5" y="246.9" fill="#99aabb" font-size="9" font-family="monospace">tCet</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CET_1.png" alt="Cetus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cnc — Cancer <span class="coverage">(2/5 segments, 40% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="196.8" x2="110.5" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="110.5" y1="34.6" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="196.8" r="2.5" fill="#aabbcc"/><text x="40.6" y="199.8" fill="#99aabb" font-size="9" font-family="monospace">aCnc</text><circle cx="265.4" cy="265.4" r="2.5" fill="#aabbcc"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bCnc</text><circle cx="110.5" cy="34.6" r="2.5" fill="#aabbcc"/><text x="116.5" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">dCnc</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CNC_1.png" alt="Cancer reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Col — Columba <span class="coverage">(1/5 segments, 20% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="233.6" y1="39.1" x2="66.4" y2="260.9" stroke="#5577aa" stroke-width="1.5"/><circle cx="233.6" cy="39.1" r="4" fill="#ffcc00"/><text x="239.6" y="42.1" fill="#99aabb" font-size="9" font-family="monospace">Phact</text><circle cx="66.4" cy="260.9" r="2.5" fill="#aabbcc"/><text x="72.4" y="263.9" fill="#99aabb" font-size="9" font-family="monospace">bCol</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/COL_1.png" alt="Columba reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cru — Crux <span class="coverage">(2/3 segments, 66% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="184.2" y1="265.4" x2="151.9" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="134.3" x2="265.4" y2="97.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="184.2" cy="265.4" r="2.5" fill="#aabbcc"/><text x="190.2" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">aCru</text><circle cx="34.6" cy="134.3" r="2.5" fill="#aabbcc"/><text x="40.6" y="137.3" fill="#99aabb" font-size="9" font-family="monospace">bCru</text><circle cx="151.9" cy="34.6" r="2.5" fill="#aabbcc"/><text x="157.9" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gCru</text><circle cx="265.4" cy="97.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="100.6" fill="#99aabb" font-size="9" font-family="monospace">dCru</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CRU_1.png" alt="Crux reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Crv — Corvus <span class="coverage">(4/5 segments, 80% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="81.4" y1="34.6" x2="208.3" y2="69.3" stroke="#5577aa" stroke-width="1.5"/><line x1="208.3" y1="69.3" x2="259.4" y2="239.7" stroke="#5577aa" stroke-width="1.5"/><line x1="259.4" y1="239.7" x2="40.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="40.6" y1="265.4" x2="81.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="40.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="46.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bCrv</text><circle cx="208.3" cy="69.3" r="2.5" fill="#aabbcc"/><text x="214.3" y="72.3" fill="#99aabb" font-size="9" font-family="monospace">gCrv</text><circle cx="81.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="87.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">dCrv</text><circle cx="259.4" cy="239.7" r="2.5" fill="#aabbcc"/><text x="265.4" y="242.7" fill="#99aabb" font-size="9" font-family="monospace">eCrv</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CRV_1.png" alt="Corvus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Cyg — Cygnus <span class="coverage">(7/14 segments, 50% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="105.7" y1="34.6" x2="149.1" y2="101.5" stroke="#5577aa" stroke-width="1.5"/><line x1="149.1" y1="101.5" x2="94.9" y2="185.2" stroke="#5577aa" stroke-width="1.5"/><line x1="149.1" y1="101.5" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="149.1" y1="101.5" x2="233.2" y2="36.6" stroke="#5577aa" stroke-width="1.5"/><line x1="233.2" y1="36.6" x2="105.7" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="105.7" y1="34.6" x2="34.6" y2="235.2" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="235.2" x2="94.9" y2="185.2" stroke="#5577aa" stroke-width="1.5"/><circle cx="105.7" cy="34.6" r="4" fill="#ffcc00"/><text x="111.7" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Deneb</text><circle cx="265.4" cy="265.4" r="4" fill="#ffcc00"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Albireo</text><circle cx="149.1" cy="101.5" r="2.5" fill="#aabbcc"/><text x="155.1" y="104.5" fill="#99aabb" font-size="9" font-family="monospace">gCyg</text><circle cx="233.2" cy="36.6" r="2.5" fill="#aabbcc"/><text x="239.2" y="39.6" fill="#99aabb" font-size="9" font-family="monospace">dCyg</text><circle cx="94.9" cy="185.2" r="2.5" fill="#aabbcc"/><text x="100.9" y="188.2" fill="#99aabb" font-size="9" font-family="monospace">eCyg</text><circle cx="34.6" cy="235.2" r="2.5" fill="#aabbcc"/><text x="40.6" y="238.2" fill="#99aabb" font-size="9" font-family="monospace">zCyg</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/CYG_1.png" alt="Cygnus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Del — Delphinus <span class="coverage">(4/5 segments, 80% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="239.8" y1="265.4" x2="181.9" y2="108.1" stroke="#5577aa" stroke-width="1.5"/><line x1="181.9" y1="108.1" x2="154.0" y2="45.0" stroke="#5577aa" stroke-width="1.5"/><line x1="154.0" y1="45.0" x2="60.2" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="60.2" y1="34.6" x2="181.9" y2="108.1" stroke="#5577aa" stroke-width="1.5"/><circle cx="154.0" cy="45.0" r="2.5" fill="#aabbcc"/><text x="160.0" y="48.0" fill="#99aabb" font-size="9" font-family="monospace">aDel</text><circle cx="181.9" cy="108.1" r="2.5" fill="#aabbcc"/><text x="187.9" y="111.1" fill="#99aabb" font-size="9" font-family="monospace">bDel</text><circle cx="60.2" cy="34.6" r="2.5" fill="#aabbcc"/><text x="66.2" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gDel</text><circle cx="239.8" cy="265.4" r="2.5" fill="#aabbcc"/><text x="245.8" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">eDel</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/DEL_1.png" alt="Delphinus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Dor — Dorado <span class="coverage">(1/8 segments, 12% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="34.6" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">aDor</text><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bDor</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/DOR_1.png" alt="Dorado reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Dra — Draco <span class="coverage">(14/18 segments, 77% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="71.6" x2="236.5" y2="66.5" stroke="#5577aa" stroke-width="1.5"/><line x1="236.5" y1="66.5" x2="194.3" y2="125.4" stroke="#5577aa" stroke-width="1.5"/><line x1="194.3" y1="125.4" x2="156.9" y2="184.2" stroke="#5577aa" stroke-width="1.5"/><line x1="156.9" y1="184.2" x2="139.7" y2="188.6" stroke="#5577aa" stroke-width="1.5"/><line x1="139.7" y1="188.6" x2="129.5" y2="156.5" stroke="#5577aa" stroke-width="1.5"/><line x1="129.5" y1="156.5" x2="108.7" y2="110.9" stroke="#5577aa" stroke-width="1.5"/><line x1="108.7" y1="110.9" x2="75.1" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="75.1" y1="34.6" x2="51.2" y2="89.7" stroke="#5577aa" stroke-width="1.5"/><line x1="51.2" y1="89.7" x2="34.6" y2="61.2" stroke="#5577aa" stroke-width="1.5"/><line x1="51.2" y1="89.7" x2="87.9" y2="206.9" stroke="#5577aa" stroke-width="1.5"/><line x1="87.9" y1="206.9" x2="97.8" y2="225.2" stroke="#5577aa" stroke-width="1.5"/><line x1="97.8" y1="225.2" x2="98.6" y2="256.5" stroke="#5577aa" stroke-width="1.5"/><line x1="98.6" y1="256.5" x2="86.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="86.4" y1="265.4" x2="87.9" y2="206.9" stroke="#5577aa" stroke-width="1.5"/><circle cx="194.3" cy="125.4" r="4" fill="#ffcc00"/><text x="200.3" y="128.4" fill="#99aabb" font-size="9" font-family="monospace">Thuban</text><circle cx="98.6" cy="256.5" r="2.5" fill="#aabbcc"/><text x="104.6" y="259.5" fill="#99aabb" font-size="9" font-family="monospace">bDra</text><circle cx="86.4" cy="265.4" r="4" fill="#ffcc00"/><text x="92.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Etamin</text><circle cx="51.2" cy="89.7" r="2.5" fill="#aabbcc"/><text x="57.2" y="92.7" fill="#99aabb" font-size="9" font-family="monospace">dDra</text><circle cx="34.6" cy="61.2" r="2.5" fill="#aabbcc"/><text x="40.6" y="64.2" fill="#99aabb" font-size="9" font-family="monospace">eDra</text><circle cx="108.7" cy="110.9" r="2.5" fill="#aabbcc"/><text x="114.7" y="113.9" fill="#99aabb" font-size="9" font-family="monospace">zDra</text><circle cx="129.5" cy="156.5" r="2.5" fill="#aabbcc"/><text x="135.5" y="159.5" fill="#99aabb" font-size="9" font-family="monospace">etDra</text><circle cx="139.7" cy="188.6" r="2.5" fill="#aabbcc"/><text x="145.7" y="191.6" fill="#99aabb" font-size="9" font-family="monospace">thDra</text><circle cx="156.9" cy="184.2" r="2.5" fill="#aabbcc"/><text x="162.9" y="187.2" fill="#99aabb" font-size="9" font-family="monospace">iDra</text><circle cx="236.5" cy="66.5" r="2.5" fill="#aabbcc"/><text x="242.5" y="69.5" fill="#99aabb" font-size="9" font-family="monospace">kDra</text><circle cx="265.4" cy="71.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="74.6" fill="#99aabb" font-size="9" font-family="monospace">lDra</text><circle cx="97.8" cy="225.2" r="2.5" fill="#aabbcc"/><text x="103.8" y="228.2" fill="#99aabb" font-size="9" font-family="monospace">nuDra</text><circle cx="87.9" cy="206.9" r="2.5" fill="#aabbcc"/><text x="93.9" y="209.9" fill="#99aabb" font-size="9" font-family="monospace">zDra</text><circle cx="75.1" cy="34.6" r="2.5" fill="#aabbcc"/><text x="81.1" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">xDra</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/DRA_1.png" alt="Draco reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Eri — Eridanus <span class="coverage">(7/31 segments, 22% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="34.6" x2="111.3" y2="71.9" stroke="#5577aa" stroke-width="1.5"/><line x1="111.3" y1="71.9" x2="127.5" y2="55.3" stroke="#5577aa" stroke-width="1.5"/><line x1="127.5" y1="55.3" x2="138.9" y2="53.9" stroke="#5577aa" stroke-width="1.5"/><line x1="138.9" y1="53.9" x2="178.9" y2="51.4" stroke="#5577aa" stroke-width="1.5"/><line x1="178.9" y1="51.4" x2="153.6" y2="108.4" stroke="#5577aa" stroke-width="1.5"/><line x1="153.6" y1="108.4" x2="176.9" y2="190.5" stroke="#5577aa" stroke-width="1.5"/><line x1="176.9" y1="190.5" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="265.4" r="4" fill="#ffcc00"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Achernar</text><circle cx="34.6" cy="34.6" r="2.5" fill="#aabbcc"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bEri</text><circle cx="111.3" cy="71.9" r="2.5" fill="#aabbcc"/><text x="117.3" y="74.9" fill="#99aabb" font-size="9" font-family="monospace">gEri</text><circle cx="127.5" cy="55.3" r="2.5" fill="#aabbcc"/><text x="133.5" y="58.3" fill="#99aabb" font-size="9" font-family="monospace">dEri</text><circle cx="138.9" cy="53.9" r="2.5" fill="#aabbcc"/><text x="144.9" y="56.9" fill="#99aabb" font-size="9" font-family="monospace">eEri</text><circle cx="178.9" cy="51.4" r="2.5" fill="#aabbcc"/><text x="184.9" y="54.4" fill="#99aabb" font-size="9" font-family="monospace">etEri</text><circle cx="176.9" cy="190.5" r="4" fill="#ffcc00"/><text x="182.9" y="193.5" fill="#99aabb" font-size="9" font-family="monospace">Acamar</text><circle cx="153.6" cy="108.4" r="2.5" fill="#aabbcc"/><text x="159.6" y="111.4" fill="#99aabb" font-size="9" font-family="monospace">tEri</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/ERI_1.png" alt="Eridanus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Gem — Gemini <span class="coverage">(6/23 segments, 26% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="104.1" y1="263.2" x2="98.9" y2="182.3" stroke="#5577aa" stroke-width="1.5"/><line x1="98.9" y1="182.3" x2="207.1" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="98.9" y1="182.3" x2="34.6" y2="92.2" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="92.2" x2="62.0" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="62.0" y1="34.6" x2="191.3" y2="135.4" stroke="#5577aa" stroke-width="1.5"/><line x1="191.3" y1="135.4" x2="265.4" y2="174.3" stroke="#5577aa" stroke-width="1.5"/><circle cx="62.0" cy="34.6" r="4" fill="#ffcc00"/><text x="68.0" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Castor</text><circle cx="34.6" cy="92.2" r="4" fill="#ffcc00"/><text x="40.6" y="95.2" fill="#99aabb" font-size="9" font-family="monospace">Pollux</text><circle cx="207.1" cy="265.4" r="2.5" fill="#aabbcc"/><text x="213.1" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">gGem</text><circle cx="98.9" cy="182.3" r="2.5" fill="#aabbcc"/><text x="104.9" y="185.3" fill="#99aabb" font-size="9" font-family="monospace">dGem</text><circle cx="191.3" cy="135.4" r="2.5" fill="#aabbcc"/><text x="197.3" y="138.4" fill="#99aabb" font-size="9" font-family="monospace">eGem</text><circle cx="265.4" cy="174.3" r="2.5" fill="#aabbcc"/><text x="271.4" y="177.3" fill="#99aabb" font-size="9" font-family="monospace">etGem</text><circle cx="104.1" cy="263.2" r="2.5" fill="#aabbcc"/><text x="110.1" y="266.2" fill="#99aabb" font-size="9" font-family="monospace">lGem</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/GEM_1.png" alt="Gemini reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Gru — Grus <span class="coverage">(2/8 segments, 25% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="34.6" x2="197.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="197.7" y1="265.4" x2="34.6" y2="263.8" stroke="#5577aa" stroke-width="1.5"/><circle cx="197.7" cy="265.4" r="4" fill="#ffcc00"/><text x="203.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Al Nair</text><circle cx="34.6" cy="263.8" r="2.5" fill="#aabbcc"/><text x="40.6" y="266.8" fill="#99aabb" font-size="9" font-family="monospace">bGru</text><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gGru</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/GRU_1.png" alt="Grus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Her — Hercules <span class="coverage">(12/29 segments, 41% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="118.2" y1="189.8" x2="119.3" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="119.3" y1="265.4" x2="237.5" y2="214.0" stroke="#5577aa" stroke-width="1.5"/><line x1="237.5" y1="214.0" x2="259.6" y2="230.9" stroke="#5577aa" stroke-width="1.5"/><line x1="237.5" y1="214.0" x2="208.0" y2="140.9" stroke="#5577aa" stroke-width="1.5"/><line x1="208.0" y1="140.9" x2="157.5" y2="145.8" stroke="#5577aa" stroke-width="1.5"/><line x1="208.0" y1="140.9" x2="203.7" y2="88.0" stroke="#5577aa" stroke-width="1.5"/><line x1="203.7" y1="88.0" x2="265.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="203.7" y1="88.0" x2="118.2" y2="103.3" stroke="#5577aa" stroke-width="1.5"/><line x1="118.2" y1="103.3" x2="53.2" y2="36.8" stroke="#5577aa" stroke-width="1.5"/><line x1="118.2" y1="103.3" x2="157.5" y2="145.8" stroke="#5577aa" stroke-width="1.5"/><line x1="157.5" y1="145.8" x2="118.2" y2="189.8" stroke="#5577aa" stroke-width="1.5"/><line x1="118.2" y1="189.8" x2="34.6" y2="169.0" stroke="#5577aa" stroke-width="1.5"/><circle cx="119.3" cy="265.4" r="2.5" fill="#aabbcc"/><text x="125.3" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">aHer</text><circle cx="237.5" cy="214.0" r="2.5" fill="#aabbcc"/><text x="243.5" y="217.0" fill="#99aabb" font-size="9" font-family="monospace">bHer</text><circle cx="259.6" cy="230.9" r="2.5" fill="#aabbcc"/><text x="265.6" y="233.9" fill="#99aabb" font-size="9" font-family="monospace">gHer</text><circle cx="118.2" cy="189.8" r="2.5" fill="#aabbcc"/><text x="124.2" y="192.8" fill="#99aabb" font-size="9" font-family="monospace">dHer</text><circle cx="157.5" cy="145.8" r="2.5" fill="#aabbcc"/><text x="163.5" y="148.8" fill="#99aabb" font-size="9" font-family="monospace">eHer</text><circle cx="208.0" cy="140.9" r="2.5" fill="#aabbcc"/><text x="214.0" y="143.9" fill="#99aabb" font-size="9" font-family="monospace">zHer</text><circle cx="203.7" cy="88.0" r="2.5" fill="#aabbcc"/><text x="209.7" y="91.0" fill="#99aabb" font-size="9" font-family="monospace">etHer</text><circle cx="53.2" cy="36.8" r="2.5" fill="#aabbcc"/><text x="59.2" y="39.8" fill="#99aabb" font-size="9" font-family="monospace">etHer</text><circle cx="34.6" cy="169.0" r="2.5" fill="#aabbcc"/><text x="40.6" y="172.0" fill="#99aabb" font-size="9" font-family="monospace">muHer</text><circle cx="118.2" cy="103.3" r="2.5" fill="#aabbcc"/><text x="124.2" y="106.3" fill="#99aabb" font-size="9" font-family="monospace">piHer</text><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">tHer</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/HER_1.png" alt="Hercules reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Hya — Hydra <span class="coverage">(4/19 segments, 21% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="34.6" x2="251.3" y2="60.3" stroke="#5577aa" stroke-width="1.5"/><line x1="251.3" y1="60.3" x2="241.5" y2="137.8" stroke="#5577aa" stroke-width="1.5"/><line x1="241.5" y1="137.8" x2="180.6" y2="191.2" stroke="#5577aa" stroke-width="1.5"/><line x1="69.8" y1="240.6" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="241.5" cy="137.8" r="4" fill="#ffcc00"/><text x="247.5" y="140.8" fill="#99aabb" font-size="9" font-family="monospace">Alphard</text><circle cx="69.8" cy="240.6" r="2.5" fill="#aabbcc"/><text x="75.8" y="243.6" fill="#99aabb" font-size="9" font-family="monospace">gHya</text><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">zHya</text><circle cx="251.3" cy="60.3" r="2.5" fill="#aabbcc"/><text x="257.3" y="63.3" fill="#99aabb" font-size="9" font-family="monospace">dHya</text><circle cx="180.6" cy="191.2" r="2.5" fill="#aabbcc"/><text x="186.6" y="194.2" fill="#99aabb" font-size="9" font-family="monospace">nuHya</text><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">piHya</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/HYA_1.png" alt="Hydra reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Hyi — Hydrus <span class="coverage">(3/4 segments, 75% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="265.4" x2="34.6" y2="221.0" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="221.0" x2="158.8" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="158.8" y1="34.6" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="158.8" cy="34.6" r="2.5" fill="#aabbcc"/><text x="164.8" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">aHyi</text><circle cx="265.4" cy="265.4" r="2.5" fill="#aabbcc"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bHyi</text><circle cx="34.6" cy="221.0" r="2.5" fill="#aabbcc"/><text x="40.6" y="224.0" fill="#99aabb" font-size="9" font-family="monospace">gHyi</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/HYI_1.png" alt="Hydrus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Leo — Leo <span class="coverage">(11/17 segments, 64% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="223.2" y1="265.4" x2="225.1" y2="186.7" stroke="#5577aa" stroke-width="1.5"/><line x1="225.1" y1="186.7" x2="201.5" y2="136.0" stroke="#5577aa" stroke-width="1.5"/><line x1="201.5" y1="136.0" x2="207.6" y2="77.1" stroke="#5577aa" stroke-width="1.5"/><line x1="207.6" y1="77.1" x2="252.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="252.4" y1="34.6" x2="265.4" y2="71.3" stroke="#5577aa" stroke-width="1.5"/><line x1="201.5" y1="136.0" x2="100.1" y2="124.8" stroke="#5577aa" stroke-width="1.5"/><line x1="100.1" y1="124.8" x2="34.6" y2="222.6" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="222.6" x2="99.9" y2="208.7" stroke="#5577aa" stroke-width="1.5"/><line x1="99.9" y1="208.7" x2="100.1" y2="124.8" stroke="#5577aa" stroke-width="1.5"/><line x1="99.9" y1="208.7" x2="225.1" y2="186.7" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="71.3" x2="225.1" y2="186.7" stroke="#5577aa" stroke-width="1.5"/><circle cx="223.2" cy="265.4" r="4" fill="#ffcc00"/><text x="229.2" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Regulus</text><circle cx="34.6" cy="222.6" r="4" fill="#ffcc00"/><text x="40.6" y="225.6" fill="#99aabb" font-size="9" font-family="monospace">Denebola</text><circle cx="201.5" cy="136.0" r="2.5" fill="#aabbcc"/><text x="207.5" y="139.0" fill="#99aabb" font-size="9" font-family="monospace">gLeo</text><circle cx="100.1" cy="124.8" r="2.5" fill="#aabbcc"/><text x="106.1" y="127.8" fill="#99aabb" font-size="9" font-family="monospace">dLeo</text><circle cx="265.4" cy="71.3" r="2.5" fill="#aabbcc"/><text x="271.4" y="74.3" fill="#99aabb" font-size="9" font-family="monospace">eLeo</text><circle cx="207.6" cy="77.1" r="2.5" fill="#aabbcc"/><text x="213.6" y="80.1" fill="#99aabb" font-size="9" font-family="monospace">zLeo</text><circle cx="225.1" cy="186.7" r="2.5" fill="#aabbcc"/><text x="231.1" y="189.7" fill="#99aabb" font-size="9" font-family="monospace">etLeo</text><circle cx="99.9" cy="208.7" r="2.5" fill="#aabbcc"/><text x="105.9" y="211.7" fill="#99aabb" font-size="9" font-family="monospace">thLeo</text><circle cx="252.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="258.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">muLeo</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/LEO_1.png" alt="Leo reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Lep — Lepus <span class="coverage">(4/12 segments, 33% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="262.8" y1="265.4" x2="201.0" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="201.0" y1="34.6" x2="37.2" y2="95.1" stroke="#5577aa" stroke-width="1.5"/><line x1="37.2" y1="95.1" x2="74.3" y2="204.9" stroke="#5577aa" stroke-width="1.5"/><line x1="74.3" y1="204.9" x2="262.8" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="37.2" cy="95.1" r="4" fill="#ffcc00"/><text x="43.2" y="98.1" fill="#99aabb" font-size="9" font-family="monospace">Arneb</text><circle cx="74.3" cy="204.9" r="2.5" fill="#aabbcc"/><text x="80.3" y="207.9" fill="#99aabb" font-size="9" font-family="monospace">bLep</text><circle cx="262.8" cy="265.4" r="2.5" fill="#aabbcc"/><text x="268.8" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">eLep</text><circle cx="201.0" cy="34.6" r="2.5" fill="#aabbcc"/><text x="207.0" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">muLep</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/LEP_1.png" alt="Lepus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Lib — Libra <span class="coverage">(5/7 segments, 71% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="109.5" x2="138.8" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="109.5" x2="201.0" y2="214.5" stroke="#5577aa" stroke-width="1.5"/><line x1="138.8" y1="34.6" x2="49.6" y2="95.9" stroke="#5577aa" stroke-width="1.5"/><line x1="49.6" y1="95.9" x2="265.4" y2="109.5" stroke="#5577aa" stroke-width="1.5"/><line x1="49.6" y1="95.9" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="109.5" r="2.5" fill="#aabbcc"/><text x="271.4" y="112.5" fill="#99aabb" font-size="9" font-family="monospace">aLib</text><circle cx="138.8" cy="34.6" r="2.5" fill="#aabbcc"/><text x="144.8" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bLib</text><circle cx="201.0" cy="214.5" r="2.5" fill="#aabbcc"/><text x="207.0" y="217.5" fill="#99aabb" font-size="9" font-family="monospace">gLib</text><circle cx="49.6" cy="95.9" r="2.5" fill="#aabbcc"/><text x="55.6" y="98.9" fill="#99aabb" font-size="9" font-family="monospace">siLib</text><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">tLib</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/LIB_1.png" alt="Libra reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Lup — Lupus <span class="coverage">(6/12 segments, 50% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="170.7" x2="133.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="133.7" y1="265.4" x2="88.6" y2="116.2" stroke="#5577aa" stroke-width="1.5"/><line x1="88.6" y1="116.2" x2="34.6" y2="45.4" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="45.4" x2="94.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="94.3" y1="34.6" x2="193.4" y2="85.0" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="45.4" x2="133.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="170.7" r="2.5" fill="#aabbcc"/><text x="271.4" y="173.7" fill="#99aabb" font-size="9" font-family="monospace">aLup</text><circle cx="193.4" cy="85.0" r="2.5" fill="#aabbcc"/><text x="199.4" y="88.0" fill="#99aabb" font-size="9" font-family="monospace">bLup</text><circle cx="34.6" cy="45.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="48.4" fill="#99aabb" font-size="9" font-family="monospace">gLup</text><circle cx="94.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="100.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">dLup</text><circle cx="88.6" cy="116.2" r="2.5" fill="#aabbcc"/><text x="94.6" y="119.2" fill="#99aabb" font-size="9" font-family="monospace">eLup</text><circle cx="133.7" cy="265.4" r="2.5" fill="#aabbcc"/><text x="139.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">zLup</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/LUP_1.png" alt="Lupus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Lyr — Lyra <span class="coverage">(4/8 segments, 50% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="256.5" y1="34.6" x2="180.7" y2="79.4" stroke="#5577aa" stroke-width="1.5"/><line x1="180.7" y1="79.4" x2="43.5" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="43.5" y1="265.4" x2="129.3" y2="240.2" stroke="#5577aa" stroke-width="1.5"/><line x1="129.3" y1="240.2" x2="180.7" y2="79.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="256.5" cy="34.6" r="4" fill="#ffcc00"/><text x="262.5" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Vega</text><circle cx="129.3" cy="240.2" r="2.5" fill="#aabbcc"/><text x="135.3" y="243.2" fill="#99aabb" font-size="9" font-family="monospace">bLyr</text><circle cx="43.5" cy="265.4" r="2.5" fill="#aabbcc"/><text x="49.5" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">gLyr</text><circle cx="180.7" cy="79.4" r="2.5" fill="#aabbcc"/><text x="186.7" y="82.4" fill="#99aabb" font-size="9" font-family="monospace">zLyr</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/LYR_1.png" alt="Lyra reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Oph — Ophiuchus <span class="coverage">(10/25 segments, 40% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="87.7" y1="34.6" x2="169.9" y2="54.2" stroke="#5577aa" stroke-width="1.5"/><line x1="169.9" y1="54.2" x2="265.4" y2="134.4" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="134.4" x2="256.6" y2="140.6" stroke="#5577aa" stroke-width="1.5"/><line x1="256.6" y1="140.6" x2="215.1" y2="176.7" stroke="#5577aa" stroke-width="1.5"/><line x1="169.9" y1="54.2" x2="215.1" y2="176.7" stroke="#5577aa" stroke-width="1.5"/><line x1="215.1" y1="176.7" x2="141.9" y2="208.4" stroke="#5577aa" stroke-width="1.5"/><line x1="141.9" y1="208.4" x2="68.9" y2="83.7" stroke="#5577aa" stroke-width="1.5"/><line x1="68.9" y1="83.7" x2="34.6" y2="171.8" stroke="#5577aa" stroke-width="1.5"/><line x1="68.9" y1="83.7" x2="87.7" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="141.9" y1="208.4" x2="116.2" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="87.7" cy="34.6" r="4" fill="#ffcc00"/><text x="93.7" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Rasalague</text><circle cx="68.9" cy="83.7" r="2.5" fill="#aabbcc"/><text x="74.9" y="86.7" fill="#99aabb" font-size="9" font-family="monospace">bOph</text><circle cx="265.4" cy="134.4" r="2.5" fill="#aabbcc"/><text x="271.4" y="137.4" fill="#99aabb" font-size="9" font-family="monospace">dOph</text><circle cx="256.6" cy="140.6" r="2.5" fill="#aabbcc"/><text x="262.6" y="143.6" fill="#99aabb" font-size="9" font-family="monospace">eOph</text><circle cx="215.1" cy="176.7" r="2.5" fill="#aabbcc"/><text x="221.1" y="179.7" fill="#99aabb" font-size="9" font-family="monospace">zOph</text><circle cx="141.9" cy="208.4" r="4" fill="#ffcc00"/><text x="147.9" y="211.4" fill="#99aabb" font-size="9" font-family="monospace">Sabik</text><circle cx="116.2" cy="265.4" r="2.5" fill="#aabbcc"/><text x="122.2" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">thOph</text><circle cx="169.9" cy="54.2" r="2.5" fill="#aabbcc"/><text x="175.9" y="57.2" fill="#99aabb" font-size="9" font-family="monospace">kOph</text><circle cx="34.6" cy="171.8" r="2.5" fill="#aabbcc"/><text x="40.6" y="174.8" fill="#99aabb" font-size="9" font-family="monospace">nuOph</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/OPH_1.png" alt="Ophiuchus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Ori — Orion <span class="coverage">(9/27 segments, 33% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="64.4" x2="116.4" y2="174.3" stroke="#5577aa" stroke-width="1.5"/><line x1="116.4" y1="174.3" x2="76.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="116.4" y1="174.3" x2="142.2" y2="165.7" stroke="#5577aa" stroke-width="1.5"/><line x1="142.2" y1="165.7" x2="166.2" y2="154.9" stroke="#5577aa" stroke-width="1.5"/><line x1="166.2" y1="154.9" x2="205.2" y2="77.0" stroke="#5577aa" stroke-width="1.5"/><line x1="166.2" y1="154.9" x2="265.4" y2="248.1" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="64.4" x2="205.2" y2="77.0" stroke="#5577aa" stroke-width="1.5"/><line x1="205.2" y1="77.0" x2="148.4" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="148.4" y1="34.6" x2="34.6" y2="64.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="64.4" r="4" fill="#ffcc00"/><text x="40.6" y="67.4" fill="#99aabb" font-size="9" font-family="monospace">Betelgeux</text><circle cx="265.4" cy="248.1" r="4" fill="#ffcc00"/><text x="271.4" y="251.1" fill="#99aabb" font-size="9" font-family="monospace">Rigel</text><circle cx="205.2" cy="77.0" r="4" fill="#ffcc00"/><text x="211.2" y="80.0" fill="#99aabb" font-size="9" font-family="monospace">Bellatrix</text><circle cx="166.2" cy="154.9" r="2.5" fill="#aabbcc"/><text x="172.2" y="157.9" fill="#99aabb" font-size="9" font-family="monospace">dOri</text><circle cx="142.2" cy="165.7" r="4" fill="#ffcc00"/><text x="148.2" y="168.7" fill="#99aabb" font-size="9" font-family="monospace">Alnilam</text><circle cx="116.4" cy="174.3" r="2.5" fill="#aabbcc"/><text x="122.4" y="177.3" fill="#99aabb" font-size="9" font-family="monospace">zOri</text><circle cx="76.7" cy="265.4" r="2.5" fill="#aabbcc"/><text x="82.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">kOri</text><circle cx="148.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="154.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">lOri</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/ORI_1.png" alt="Orion reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Peg — Pegasus <span class="coverage">(9/13 segments, 69% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="174.3" y1="34.6" x2="142.2" y2="55.3" stroke="#5577aa" stroke-width="1.5"/><line x1="142.2" y1="55.3" x2="163.5" y2="88.5" stroke="#5577aa" stroke-width="1.5"/><line x1="42.1" y1="45.5" x2="142.2" y2="55.3" stroke="#5577aa" stroke-width="1.5"/><line x1="142.2" y1="55.3" x2="140.6" y2="178.8" stroke="#5577aa" stroke-width="1.5"/><line x1="140.6" y1="178.8" x2="34.6" y2="179.0" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="179.0" x2="42.1" y2="45.5" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="230.0" x2="225.1" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="225.1" y1="265.4" x2="176.7" y2="220.9" stroke="#5577aa" stroke-width="1.5"/><line x1="176.7" y1="220.9" x2="140.6" y2="178.8" stroke="#5577aa" stroke-width="1.5"/><circle cx="42.1" cy="45.5" r="4" fill="#ffcc00"/><text x="48.1" y="48.5" fill="#99aabb" font-size="9" font-family="monospace">Alpheratz</text><circle cx="140.6" cy="178.8" r="4" fill="#ffcc00"/><text x="146.6" y="181.8" fill="#99aabb" font-size="9" font-family="monospace">Markab</text><circle cx="142.2" cy="55.3" r="4" fill="#ffcc00"/><text x="148.2" y="58.3" fill="#99aabb" font-size="9" font-family="monospace">Scheat</text><circle cx="34.6" cy="179.0" r="4" fill="#ffcc00"/><text x="40.6" y="182.0" fill="#99aabb" font-size="9" font-family="monospace">Algenib</text><circle cx="265.4" cy="230.0" r="4" fill="#ffcc00"/><text x="271.4" y="233.0" fill="#99aabb" font-size="9" font-family="monospace">Enif</text><circle cx="176.7" cy="220.9" r="2.5" fill="#aabbcc"/><text x="182.7" y="223.9" fill="#99aabb" font-size="9" font-family="monospace">zPeg</text><circle cx="174.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="180.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">etPeg</text><circle cx="225.1" cy="265.4" r="2.5" fill="#aabbcc"/><text x="231.1" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">thPeg</text><circle cx="163.5" cy="88.5" r="2.5" fill="#aabbcc"/><text x="169.5" y="91.5" fill="#99aabb" font-size="9" font-family="monospace">muPeg</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/PEG_1.png" alt="Pegasus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Per — Perseus <span class="coverage">(8/24 segments, 33% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="48.1" y1="265.4" x2="34.6" y2="178.7" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="178.7" x2="88.8" y2="95.6" stroke="#5577aa" stroke-width="1.5"/><line x1="88.8" y1="95.6" x2="156.3" y2="73.6" stroke="#5577aa" stroke-width="1.5"/><line x1="156.3" y1="73.6" x2="227.2" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="227.2" y1="34.6" x2="265.4" y2="42.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="42.6" x2="156.3" y2="73.6" stroke="#5577aa" stroke-width="1.5"/><line x1="156.3" y1="73.6" x2="214.9" y2="168.6" stroke="#5577aa" stroke-width="1.5"/><line x1="214.9" y1="168.6" x2="34.6" y2="178.7" stroke="#5577aa" stroke-width="1.5"/><circle cx="156.3" cy="73.6" r="4" fill="#ffcc00"/><text x="162.3" y="76.6" fill="#99aabb" font-size="9" font-family="monospace">Marfak</text><circle cx="214.9" cy="168.6" r="4" fill="#ffcc00"/><text x="220.9" y="171.6" fill="#99aabb" font-size="9" font-family="monospace">Algol</text><circle cx="227.2" cy="34.6" r="2.5" fill="#aabbcc"/><text x="233.2" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">gPer</text><circle cx="88.8" cy="95.6" r="2.5" fill="#aabbcc"/><text x="94.8" y="98.6" fill="#99aabb" font-size="9" font-family="monospace">dPer</text><circle cx="34.6" cy="178.7" r="2.5" fill="#aabbcc"/><text x="40.6" y="181.7" fill="#99aabb" font-size="9" font-family="monospace">ePer</text><circle cx="48.1" cy="265.4" r="2.5" fill="#aabbcc"/><text x="54.1" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">zPer</text><circle cx="265.4" cy="42.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="45.6" fill="#99aabb" font-size="9" font-family="monospace">tPer</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/PER_1.png" alt="Perseus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Phe — Phoenix <span class="coverage">(2/7 segments, 28% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="34.6" x2="117.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="117.4" y1="265.4" x2="34.6" y2="87.7" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">aPhe</text><circle cx="117.4" cy="265.4" r="2.5" fill="#aabbcc"/><text x="123.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">bPhe</text><circle cx="34.6" cy="87.7" r="2.5" fill="#aabbcc"/><text x="40.6" y="90.7" fill="#99aabb" font-size="9" font-family="monospace">gPer</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/PHE_1.png" alt="Phoenix reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Pup — Puppis <span class="coverage">(6/11 segments, 54% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="221.9" x2="47.6" y2="162.3" stroke="#5577aa" stroke-width="1.5"/><line x1="47.6" y1="162.3" x2="39.0" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="39.0" y1="34.6" x2="78.8" y2="39.1" stroke="#5577aa" stroke-width="1.5"/><line x1="78.8" y1="39.1" x2="149.1" y2="138.5" stroke="#5577aa" stroke-width="1.5"/><line x1="149.1" y1="138.5" x2="235.2" y2="188.1" stroke="#5577aa" stroke-width="1.5"/><line x1="235.2" y1="188.1" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="265.4" r="4" fill="#ffcc00"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Canopus</text><circle cx="47.6" cy="162.3" r="2.5" fill="#aabbcc"/><text x="53.6" y="165.3" fill="#99aabb" font-size="9" font-family="monospace">zPup</text><circle cx="235.2" cy="188.1" r="2.5" fill="#aabbcc"/><text x="241.2" y="191.1" fill="#99aabb" font-size="9" font-family="monospace">nuPup</text><circle cx="78.8" cy="39.1" r="2.5" fill="#aabbcc"/><text x="84.8" y="42.1" fill="#99aabb" font-size="9" font-family="monospace">xiPup</text><circle cx="149.1" cy="138.5" r="2.5" fill="#aabbcc"/><text x="155.1" y="141.5" fill="#99aabb" font-size="9" font-family="monospace">piPup</text><circle cx="39.0" cy="34.6" r="2.5" fill="#aabbcc"/><text x="45.0" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">rPup</text><circle cx="34.6" cy="221.9" r="4" fill="#ffcc00"/><text x="40.6" y="224.9" fill="#99aabb" font-size="9" font-family="monospace">Al Suhail</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/PUP_1.png" alt="Puppis reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Sco — Scorpius <span class="coverage">(13/18 segments, 72% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="251.4" y1="34.6" x2="262.2" y2="62.4" stroke="#5577aa" stroke-width="1.5"/><line x1="262.2" y1="62.4" x2="265.4" y2="96.7" stroke="#5577aa" stroke-width="1.5"/><line x1="262.2" y1="62.4" x2="218.0" y2="91.6" stroke="#5577aa" stroke-width="1.5"/><line x1="218.0" y1="91.6" x2="200.5" y2="99.8" stroke="#5577aa" stroke-width="1.5"/><line x1="200.5" y1="99.8" x2="186.8" y2="117.3" stroke="#5577aa" stroke-width="1.5"/><line x1="186.8" y1="117.3" x2="156.5" y2="177.2" stroke="#5577aa" stroke-width="1.5"/><line x1="156.5" y1="177.2" x2="152.9" y2="214.2" stroke="#5577aa" stroke-width="1.5"/><line x1="152.9" y1="214.2" x2="109.8" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="109.8" y1="265.4" x2="56.4" y2="262.9" stroke="#5577aa" stroke-width="1.5"/><line x1="56.4" y1="262.9" x2="34.6" y2="234.7" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="234.7" x2="45.4" y2="223.9" stroke="#5577aa" stroke-width="1.5"/><line x1="45.4" y1="223.9" x2="70.3" y2="206.8" stroke="#5577aa" stroke-width="1.5"/><line x1="70.3" y1="206.8" x2="64.3" y2="205.0" stroke="#5577aa" stroke-width="1.5"/><circle cx="200.5" cy="99.8" r="2.5" fill="#aabbcc"/><text x="206.5" y="102.8" fill="#99aabb" font-size="9" font-family="monospace">aSco</text><circle cx="251.4" cy="34.6" r="2.5" fill="#aabbcc"/><text x="257.4" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bSco</text><circle cx="262.2" cy="62.4" r="2.5" fill="#aabbcc"/><text x="268.2" y="65.4" fill="#99aabb" font-size="9" font-family="monospace">dSco</text><circle cx="156.5" cy="177.2" r="2.5" fill="#aabbcc"/><text x="162.5" y="180.2" fill="#99aabb" font-size="9" font-family="monospace">eSco</text><circle cx="109.8" cy="265.4" r="2.5" fill="#aabbcc"/><text x="115.8" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">etSco</text><circle cx="56.4" cy="262.9" r="2.5" fill="#aabbcc"/><text x="62.4" y="265.9" fill="#99aabb" font-size="9" font-family="monospace">thSco</text><circle cx="34.6" cy="234.7" r="2.5" fill="#aabbcc"/><text x="40.6" y="237.7" fill="#99aabb" font-size="9" font-family="monospace">iSco</text><circle cx="45.4" cy="223.9" r="2.5" fill="#aabbcc"/><text x="51.4" y="226.9" fill="#99aabb" font-size="9" font-family="monospace">kSco</text><circle cx="64.3" cy="205.0" r="2.5" fill="#aabbcc"/><text x="70.3" y="208.0" fill="#99aabb" font-size="9" font-family="monospace">lSco</text><circle cx="152.9" cy="214.2" r="2.5" fill="#aabbcc"/><text x="158.9" y="217.2" fill="#99aabb" font-size="9" font-family="monospace">muSco</text><circle cx="70.3" cy="206.8" r="2.5" fill="#aabbcc"/><text x="76.3" y="209.8" fill="#99aabb" font-size="9" font-family="monospace">uSco</text><circle cx="265.4" cy="96.7" r="2.5" fill="#aabbcc"/><text x="271.4" y="99.7" fill="#99aabb" font-size="9" font-family="monospace">piSco</text><circle cx="218.0" cy="91.6" r="2.5" fill="#aabbcc"/><text x="224.0" y="94.6" fill="#99aabb" font-size="9" font-family="monospace">siSco</text><circle cx="186.8" cy="117.3" r="2.5" fill="#aabbcc"/><text x="192.8" y="120.3" fill="#99aabb" font-size="9" font-family="monospace">tSco</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/SCO_1.png" alt="Scorpius reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Ser — Serpens <span class="coverage">(3/13 segments, 23% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="265.4" x2="159.3" y2="196.4" stroke="#5577aa" stroke-width="1.5"/><line x1="159.3" y1="196.4" x2="110.7" y2="116.7" stroke="#5577aa" stroke-width="1.5"/><line x1="110.7" y1="116.7" x2="34.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="34.6" r="2.5" fill="#aabbcc"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">dLyr</text><circle cx="265.4" cy="265.4" r="4" fill="#ffcc00"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Sabik</text><circle cx="159.3" cy="196.4" r="2.5" fill="#aabbcc"/><text x="165.3" y="199.4" fill="#99aabb" font-size="9" font-family="monospace">nuOph</text><circle cx="110.7" cy="116.7" r="2.5" fill="#aabbcc"/><text x="116.7" y="119.7" fill="#99aabb" font-size="9" font-family="monospace">etSer</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/SER1_1.png" alt="Serpens reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Sgr — Sagittarius <span class="coverage">(12/20 segments, 60% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="196.1" y1="217.2" x2="265.4" y2="136.4" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="136.4" x2="208.0" y2="124.2" stroke="#5577aa" stroke-width="1.5"/><line x1="208.0" y1="124.2" x2="196.1" y2="217.2" stroke="#5577aa" stroke-width="1.5"/><line x1="208.0" y1="124.2" x2="181.7" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="181.7" y1="34.6" x2="115.0" y2="66.5" stroke="#5577aa" stroke-width="1.5"/><line x1="115.0" y1="66.5" x2="208.0" y2="124.2" stroke="#5577aa" stroke-width="1.5"/><line x1="115.0" y1="66.5" x2="78.7" y2="52.3" stroke="#5577aa" stroke-width="1.5"/><line x1="78.7" y1="52.3" x2="34.6" y2="80.4" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="80.4" x2="50.9" y2="125.2" stroke="#5577aa" stroke-width="1.5"/><line x1="50.9" y1="125.2" x2="115.0" y2="66.5" stroke="#5577aa" stroke-width="1.5"/><line x1="50.9" y1="125.2" x2="196.1" y2="217.2" stroke="#5577aa" stroke-width="1.5"/><line x1="196.1" y1="217.2" x2="220.7" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="136.4" r="2.5" fill="#aabbcc"/><text x="271.4" y="139.4" fill="#99aabb" font-size="9" font-family="monospace">gSgr</text><circle cx="208.0" cy="124.2" r="2.5" fill="#aabbcc"/><text x="214.0" y="127.2" fill="#99aabb" font-size="9" font-family="monospace">dSgr</text><circle cx="196.1" cy="217.2" r="2.5" fill="#aabbcc"/><text x="202.1" y="220.2" fill="#99aabb" font-size="9" font-family="monospace">eSgr</text><circle cx="50.9" cy="125.2" r="2.5" fill="#aabbcc"/><text x="56.9" y="128.2" fill="#99aabb" font-size="9" font-family="monospace">zSgr</text><circle cx="220.7" cy="265.4" r="2.5" fill="#aabbcc"/><text x="226.7" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">etSgr</text><circle cx="181.7" cy="34.6" r="2.5" fill="#aabbcc"/><text x="187.7" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">lSgr</text><circle cx="78.7" cy="52.3" r="2.5" fill="#aabbcc"/><text x="84.7" y="55.3" fill="#99aabb" font-size="9" font-family="monospace">siSgr</text><circle cx="34.6" cy="80.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="83.4" fill="#99aabb" font-size="9" font-family="monospace">tSgr</text><circle cx="115.0" cy="66.5" r="2.5" fill="#aabbcc"/><text x="121.0" y="69.5" fill="#99aabb" font-size="9" font-family="monospace">phSgr</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/SGR_1.png" alt="Sagittarius reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Tau — Taurus <span class="coverage">(6/10 segments, 60% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="167.3" x2="217.6" y2="249.7" stroke="#5577aa" stroke-width="1.5"/><line x1="217.6" y1="249.7" x2="239.4" y2="259.5" stroke="#5577aa" stroke-width="1.5"/><line x1="239.4" y1="259.5" x2="265.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="265.4" x2="256.1" y2="231.3" stroke="#5577aa" stroke-width="1.5"/><line x1="256.1" y1="231.3" x2="239.2" y2="202.3" stroke="#5577aa" stroke-width="1.5"/><line x1="239.2" y1="202.3" x2="68.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><circle cx="217.6" cy="249.7" r="2.5" fill="#aabbcc"/><text x="223.6" y="252.7" fill="#99aabb" font-size="9" font-family="monospace">aTau</text><circle cx="68.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="74.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bTau</text><circle cx="265.4" cy="265.4" r="2.5" fill="#aabbcc"/><text x="271.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">gTau</text><circle cx="256.1" cy="231.3" r="2.5" fill="#aabbcc"/><text x="262.1" y="234.3" fill="#99aabb" font-size="9" font-family="monospace">dTau</text><circle cx="239.2" cy="202.3" r="2.5" fill="#aabbcc"/><text x="245.2" y="205.3" fill="#99aabb" font-size="9" font-family="monospace">eTau</text><circle cx="34.6" cy="167.3" r="2.5" fill="#aabbcc"/><text x="40.6" y="170.3" fill="#99aabb" font-size="9" font-family="monospace">zTau</text><circle cx="239.4" cy="259.5" r="2.5" fill="#aabbcc"/><text x="245.4" y="262.5" fill="#99aabb" font-size="9" font-family="monospace">thTau</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/TAU_1.png" alt="Taurus reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>TrA — Triangulum Australe <span class="coverage">(3/4 segments, 75% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="265.4" x2="172.3" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="172.3" y1="34.6" x2="265.4" y2="251.0" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="251.0" x2="34.6" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="265.4" r="2.5" fill="#aabbcc"/><text x="40.6" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">aTrA</text><circle cx="172.3" cy="34.6" r="2.5" fill="#aabbcc"/><text x="178.3" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bTrA</text><circle cx="265.4" cy="251.0" r="2.5" fill="#aabbcc"/><text x="271.4" y="254.0" fill="#99aabb" font-size="9" font-family="monospace">gTrA</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/TRA_1.png" alt="Triangulum Australe reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Tri — Triangulum <span class="coverage">(3/3 segments, 100% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="259.4" y1="265.4" x2="110.7" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="110.7" y1="34.6" x2="40.6" y2="83.6" stroke="#5577aa" stroke-width="1.5"/><line x1="40.6" y1="83.6" x2="259.4" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="259.4" cy="265.4" r="2.5" fill="#aabbcc"/><text x="265.4" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">aTri</text><circle cx="110.7" cy="34.6" r="2.5" fill="#aabbcc"/><text x="116.7" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">bTri</text><circle cx="40.6" cy="83.6" r="2.5" fill="#aabbcc"/><text x="46.6" y="86.6" fill="#99aabb" font-size="9" font-family="monospace">gTri</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/TRI_1.png" alt="Triangulum reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>UMa — Ursa Major <span class="coverage">(17/26 segments, 65% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="117.3" y1="134.8" x2="123.0" y2="198.2" stroke="#5577aa" stroke-width="1.5"/><line x1="123.0" y1="198.2" x2="149.4" y2="233.3" stroke="#5577aa" stroke-width="1.5"/><line x1="149.4" y1="233.3" x2="183.9" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="101.6" y1="99.2" x2="153.8" y2="48.5" stroke="#5577aa" stroke-width="1.5"/><line x1="153.8" y1="48.5" x2="155.1" y2="106.1" stroke="#5577aa" stroke-width="1.5"/><line x1="155.1" y1="106.1" x2="117.3" y2="134.8" stroke="#5577aa" stroke-width="1.5"/><line x1="117.3" y1="134.8" x2="101.6" y2="99.2" stroke="#5577aa" stroke-width="1.5"/><line x1="101.6" y1="99.2" x2="73.5" y2="110.6" stroke="#5577aa" stroke-width="1.5"/><line x1="73.5" y1="110.6" x2="51.8" y2="121.6" stroke="#5577aa" stroke-width="1.5"/><line x1="51.8" y1="121.6" x2="34.6" y2="181.7" stroke="#5577aa" stroke-width="1.5"/><line x1="153.8" y1="48.5" x2="220.8" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="220.8" y1="34.6" x2="206.7" y2="77.6" stroke="#5577aa" stroke-width="1.5"/><line x1="220.8" y1="34.6" x2="265.4" y2="59.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="59.6" x2="206.7" y2="77.6" stroke="#5577aa" stroke-width="1.5"/><line x1="206.7" y1="77.6" x2="155.1" y2="106.1" stroke="#5577aa" stroke-width="1.5"/><line x1="206.7" y1="77.6" x2="219.9" y2="156.4" stroke="#5577aa" stroke-width="1.5"/><line x1="219.9" y1="156.4" x2="244.3" y2="195.3" stroke="#5577aa" stroke-width="1.5"/><circle cx="153.8" cy="48.5" r="2.5" fill="#aabbcc"/><text x="159.8" y="51.5" fill="#99aabb" font-size="9" font-family="monospace">aUMa</text><circle cx="155.1" cy="106.1" r="4" fill="#ffcc00"/><text x="161.1" y="109.1" fill="#99aabb" font-size="9" font-family="monospace">Merak</text><circle cx="117.3" cy="134.8" r="4" fill="#ffcc00"/><text x="123.3" y="137.8" fill="#99aabb" font-size="9" font-family="monospace">Phecda</text><circle cx="101.6" cy="99.2" r="4" fill="#ffcc00"/><text x="107.6" y="102.2" fill="#99aabb" font-size="9" font-family="monospace">Megrez</text><circle cx="73.5" cy="110.6" r="4" fill="#ffcc00"/><text x="79.5" y="113.6" fill="#99aabb" font-size="9" font-family="monospace">Alioth</text><circle cx="51.8" cy="121.6" r="4" fill="#ffcc00"/><text x="57.8" y="124.6" fill="#99aabb" font-size="9" font-family="monospace">Mizar</text><circle cx="34.6" cy="181.7" r="4" fill="#ffcc00"/><text x="40.6" y="184.7" fill="#99aabb" font-size="9" font-family="monospace">Alkaid</text><circle cx="219.9" cy="156.4" r="2.5" fill="#aabbcc"/><text x="225.9" y="159.4" fill="#99aabb" font-size="9" font-family="monospace">thUMa</text><circle cx="244.3" cy="195.3" r="2.5" fill="#aabbcc"/><text x="250.3" y="198.3" fill="#99aabb" font-size="9" font-family="monospace">iUMa</text><circle cx="183.9" cy="265.4" r="2.5" fill="#aabbcc"/><text x="189.9" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">muUMa</text><circle cx="206.7" cy="77.6" r="2.5" fill="#aabbcc"/><text x="212.7" y="80.6" fill="#99aabb" font-size="9" font-family="monospace">nuUMa</text><circle cx="265.4" cy="59.6" r="2.5" fill="#aabbcc"/><text x="271.4" y="62.6" fill="#99aabb" font-size="9" font-family="monospace">oUMa</text><circle cx="123.0" cy="198.2" r="2.5" fill="#aabbcc"/><text x="129.0" y="201.2" fill="#99aabb" font-size="9" font-family="monospace">xUMa</text><circle cx="149.4" cy="233.3" r="2.5" fill="#aabbcc"/><text x="155.4" y="236.3" fill="#99aabb" font-size="9" font-family="monospace">psUMa</text><circle cx="220.8" cy="34.6" r="2.5" fill="#aabbcc"/><text x="226.8" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">ppUMa</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/UMA_1.png" alt="Ursa Major reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>UMi — Ursa Minor <span class="coverage">(7/7 segments, 100% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="34.6" y1="34.6" x2="212.2" y2="43.2" stroke="#5577aa" stroke-width="1.5"/><line x1="212.2" y1="43.2" x2="227.4" y2="57.8" stroke="#5577aa" stroke-width="1.5"/><line x1="227.4" y1="57.8" x2="244.9" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="244.9" y1="265.4" x2="236.8" y2="78.0" stroke="#5577aa" stroke-width="1.5"/><line x1="236.8" y1="78.0" x2="255.5" y2="90.6" stroke="#5577aa" stroke-width="1.5"/><line x1="255.5" y1="90.6" x2="265.4" y2="83.1" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="83.1" x2="244.9" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="34.6" cy="34.6" r="4" fill="#ffcc00"/><text x="40.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">Polaris</text><circle cx="265.4" cy="83.1" r="2.5" fill="#aabbcc"/><text x="271.4" y="86.1" fill="#99aabb" font-size="9" font-family="monospace">bUMi</text><circle cx="255.5" cy="90.6" r="2.5" fill="#aabbcc"/><text x="261.5" y="93.6" fill="#99aabb" font-size="9" font-family="monospace">gUMi</text><circle cx="212.2" cy="43.2" r="2.5" fill="#aabbcc"/><text x="218.2" y="46.2" fill="#99aabb" font-size="9" font-family="monospace">dUMi</text><circle cx="227.4" cy="57.8" r="2.5" fill="#aabbcc"/><text x="233.4" y="60.8" fill="#99aabb" font-size="9" font-family="monospace">eUMi</text><circle cx="244.9" cy="265.4" r="2.5" fill="#aabbcc"/><text x="250.9" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">zUMi</text><circle cx="236.8" cy="78.0" r="2.5" fill="#aabbcc"/><text x="242.8" y="81.0" fill="#99aabb" font-size="9" font-family="monospace">etUMi</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/UMI_1.png" alt="Ursa Minor reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Vel — Vela <span class="coverage">(5/8 segments, 62% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="213.8" y1="259.4" x2="265.4" y2="112.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="112.6" x2="179.6" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="179.6" y1="34.6" x2="34.6" y2="154.2" stroke="#5577aa" stroke-width="1.5"/><line x1="34.6" y1="154.2" x2="158.9" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="158.9" y1="265.4" x2="213.8" y2="259.4" stroke="#5577aa" stroke-width="1.5"/><circle cx="265.4" cy="112.6" r="4" fill="#ffcc00"/><text x="271.4" y="115.6" fill="#99aabb" font-size="9" font-family="monospace">Al Suhail</text><circle cx="213.8" cy="259.4" r="2.5" fill="#aabbcc"/><text x="219.8" y="262.4" fill="#99aabb" font-size="9" font-family="monospace">dVel</text><circle cx="158.9" cy="265.4" r="2.5" fill="#aabbcc"/><text x="164.9" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">kVel</text><circle cx="179.6" cy="34.6" r="2.5" fill="#aabbcc"/><text x="185.6" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">lVel</text><circle cx="34.6" cy="154.2" r="2.5" fill="#aabbcc"/><text x="40.6" y="157.2" fill="#99aabb" font-size="9" font-family="monospace">muVel</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/VEL_1.png" alt="Vela reference chart" loading="lazy">
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Vir — Virgo <span class="coverage">(4/20 segments, 20% coverage)</span></h2>
+<div class="pair">
+<div class="ours">
+<div class="label">Ours</div>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#0a0a2e"/><line x1="265.4" y1="163.9" x2="204.8" y2="113.6" stroke="#5577aa" stroke-width="1.5"/><line x1="204.8" y1="113.6" x2="176.1" y2="34.6" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="163.9" x2="76.0" y2="265.4" stroke="#5577aa" stroke-width="1.5"/><line x1="265.4" y1="163.9" x2="34.6" y2="155.0" stroke="#5577aa" stroke-width="1.5"/><circle cx="76.0" cy="265.4" r="4" fill="#ffcc00"/><text x="82.0" y="268.4" fill="#99aabb" font-size="9" font-family="monospace">Spica</text><circle cx="265.4" cy="163.9" r="2.5" fill="#aabbcc"/><text x="271.4" y="166.9" fill="#99aabb" font-size="9" font-family="monospace">gVir</text><circle cx="204.8" cy="113.6" r="2.5" fill="#aabbcc"/><text x="210.8" y="116.6" fill="#99aabb" font-size="9" font-family="monospace">dVir</text><circle cx="176.1" cy="34.6" r="2.5" fill="#aabbcc"/><text x="182.1" y="37.6" fill="#99aabb" font-size="9" font-family="monospace">eVir</text><circle cx="34.6" cy="155.0" r="2.5" fill="#aabbcc"/><text x="40.6" y="158.0" fill="#99aabb" font-size="9" font-family="monospace">zVir</text></svg>
+</div>
+<div class="ref">
+<div class="label">In-The-Sky.org reference</div>
+<img src="https://in-the-sky.org/data/charts/VIR_1.png" alt="Virgo reference chart" loading="lazy">
+</div>
+</div>
+</div>
+</div>
+<p class="note" style="margin-top:30px">Reference charts copyright Dominic Ford / In-The-Sky.org. Used here for visual comparison only.</p>
+</body>
+</html>

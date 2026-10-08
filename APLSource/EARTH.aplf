@@ -1,0 +1,3 @@
+ Z←EARTH
+⍝ Returns orbital elements for Earth (row 3 of planets table)
+ Z←planets[,3;]

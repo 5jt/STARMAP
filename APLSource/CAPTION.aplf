@@ -1,0 +1,25 @@
+ CAPTION;MDY;M;D;Y;LATD;LATM;NS;LONGD;LONGM;EW;DN;H;AP;LINE
+⍝ Prints header line matching book example:
+⍝ VIEW FROM {lat} NORTH, {long} WEST, ON {day} {date} AT {time}
+⍝ Uses globals: LAT, LONG, STATEDDAYNO, STATEDTIME
+ MDY←JNUINV STATEDDAYNO
+ M←MDY[1] ⋄ D←MDY[2] ⋄ Y←MDY[3]
+ DN←DAYNAME STATEDDAYNO
+ ⍝ Latitude: degrees and arcminutes
+ LATD←⌊|LAT
+ LATM←⌊0.5+60×(|LAT)-LATD
+ NS←(1+LAT<0)⊃'NORTH' 'SOUTH'
+ ⍝ Longitude: degrees and arcminutes
+ LONGD←⌊|LONG
+ LONGM←⌊0.5+60×(|LONG)-LONGD
+ EW←(1+LONG>0)⊃'WEST' 'EAST'
+ ⍝ Time: hours → 12-hour with AM/PM
+ H←12|STATEDTIME
+ :If H=0 ⋄ H←12 ⋄ :EndIf
+ AP←(1+STATEDTIME<12)⊃'PM' 'AM'
+ ⍝ Assemble
+ LINE←'VIEW FROM ',(⍕LATD),' DEGREES ',(⍕LATM),' MINUTES ',NS
+ LINE←LINE,', ',(⍕LONGD),' DEGREES ',(⍕LONGM),' MINUTES ',EW
+ LINE←LINE,', ON ',DN,' ',(⍕Y),'/',(⍕M),'/',(⍕D)
+ LINE←LINE,' AT ',(⍕⌊H),' ',(¯2↑'0',⍕⌊0.5+60×H-⌊H),' ',AP
+ ⎕←LINE

@@ -1,0 +1,642 @@
+ Z←OPTS ANIMATEDSVG ARGS;START;END;T;LA;LO;JD1;JD2;NDAYS;I;S;FJ;FJS;CX;CY;R;PAD;FMT;NSTARS;NBRIGHT;BRIGHTIDX;NPI;ALLPC;PLAN_PX;PLAN_PY;PLAN_VIS;PLAN_RAH;PLAN_RAM;PLAN_DEC;PLAN_ALT;PLAN_AZ;PLAN_MX;PLAN_MY;PHASES;PCHARS;NAMES;NM;BN;TY;VHEIGHT;SR;COL;LATD;LATM;NS;LONGD;LONGM;EW;H;AP;MN2;PLANJSON;NCOL;FPS;HIRES;SKIP;NFRAMES;CDATA;CLPAIRS;NLINES;CD;CDNAME;CDPAIRS
+⍝ Generate animated SVG with JavaScript-driven animation
+⍝ OPTS: FPS [HIRES [SKIP]]
+⍝   FPS: playback frames per second
+⍝   HIRES: 1=full-size display (default 0=half-size)
+⍝   SKIP: days between frames (default 1=every day, 2=every other day)
+⍝ ARGS: (M D Y)(M D Y) TIME LAT LONG
+⍝ Returns character vector containing complete animated SVG
+⍝
+⍝ Stars are computed in JavaScript (ported sky math).
+⍝ Planet positions are pre-computed in APL and embedded as JSON.
+
+⍝ === PARSE OPTIONS ===
+ OPTS←,OPTS
+ FPS←⊃OPTS
+ :If 1<≢OPTS ⋄ HIRES←OPTS[2] ⋄ :Else ⋄ HIRES←0 ⋄ :EndIf
+ :If 2<≢OPTS ⋄ SKIP←OPTS[3] ⋄ :Else ⋄ SKIP←1 ⋄ :EndIf
+
+⍝ === PARSE ARGS ===
+ START END T LA LO←ARGS
+ JD1←JNU START
+ JD2←JNU END
+ NDAYS←1+JD2-JD1
+ NFRAMES←⌈NDAYS÷SKIP
+
+⍝ Map constants (same as PLOTSVG)
+ PAD←80
+ CX←PAD+1080 ⋄ CY←PAD+1080 ⋄ R←1080
+ FMT←{⍕⌊0.5+⍵}
+ FJS←{'¯'⎕R'-'⊢⍕⍵}
+ FJ←{1↓∊',',¨FJS¨⍵}
+
+⍝ Star info
+ NSTARS←⊃⍴STARS
+ BRIGHTIDX←⍸BRIGHT
+ NBRIGHT←≢BRIGHTIDX
+
+⍝ Constellation line data — flatten all pairs into one matrix
+ CDATA←CONSTELLATIONS
+ CLPAIRS←⊃⍪/{2⊃⍵}¨CDATA
+ NLINES←⊃⍴CLPAIRS
+
+⍝ === COLLECT PLANET DATA ===
+ PLAN_PX←NFRAMES 11⍴0
+ PLAN_PY←NFRAMES 11⍴0
+ PLAN_VIS←NFRAMES 11⍴0
+ PLAN_RAH←NFRAMES 11⍴0
+ PLAN_RAM←NFRAMES 11⍴0
+ PLAN_DEC←NFRAMES 11⍴0
+ PLAN_ALT←NFRAMES 11⍴0
+ PLAN_AZ←NFRAMES 11⍴0
+ PLAN_MX←NFRAMES 11⍴0
+ PLAN_MY←NFRAMES 11⍴0
+ PHASES←NFRAMES⍴0
+
+ ⎕←'Computing ',(⍕NFRAMES),' frames (skip ',(⍕SKIP),')...'
+ :For I :In ⍳NFRAMES
+   STATEDDAYNO←JD1+(I-1)×SKIP
+   STATEDTIME←T
+   LAT←LA ⋄ LONG←LO
+   TIME←LO TIMEADJUST T
+   DATE←STATEDDAYNO+(TIME÷24)-LO÷360
+
+   CALCULATEPLANETS
+   NPI←⊃⍴PLANETS
+
+⍝ Expand visible-only planet coords to full matrix
+   ALLPC←NPI 2⍴0
+   :If ∨/VP
+     ALLPC[⍸VP;]←PLANETCOORD
+   :EndIf
+
+⍝ Pad to 11 rows if no comet
+   :If NPI<11
+     PLANETS←PLANETS,[1](11-NPI) 3⍴0
+     PLANETAA←PLANETAA,[1](11-NPI) 2⍴¯90 0
+     VP←VP,(11-NPI)⍴0
+     ALLPC←ALLPC,[1](11-NPI) 2⍴0
+   :EndIf
+
+   PLAN_PX[I;]←⌊0.5+CX+R×ALLPC[;1]
+   PLAN_PY[I;]←⌊0.5+CY-R×ALLPC[;2]
+   PLAN_VIS[I;]←VP
+   PLAN_RAH[I;]←⌊PLANETS[;1]
+   PLAN_RAM[I;]←⌊0.5+60×PLANETS[;1]-PLAN_RAH[I;]
+   PLAN_DEC[I;]←⌊0.5+PLANETS[;2]
+   PLAN_ALT[I;]←⌊0.5+PLANETAA[;1]
+   PLAN_AZ[I;]←⌊0.5+PLANETAA[;2]
+   PLAN_MX[I;]←0.01×⌊0.5+100×ALLPC[;1]
+   PLAN_MY[I;]←0.01×⌊0.5+100×ALLPC[;2]
+   PHASES[I]←PHASE
+ :EndFor
+ ⎕←'Building SVG...'
+
+⍝ === TITLE BASE ===
+ LATD←⌊|LA ⋄ LATM←⌊0.5+60×(|LA)-LATD
+ NS←(1+LA<0)⊃'NORTH' 'SOUTH'
+ LONGD←⌊|LO ⋄ LONGM←⌊0.5+60×(|LO)-LONGD
+ EW←(1+LO>0)⊃'WEST' 'EAST'
+ H←12|T
+ :If H=0 ⋄ H←12 ⋄ :EndIf
+ AP←(1+T<12)⊃'PM' 'AM'
+ MN2←⍕⌊0.5+60×H-⌊H
+ :If 1=≢MN2 ⋄ MN2←'0',MN2 ⋄ :EndIf
+
+⍝ === FORMAT PLANET DATA AS JSON ===
+ PLANJSON←''
+ PLANJSON,←'"px":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_PX),'],'
+ PLANJSON,←'"py":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_PY),'],'
+ PLANJSON,←'"vis":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_VIS),'],'
+ PLANJSON,←'"rah":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_RAH),'],'
+ PLANJSON,←'"ram":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_RAM),'],'
+ PLANJSON,←'"dec":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_DEC),'],'
+ PLANJSON,←'"alt":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_ALT),'],'
+ PLANJSON,←'"az":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_AZ),'],'
+ PLANJSON,←'"mx":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_MX),'],'
+ PLANJSON,←'"my":[',(1↓∊',',¨{'[',(FJ ⍵),']'}¨↓⍉PLAN_MY),'],'
+ PLANJSON,←'"phase":[',(FJ PHASES),']'
+
+⍝ === BUILD SVG ===
+⍝ Compute total height: planet table + 22 bright star rows + controls
+ TY←PAD+2160+120
+ TY←TY+50+8+32+(11×34)+10+60
+ TY←TY+50+8+32+((⌈NBRIGHT÷2)×34)
+ TY←TY+20+80
+ VHEIGHT←TY+PAD
+
+⍝ SVG header (no explicit width/height — SVG scales to container)
+ Z←'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ',(⍕2160+2×PAD),' ',(⍕VHEIGHT),'">'
+ Z,←'<defs><style>'
+ Z,←'text{font-family:monospace;fill:#ccc}'
+ Z,←'.bright{fill:#ffd700}'
+ Z,←'.faint{fill:#aaa}'
+ Z,←'.star-label{font-size:28px;fill:#ffd700}'
+ Z,←'.planet{fill:#4fc3f7;font-size:36px}'
+ Z,←'.planet-label{font-size:24px;fill:#4fc3f7}'
+ Z,←'.cardinal{font-size:40px;fill:#888;text-anchor:middle;dominant-baseline:central}'
+ Z,←'.legend{font-size:22px;fill:#999}'
+ Z,←'.title{font-size:26px;fill:#999;text-anchor:middle}'
+ Z,←'.table-header{font-size:28px;fill:#bbb;text-anchor:middle}'
+ Z,←'.table-text{font-size:26px;fill:#999}'
+ Z,←'.table-hdr-r{font-size:26px;fill:#bbb;text-anchor:end}'
+ Z,←'.table-r{font-size:26px;fill:#999;text-anchor:end}'
+ Z,←'.bst-row text{font-size:26px;fill:#999}'
+ Z,←'.bst-val{text-anchor:end}'
+ Z,←'.bst-row.dim text{fill:#555}'
+ Z,←'.pt-row text{font-size:26px;fill:#999}'
+ Z,←'.pt-val{text-anchor:end}'
+ Z,←'.pt-row.dim text{fill:#555}'
+ Z,←'.bright,.faint{cursor:pointer;stroke:transparent;stroke-width:16;pointer-events:all}'
+ Z,←'#tooltip rect{fill:#1a1a2e;stroke:#4fc3f7;stroke-width:1}'
+ Z,←'#tooltip text{font-family:monospace}'
+ Z,←'</style></defs>'
+
+⍝ Background
+ Z,←'<rect width="',(⍕2160+2×PAD),'" height="',(⍕VHEIGHT),'" fill="#0a0a1a"/>'
+
+⍝ Title (JS updates content)
+ Z,←'<text class="title" id="title" x="',(⍕PAD+1080),'" y="',(⍕PAD-20),'"> </text>'
+
+⍝ Crosshairs
+ Z,←'<g stroke="#333" stroke-width="1">'
+ Z,←'<line x1="',(⍕PAD),'" y1="',(⍕CY),'" x2="',(⍕PAD+2160),'" y2="',(⍕CY),'"/>'
+ Z,←'<line x1="',(⍕CX),'" y1="',(⍕PAD),'" x2="',(⍕CX),'" y2="',(⍕PAD+2160),'"/>'
+ Z,←'</g>'
+
+⍝ Horizon circle
+ Z,←'<circle cx="',(⍕CX),'" cy="',(⍕CY),'" r="',(⍕R),'" fill="none" stroke="#555" stroke-width="2"/>'
+
+⍝ Cardinals
+ Z,←'<text class="cardinal" x="',(⍕CX),'" y="',(FMT CY-R-20),'">N</text>'
+ Z,←'<text class="cardinal" x="',(⍕CX),'" y="',(FMT CY+R+35),'">S</text>'
+ Z,←'<text class="cardinal" x="',(FMT CX-R-25),'" y="',(⍕CY),'">E</text>'
+ Z,←'<text class="cardinal" x="',(FMT CX+R+25),'" y="',(⍕CY),'">W</text>'
+
+⍝ Zenith marker
+ Z,←'<circle cx="',(⍕CX),'" cy="',(⍕CY),'" r="4" fill="none" stroke="#666" stroke-width="1.5"/>'
+
+⍝ Legend
+ Z,←'<g class="legend" transform="translate(',(⍕PAD+40),',',(⍕PAD+2160+10),')">'
+ Z,←'<circle class="bright" cx="0" cy="0" r="8"/><text x="16" y="6">bright</text>'
+ Z,←'<circle class="faint" cx="120" cy="0" r="3"/><text x="130" y="6">faint</text>'
+ Z,←'<circle cx="230" cy="0" r="4" fill="none" stroke="#666" stroke-width="1.5"/><text x="242" y="6">zenith</text>'
+ Z,←'<text x="350" y="6" fill="#555">— horizon</text>'
+ Z,←'</g>'
+
+⍝ Constellation lines (drawn by JS on hover, behind stars)
+ Z,←'<path id="const-path" d="" fill="none" stroke="#446" stroke-width="1.5" visibility="hidden"/>'
+
+⍝ === STAR ELEMENTS (JS updates cx, cy, visibility) ===
+ :For I :In ⍳NSTARS
+   :If BRIGHT[I]
+     SR←8 ⋄ COL←'bright'
+   :Else
+     SR←3 ⋄ COL←'faint'
+   :EndIf
+   Z,←'<circle class="',COL,'" id="s',(⍕I-1),'" cx="0" cy="0" r="',(⍕SR),'" visibility="hidden"/>'
+ :EndFor
+
+⍝ Bright star labels
+ BN←STARNAMES[BRIGHTIDX]
+ :For I :In ⍳NBRIGHT
+   NM←⊃BN[I]
+   Z,←'<text class="star-label" id="sl',(⍕I-1),'" x="0" y="0" visibility="hidden">',NM,'</text>'
+ :EndFor
+
+⍝ === PLANET ELEMENTS ===
+ PCHARS←11↑'☾☉☿♀♂♃♄⛢♆♇☄'
+ NAMES←11↑PLANETNAMES
+ :For I :In ⍳11
+   Z,←'<text class="planet" id="p',(⍕I-1),'" x="0" y="0" visibility="hidden" style="cursor:pointer">',PCHARS[I],'</text>'
+   Z,←'<text class="planet-label" id="plbl',(⍕I-1),'" x="0" y="0" visibility="hidden" style="pointer-events:none">',(⊃NAMES[I]),'</text>'
+ :EndFor
+
+⍝ === STAR INFO TOOLTIP (hidden, positioned by JS) ===
+ Z,←'<g id="tooltip" visibility="hidden">'
+ Z,←'<rect id="tt-bg" x="0" y="0" width="340" height="116" rx="8"/>'
+ Z,←'<circle id="tt-dot" cx="22" cy="24" r="0" fill="#ffd700"/>'
+ Z,←'<text id="tt-name" x="40" y="32" font-size="26" fill="#ccc"></text>'
+ Z,←'<text id="tt-const" x="22" y="60" font-size="22" fill="#888"></text>'
+ Z,←'<text id="tt-radec" x="22" y="84" font-size="20" fill="#666"></text>'
+ Z,←'<text id="tt-altaz" x="22" y="106" font-size="20" fill="#666"></text>'
+ Z,←'</g>'
+
+⍝ === PLANET TABLE ===
+ TY←PAD+2160+120
+ Z,←'<text class="table-header" x="',(⍕PAD+1080),'" y="',(⍕TY),'">POSITION OF SUN, MOON AND PLANETS</text>'
+ TY←TY+50
+ Z,←'<g class="table-text">'
+ Z,←'<text x="',(⍕PAD+60),'" y="',(⍕TY),'">BODY</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+340),'" y="',(⍕TY),'">RA h</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+440),'" y="',(⍕TY),'">RA m</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+560),'" y="',(⍕TY),'">DEC</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+680),'" y="',(⍕TY),'">ALT</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+790),'" y="',(⍕TY),'">AZ</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+920),'" y="',(⍕TY),'">MAP X</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+1050),'" y="',(⍕TY),'">MAP Y</text>'
+ TY←TY+8
+ Z,←'<line x1="',(⍕PAD+40),'" y1="',(⍕TY),'" x2="',(⍕PAD+1080),'" y2="',(⍕TY),'" stroke="#555" stroke-width="1"/>'
+ TY←TY+32
+ Z,←'</g>'
+
+⍝ Planet table rows (JS updates values and dims when below horizon)
+ :For I :In ⍳11
+   Z,←'<g class="pt-row" id="pt-row-',(⍕I-1),'">'
+   Z,←'<text x="',(⍕PAD+60),'" y="',(⍕TY),'">',PCHARS[I],' ',(⊃NAMES[I]),'</text>'
+   Z,←'<text class="pt-val" id="pt-rah-',(⍕I-1),'" x="',(⍕PAD+340),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-ram-',(⍕I-1),'" x="',(⍕PAD+440),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-dec-',(⍕I-1),'" x="',(⍕PAD+560),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-alt-',(⍕I-1),'" x="',(⍕PAD+680),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-az-',(⍕I-1),'" x="',(⍕PAD+790),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-mx-',(⍕I-1),'" x="',(⍕PAD+920),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="pt-val" id="pt-my-',(⍕I-1),'" x="',(⍕PAD+1050),'" y="',(⍕TY),'"> </text>'
+   Z,←'</g>'
+   TY←TY+34
+ :EndFor
+
+⍝ Moon phase line
+ TY←TY+10
+ Z,←'<text class="table-text" id="moon-phase" x="',(⍕PAD+60),'" y="',(⍕TY),'"> </text>'
+ TY←TY+60
+
+⍝ === BRIGHT STAR TABLE (two columns, dim below-horizon) ===
+ NCOL←⌈NBRIGHT÷2
+ Z,←'<text class="table-header" x="',(⍕PAD+1080),'" y="',(⍕TY),'">BRIGHT STARS</text>'
+ TY←TY+50
+⍝ Column headers (left and right)
+ Z,←'<g class="table-text">'
+ Z,←'<text x="',(⍕PAD+60),'" y="',(⍕TY),'">STAR</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+340),'" y="',(⍕TY),'">ALT</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+440),'" y="',(⍕TY),'">AZ</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+560),'" y="',(⍕TY),'">MAP X</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+680),'" y="',(⍕TY),'">MAP Y</text>'
+ Z,←'<text x="',(⍕PAD+1140),'" y="',(⍕TY),'">STAR</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+1420),'" y="',(⍕TY),'">ALT</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+1520),'" y="',(⍕TY),'">AZ</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+1640),'" y="',(⍕TY),'">MAP X</text>'
+ Z,←'<text class="table-hdr-r" x="',(⍕PAD+1760),'" y="',(⍕TY),'">MAP Y</text>'
+ TY←TY+8
+ Z,←'<line x1="',(⍕PAD+40),'" y1="',(⍕TY),'" x2="',(⍕PAD+720),'" y2="',(⍕TY),'" stroke="#555" stroke-width="1"/>'
+ Z,←'<line x1="',(⍕PAD+1120),'" y1="',(⍕TY),'" x2="',(⍕PAD+1800),'" y2="',(⍕TY),'" stroke="#555" stroke-width="1"/>'
+ TY←TY+32
+ Z,←'</g>'
+
+⍝ Bright star rows: left column (0..NCOL-1), right column (NCOL..NBRIGHT-1)
+ :For I :In ⍳NCOL
+   NM←⊃BN[I]
+   Z,←'<g class="bst-row" id="bst-row-',(⍕I-1),'">'
+   Z,←'<text x="',(⍕PAD+60),'" y="',(⍕TY),'">',NM,'</text>'
+   Z,←'<text class="bst-val" id="bst-alt-',(⍕I-1),'" x="',(⍕PAD+340),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="bst-val" id="bst-az-',(⍕I-1),'" x="',(⍕PAD+440),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="bst-val" id="bst-mx-',(⍕I-1),'" x="',(⍕PAD+560),'" y="',(⍕TY),'"> </text>'
+   Z,←'<text class="bst-val" id="bst-my-',(⍕I-1),'" x="',(⍕PAD+680),'" y="',(⍕TY),'"> </text>'
+   Z,←'</g>'
+   :If NBRIGHT≥I+NCOL
+     NM←⊃BN[I+NCOL]
+     Z,←'<g class="bst-row" id="bst-row-',(⍕I+NCOL-1),'">'
+     Z,←'<text x="',(⍕PAD+1140),'" y="',(⍕TY),'">',NM,'</text>'
+     Z,←'<text class="bst-val" id="bst-alt-',(⍕I+NCOL-1),'" x="',(⍕PAD+1420),'" y="',(⍕TY),'"> </text>'
+     Z,←'<text class="bst-val" id="bst-az-',(⍕I+NCOL-1),'" x="',(⍕PAD+1520),'" y="',(⍕TY),'"> </text>'
+     Z,←'<text class="bst-val" id="bst-mx-',(⍕I+NCOL-1),'" x="',(⍕PAD+1640),'" y="',(⍕TY),'"> </text>'
+     Z,←'<text class="bst-val" id="bst-my-',(⍕I+NCOL-1),'" x="',(⍕PAD+1760),'" y="',(⍕TY),'"> </text>'
+     Z,←'</g>'
+   :EndIf
+   TY←TY+34
+ :EndFor
+
+⍝ === PLAYBACK CONTROLS (two lines: scrub bar, then date + speed) ===
+ TY←TY+30
+⍝ Line 1: play button + scrub bar
+ Z,←'<text id="play-btn" x="',(⍕PAD),'" y="',(⍕TY),'" font-size="32" fill="#ccc" style="cursor:pointer">&#x23F8;</text>'
+ Z,←'<rect id="scrub-track" x="',(⍕PAD+60),'" y="',(⍕TY-14),'" width="2060" height="8" rx="4" fill="#333" style="cursor:pointer"/>'
+ Z,←'<rect id="scrub-fill" x="',(⍕PAD+60),'" y="',(⍕TY-14),'" width="0" height="8" rx="4" fill="#4fc3f7" style="pointer-events:none"/>'
+ Z,←'<circle id="scrub-thumb" cx="',(⍕PAD+60),'" cy="',(⍕TY-10),'" r="10" fill="#ccc" style="cursor:pointer"/>'
+⍝ Line 2: speed controls (left) + date label (right)
+ TY←TY+40
+ Z,←'<g id="spd-dn" style="cursor:pointer"><rect x="',(⍕PAD),'" y="',(⍕TY-24),'" width="36" height="32" rx="4" fill="#333" stroke="#555" stroke-width="1"/>'
+ Z,←'<text x="',(⍕PAD+18),'" y="',(⍕TY),'" font-size="26" fill="#ccc" text-anchor="middle">-</text></g>'
+ Z,←'<text id="speed-label" x="',(⍕PAD+70),'" y="',(⍕TY),'" font-size="24" fill="#999" text-anchor="middle">1x</text>'
+ Z,←'<g id="spd-up" style="cursor:pointer"><rect x="',(⍕PAD+104),'" y="',(⍕TY-24),'" width="36" height="32" rx="4" fill="#333" stroke="#555" stroke-width="1"/>'
+ Z,←'<text x="',(⍕PAD+122),'" y="',(⍕TY),'" font-size="26" fill="#ccc" text-anchor="middle">+</text></g>'
+ Z,←'<text id="frame-label" x="',(⍕PAD+2120),'" y="',(⍕TY),'" font-size="24" fill="#999" text-anchor="end"> </text>'
+
+⍝ === JAVASCRIPT ===
+ Z,←'<script type="text/javascript"><![CDATA['
+ Z,←'(function(){'
+
+⍝ Constants
+ Z,←'const PI=Math.PI,EQUINOX=2441762.5,YRLENGTH=365.24219,AXITILT=23.4428,CATEPOCH=2451545;'
+ Z,←'const CX=1160,CY=1160,R=1080;'
+ Z,←'const FPS=',(FJS FPS),',NFRAMES=',(FJS NFRAMES),',JD1=',(FJS JD1),',SKIP=',(FJS SKIP),';'
+ Z,←'const LAT=',(FJS LA),',LONG=',(FJS LO),',TIME_UTC=',(FJS T),';'
+
+⍝ Star catalog
+ Z,←'const SRA=[',(FJ STARS[;1]),'];'
+ Z,←'const SDEC=[',(FJ STARS[;2]),'];'
+ Z,←'const BRIGHT=[',(FJ BRIGHT),'];'
+ Z,←'const BRIGHT_IDX=[',(FJ BRIGHTIDX-1),'];'
+ Z,←'const STARS_RA=SRA;'
+
+⍝ Planet data
+ Z,←'const PD={',(PLANJSON),'};'
+
+⍝ Constellation line pairs grouped by constellation (0-based star indices)
+ Z,←'const CG={'
+ :For I :In ⍳≢CDATA
+   CD←I⊃CDATA ⋄ CDNAME←1⊃CD ⋄ CDPAIRS←2⊃CD
+   Z,←'"',CDNAME,'":[',(1↓∊',',¨{'[',(FJ ⍵-1),']'}¨↓CDPAIRS),']'
+   :If I<≢CDATA ⋄ Z,←',' ⋄ :EndIf
+ :EndFor
+ Z,←'};'
+
+⍝ Star names and constellation data
+ Z,←'const SNAMES=[',(1↓∊',',¨{'"',⍵,'"'}¨STARNAMES),'];'
+ Z,←'const SCONST=[',(1↓∊',',¨{'"',⍵,'"'}¨STARCONSTELLATION),'];'
+ Z,←'const CF={'
+ Z,←'And:"Andromeda",Aql:"Aquila",Aqr:"Aquarius",Ara:"Ara",Ari:"Aries",'
+ Z,←'Aur:"Auriga",Boo:"Bootes",Cap:"Capricornus",Car:"Carina",Cas:"Cassiopeia",'
+ Z,←'Cen:"Centaurus",Cep:"Cepheus",Cet:"Cetus",CMa:"Canis Major",CMi:"Canis Minor",'
+ Z,←'Cnc:"Cancer",Col:"Columba",CrB:"Corona Borealis",Cru:"Crux",Crv:"Corvus",'
+ Z,←'CVn:"Canes Venatici",Cyg:"Cygnus",Del:"Delphinus",Dor:"Dorado",Dra:"Draco",'
+ Z,←'Eri:"Eridanus",Gem:"Gemini",Gru:"Grus",Her:"Hercules",Hya:"Hydra",'
+ Z,←'Hyi:"Hydrus",Ind:"Indus",Leo:"Leo",Lep:"Lepus",Lib:"Libra",'
+ Z,←'Lup:"Lupus",Lyr:"Lyra",Mus:"Musca",Oph:"Ophiuchus",Ori:"Orion",'
+ Z,←'Pav:"Pavo",Peg:"Pegasus",Per:"Perseus",Phe:"Phoenix",PsA:"Piscis Austrinus",'
+ Z,←'Psc:"Pisces",Pup:"Puppis",Sco:"Scorpius",Ser:"Serpens",Sgr:"Sagittarius",'
+ Z,←'Tau:"Taurus",TrA:"Triangulum Australe",Tri:"Triangulum",Tuc:"Tucana",'
+ Z,←'UMa:"Ursa Major",UMi:"Ursa Minor",Vel:"Vela",Vir:"Virgo"};'
+
+⍝ Math helpers
+ Z,←'const rad=d=>d*PI/180,deg=r=>r*180/PI;'
+ Z,←'const clamp=(v,lo,hi)=>Math.min(hi,Math.max(lo,v));'
+ Z,←'const hm=n=>{const s=String(n);return s[0]==="-"?"\u00AF"+s.slice(1):s;};'
+
+⍝ Matrix operations
+ Z,←'function mm(A,B){const C=[[0,0,0],[0,0,0],[0,0,0]];for(let i=0;i<3;i++)for(let j=0;j<3;j++)for(let k=0;k<3;k++)C[i][j]+=A[i][k]*B[k][j];return C;}'
+ Z,←'function vm(v,M){return[v[0]*M[0][0]+v[1]*M[1][0]+v[2]*M[2][0],v[0]*M[0][1]+v[1]*M[1][1]+v[2]*M[2][1],v[0]*M[0][2]+v[1]*M[1][2]+v[2]*M[2][2]];}'
+
+⍝ Rotation matrices
+ Z,←'function iRot(a){const c=Math.cos(a),s=Math.sin(a);return[[1,0,0],[0,c,-s],[0,s,c]];}'
+ Z,←'function lRot(a){const c=Math.cos(a),s=Math.sin(a);return[[c,0,s],[0,1,0],[-s,0,c]];}'
+ Z,←'function latR(a){const c=Math.cos(a),s=Math.sin(a);return[[c,s,0],[-s,c,0],[0,0,1]];}'
+
+⍝ RA/Dec to unit vector
+ Z,←'function rv(ra,dec){const r=ra*PI/12,d=rad(dec),cd=Math.cos(d);return[Math.cos(r)*cd,Math.sin(d),-Math.sin(r)*cd];}'
+
+⍝ Pre-compute star unit vectors
+ Z,←'const sv=SRA.map((ra,i)=>rv(ra,SDEC[i]));'
+
+⍝ Julian day to calendar date
+ Z,←'function jdToDate(jd){let a=Math.floor(jd+0.5);'
+ Z,←'if(a>=2299161){let x=Math.floor((a-1867216.25)/36524.25);a=a+1+x-Math.floor(x/4);}'
+ Z,←'let b=a+1524,c=Math.floor((b-122.1)/365.25),d=Math.floor(365.25*c),e=Math.floor((b-d)/30.6001);'
+ Z,←'let day=b-d-Math.floor(30.6001*e),m=e<14?e-1:e-13,y=m>2?c-4716:c-4715;return[m,day,y];}'
+
+⍝ Day name
+ Z,←'const DN=["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"];'
+ Z,←'function dayName(jd){return DN[Math.floor(jd+0.5)%7];}'
+
+⍝ Per-star alt/az storage (for tooltip)
+ Z,←'const starAlt=new Float32Array(SRA.length),starAz=new Float32Array(SRA.length);'
+
+⍝ Compute and render a frame
+ Z,←'function renderFrame(fi){'
+ Z,←'const jd=JD1+fi*SKIP;'
+ Z,←'const localTime=TIME_UTC+LONG/15;'
+ Z,←'const date=jd+localTime/24-LONG/360;'
+ Z,←'const interval=date-CATEPOCH;'
+
+⍝ Precession matrix
+ Z,←'const tilt=rad(AXITILT);'
+ Z,←'const precAng=-interval*2*PI/(25800*YRLENGTH);'
+ Z,←'const precRot=mm(mm(iRot(tilt),lRot(precAng)),iRot(-tilt));'
+
+⍝ Sky rotation
+ Z,←'let dm=((date-EQUINOX)%YRLENGTH+YRLENGTH)%YRLENGTH;'
+ Z,←'const sunRA=(24/YRLENGTH)*dm;'
+ Z,←'const rot=PI*(sunRA+localTime-12)/12;'
+ Z,←'const latRad=rad(90-LAT);'
+ Z,←'const skyRot=mm(lRot(rot),latR(latRad));'
+ Z,←'const combined=mm(precRot,skyRot);'
+
+⍝ Update stars
+ Z,←'const nStars=SRA.length;'
+ Z,←'for(let i=0;i<nStars;i++){'
+ Z,←'const vr=vm(sv[i],combined);'
+ Z,←'const alt=deg(Math.asin(clamp(vr[1],-1,1)));'
+ Z,←'starAlt[i]=alt;'
+ Z,←'const el=document.getElementById("s"+i);'
+ Z,←'if(alt<0){starAz[i]=0;el.setAttribute("visibility","hidden");continue;}'
+ Z,←'el.setAttribute("visibility","visible");'
+ Z,←'const s=-Math.sign(vr[2]);'
+ Z,←'const xy=Math.sqrt(vr[0]*vr[0]+vr[2]*vr[2]);'
+ Z,←'let az=0;if(xy>1e-10){const ca=clamp(-vr[0]/xy,-1,1);az=(s<=0?360:0)+s*deg(Math.acos(ca));}'
+ Z,←'starAz[i]=az;'
+ Z,←'const pr=Math.tan(rad(90-alt)/2),ar=rad(az);'
+ Z,←'const sx=Math.round(CX+R*(-pr*Math.sin(ar))),sy=Math.round(CY-R*(pr*Math.cos(ar)));'
+ Z,←'el.setAttribute("cx",sx);el.setAttribute("cy",sy);'
+ Z,←'}'
+
+⍝ Bright star labels (follow their stars)
+ Z,←'for(let i=0;i<BRIGHT_IDX.length;i++){'
+ Z,←'const si=BRIGHT_IDX[i],el=document.getElementById("sl"+i);'
+ Z,←'const sel=document.getElementById("s"+si);'
+ Z,←'if(sel.getAttribute("visibility")==="hidden"){el.setAttribute("visibility","hidden");}'
+ Z,←'else{el.setAttribute("visibility","visible");'
+ Z,←'el.setAttribute("x",+sel.getAttribute("cx")+12);'
+ Z,←'el.setAttribute("y",+sel.getAttribute("cy")-12);}}'
+
+⍝ Planets (from pre-computed data)
+ Z,←'const np=PD.px.length;'
+ Z,←'for(let i=0;i<np;i++){'
+ Z,←'const pe=document.getElementById("p"+i),pl=document.getElementById("plbl"+i);'
+ Z,←'if(PD.vis[i][fi]){'
+ Z,←'pe.setAttribute("visibility","visible");pl.setAttribute("visibility","visible");'
+ Z,←'pe.setAttribute("x",PD.px[i][fi]);pe.setAttribute("y",PD.py[i][fi]);'
+ Z,←'pl.setAttribute("x",PD.px[i][fi]+20);pl.setAttribute("y",PD.py[i][fi]-16);'
+ Z,←'}else{pe.setAttribute("visibility","hidden");pl.setAttribute("visibility","hidden");}}'
+
+⍝ Title
+ Z,←'const mdy=jdToDate(jd),dn=dayName(jd);'
+ Z,←'document.getElementById("title").textContent='
+ Z,←'"VIEW FROM ',(⍕LATD),' DEGREES ',(⍕LATM),' MINUTES ',NS
+ Z,←', ',(⍕LONGD),' DEGREES ',(⍕LONGM),' MINUTES ',EW
+ Z,←', ON "+dn+" "+mdy[2]+"/"+mdy[0]+"/"+mdy[1]+"'
+ Z,←' AT ',(⍕⌊H),':',MN2,' ',AP,'";'
+
+⍝ Planet table values (always show, dim when below horizon)
+ Z,←'for(let i=0;i<np;i++){'
+ Z,←'const row=document.getElementById("pt-row-"+i);'
+ Z,←'row.setAttribute("class",PD.vis[i][fi]?"pt-row":"pt-row dim");'
+ Z,←'document.getElementById("pt-rah-"+i).textContent=hm(PD.rah[i][fi]);'
+ Z,←'document.getElementById("pt-ram-"+i).textContent=hm(PD.ram[i][fi]);'
+ Z,←'document.getElementById("pt-dec-"+i).textContent=hm(PD.dec[i][fi]);'
+ Z,←'document.getElementById("pt-alt-"+i).textContent=hm(PD.alt[i][fi]);'
+ Z,←'document.getElementById("pt-az-"+i).textContent=hm(PD.az[i][fi]);'
+ Z,←'if(PD.vis[i][fi]){'
+ Z,←'document.getElementById("pt-mx-"+i).textContent=hm(PD.mx[i][fi]);'
+ Z,←'document.getElementById("pt-my-"+i).textContent=hm(PD.my[i][fi]);'
+ Z,←'}else{'
+ Z,←'document.getElementById("pt-mx-"+i).textContent="";'
+ Z,←'document.getElementById("pt-my-"+i).textContent="";}}'
+
+⍝ Moon phase
+ Z,←'const ph=PD.phase[fi],illu=Math.round(50*(1-Math.cos(2*PI*ph)))/100;'
+ Z,←'const wx=ph>0.5?"WANING":"WAXING";'
+ Z,←'document.getElementById("moon-phase").textContent="MOON PHASE "+illu+" "+wx;'
+
+⍝ Bright star table (all stars, dim below-horizon)
+ Z,←'for(let i=0;i<BRIGHT_IDX.length;i++){'
+ Z,←'const si=BRIGHT_IDX[i],row=document.getElementById("bst-row-"+i);'
+ Z,←'const vr=vm(sv[si],combined);'
+ Z,←'const alt=deg(Math.asin(clamp(vr[1],-1,1)));'
+ Z,←'const s2=-Math.sign(vr[2]);'
+ Z,←'const xy2=Math.sqrt(vr[0]*vr[0]+vr[2]*vr[2]);'
+ Z,←'let az2=0;if(xy2>1e-10){const ca=clamp(-vr[0]/xy2,-1,1);az2=(s2<=0?360:0)+s2*deg(Math.acos(ca));}'
+ Z,←'row.setAttribute("class",alt>=0?"bst-row":"bst-row dim");'
+ Z,←'document.getElementById("bst-alt-"+i).textContent=hm(Math.round(alt));'
+ Z,←'document.getElementById("bst-az-"+i).textContent=hm(Math.round(az2));'
+ Z,←'if(alt>=0){'
+ Z,←'const pr2=Math.tan(rad(90-alt)/2),ar2=rad(az2);'
+ Z,←'const mx=-pr2*Math.sin(ar2),my=pr2*Math.cos(ar2);'
+ Z,←'document.getElementById("bst-mx-"+i).textContent=hm(Math.round(mx*100)/100);'
+ Z,←'document.getElementById("bst-my-"+i).textContent=hm(Math.round(my*100)/100);'
+ Z,←'}else{'
+ Z,←'document.getElementById("bst-mx-"+i).textContent="";'
+ Z,←'document.getElementById("bst-my-"+i).textContent="";}}'
+
+ Z,←'}'  ⍝ end renderFrame
+
+⍝ Playback state
+ Z,←'let frame=0,playing=true,speed=1,animId=null,lastTime=0;'
+
+⍝ Playback controls (SVG elements)
+ Z,←'const scrubTrack=document.getElementById("scrub-track");'
+ Z,←'const scrubFill=document.getElementById("scrub-fill");'
+ Z,←'const scrubThumb=document.getElementById("scrub-thumb");'
+ Z,←'const frameLabel=document.getElementById("frame-label");'
+ Z,←'const playBtn=document.getElementById("play-btn");'
+ Z,←'const speedLabel=document.getElementById("speed-label");'
+ Z,←'const TRACK_X=',(FJS PAD+60),',TRACK_W=2060;'
+ Z,←'const svgEl=document.querySelector("svg");'
+
+⍝ Convert mouse event to SVG x coordinate
+ Z,←'function svgX(e){const p=svgEl.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svgEl.getScreenCTM().inverse()).x;}'
+
+⍝ Set frame from SVG x position
+ Z,←'function scrubTo(x){const f=Math.round(((x-TRACK_X)/TRACK_W)*(NFRAMES-1));frame=Math.max(0,Math.min(NFRAMES-1,f));renderFrame(frame);updateUI();}'
+
+ Z,←'function updateUI(){'
+ Z,←'const frac=frame/(NFRAMES-1);'
+ Z,←'scrubFill.setAttribute("width",Math.round(TRACK_W*frac));'
+ Z,←'scrubThumb.setAttribute("cx",Math.round(TRACK_X+TRACK_W*frac));'
+ Z,←'const jd=JD1+frame*SKIP,mdy=jdToDate(jd);'
+ Z,←'frameLabel.textContent=mdy[2]+"/"+mdy[0]+"/"+mdy[1]+" ("+frame+"/"+NFRAMES+")";'
+ Z,←'}'
+
+ Z,←'function step(ts){'
+ Z,←'if(!playing){animId=null;return;}'
+ Z,←'if(!lastTime)lastTime=ts;'
+ Z,←'const elapsed=ts-lastTime;'
+ Z,←'if(elapsed>=1000/(FPS*speed)){'
+ Z,←'lastTime=ts;'
+ Z,←'frame++;if(frame>=NFRAMES){frame=0;}'
+ Z,←'renderFrame(frame);updateUI();}'
+ Z,←'animId=requestAnimationFrame(step);}'
+
+ Z,←'function togglePlay(){'
+ Z,←'playing=!playing;'
+ Z,←'playBtn.textContent=playing?"\u23F8":"\u25B6";'
+ Z,←'if(playing){lastTime=0;animId=requestAnimationFrame(step);}}'
+
+ Z,←'function setSpeed(s){speed=s;speedLabel.textContent=s+"x";}'
+
+⍝ Scrub: click on track, drag thumb
+ Z,←'let dragging=false;'
+ Z,←'scrubTrack.addEventListener("mousedown",e=>{playing=false;playBtn.textContent="\u25B6";dragging=true;scrubTo(svgX(e));});'
+ Z,←'scrubThumb.addEventListener("mousedown",e=>{playing=false;playBtn.textContent="\u25B6";dragging=true;e.preventDefault();});'
+ Z,←'document.addEventListener("mousemove",e=>{if(dragging)scrubTo(svgX(e));});'
+ Z,←'document.addEventListener("mouseup",()=>{dragging=false;});'
+
+ Z,←'playBtn.addEventListener("click",togglePlay);'
+ Z,←'document.getElementById("spd-dn").addEventListener("click",()=>{const s=[0.25,0.5,1,2,4,8];let i=s.indexOf(speed);if(i>0)setSpeed(s[i-1]);});'
+ Z,←'document.getElementById("spd-up").addEventListener("click",()=>{const s=[0.25,0.5,1,2,4,8];let i=s.indexOf(speed);if(i<s.length-1)setSpeed(s[i+1]);});'
+
+⍝ Star info tooltip
+ Z,←'const tt=document.getElementById("tooltip");'
+ Z,←'let ttStar=-1;'
+ Z,←'function fmtRA(h){const hh=Math.floor(h),mm=Math.round((h-hh)*60);return hh+"h "+mm+"m";}'
+ Z,←'function fmtDec(d){const s=d<0?"\u00AF":"";const a=Math.abs(d);return s+Math.round(a)+"\u00B0";}'
+ Z,←'const cp=document.getElementById("const-path");'
+ Z,←'function showConstLines(con){'
+ Z,←'const pairs=CG[con];'
+ Z,←'if(!pairs||!pairs.length){cp.setAttribute("visibility","hidden");return;}'
+ Z,←'let d="";'
+ Z,←'for(let j=0;j<pairs.length;j++){'
+ Z,←'const a=document.getElementById("s"+pairs[j][0]),b=document.getElementById("s"+pairs[j][1]);'
+ Z,←'if(a.getAttribute("visibility")==="hidden"||b.getAttribute("visibility")==="hidden")continue;'
+ Z,←'d+="M"+a.getAttribute("cx")+","+a.getAttribute("cy")+"L"+b.getAttribute("cx")+","+b.getAttribute("cy");}'
+ Z,←'if(d){cp.setAttribute("d",d);cp.setAttribute("visibility","visible");}'
+ Z,←'else{cp.setAttribute("visibility","hidden");}}'
+ Z,←'function showTooltip(i){'
+ Z,←'const el=document.getElementById("s"+i);'
+ Z,←'if(el.getAttribute("visibility")==="hidden"){hideTooltip();return;}'
+ Z,←'ttStar=i;'
+ Z,←'const cx=+el.getAttribute("cx"),cy=+el.getAttribute("cy");'
+ Z,←'let tx=cx+20,ty=cy-130;'
+ Z,←'if(ty<',(FJS PAD),')ty=cy+20;'
+ Z,←'if(tx+340>',(FJS PAD+2160),')tx=cx-360;'
+ Z,←'tt.setAttribute("transform","translate("+tx+","+ty+")");'
+ Z,←'document.getElementById("tt-dot").setAttribute("r",BRIGHT[i]?8:3);'
+ Z,←'document.getElementById("tt-dot").setAttribute("fill",BRIGHT[i]?"#ffd700":"#aaa");'
+ Z,←'document.getElementById("tt-name").textContent=SNAMES[i];'
+ Z,←'document.getElementById("tt-const").textContent=CF[SCONST[i]]||SCONST[i];'
+ Z,←'document.getElementById("tt-radec").textContent="RA "+fmtRA(SRA[i])+"  Dec "+fmtDec(SDEC[i]);'
+ Z,←'document.getElementById("tt-altaz").textContent="Alt "+Math.round(starAlt[i])+"\u00B0  Az "+Math.round(starAz[i])+"\u00B0";'
+ Z,←'tt.setAttribute("visibility","visible");'
+ Z,←'const pairs=CG[SCONST[i]];'
+ Z,←'if(pairs&&pairs.some(p=>p[0]===i||p[1]===i)){showConstLines(SCONST[i]);}'
+ Z,←'else{cp.setAttribute("visibility","hidden");}}'
+ Z,←'function hideTooltip(){tt.setAttribute("visibility","hidden");cp.setAttribute("visibility","hidden");ttStar=-1;}'
+
+⍝ Planet tooltip
+ Z,←'const PNAMES=[',(1↓∊',',¨{'"',⍵,'"'}¨11↑PLANETNAMES),'];'
+ Z,←'function showPlanetTooltip(i,fi){'
+ Z,←'ttStar=-1;'
+ Z,←'const pe=document.getElementById("p"+i);'
+ Z,←'const px=+pe.getAttribute("x"),py=+pe.getAttribute("y");'
+ Z,←'let tx=px+20,ty=py-130;'
+ Z,←'if(ty<',(FJS PAD),')ty=py+20;'
+ Z,←'if(tx+340>',(FJS PAD+2160),')tx=px-360;'
+ Z,←'tt.setAttribute("transform","translate("+tx+","+ty+")");'
+ Z,←'document.getElementById("tt-dot").setAttribute("r",10);'
+ Z,←'document.getElementById("tt-dot").setAttribute("fill","#4fc3f7");'
+ Z,←'document.getElementById("tt-name").textContent=PNAMES[i];'
+ Z,←'document.getElementById("tt-const").textContent="";'
+ Z,←'const rah=PD.rah[i][fi],ram=PD.ram[i][fi],dec=PD.dec[i][fi];'
+ Z,←'document.getElementById("tt-radec").textContent="RA "+rah+"h "+ram+"m  Dec "+hm(dec)+"\u00B0";'
+ Z,←'document.getElementById("tt-altaz").textContent="Alt "+hm(PD.alt[i][fi])+"\u00B0  Az "+hm(PD.az[i][fi])+"\u00B0";'
+ Z,←'tt.setAttribute("visibility","visible");}'
+
+⍝ Hover handlers on star circles
+ Z,←'for(let i=0;i<SRA.length;i++){'
+ Z,←'document.getElementById("s"+i).addEventListener("mouseover",function(){'
+ Z,←'showTooltip(+this.id.slice(1));});'
+ Z,←'document.getElementById("s"+i).addEventListener("mouseout",hideTooltip);}'
+
+⍝ Hover handlers on planet symbols
+ Z,←'for(let i=0;i<PD.px.length;i++){'
+ Z,←'document.getElementById("p"+i).addEventListener("mouseover",(function(idx){'
+ Z,←'return function(){showPlanetTooltip(idx,frame);};})(i));'
+ Z,←'document.getElementById("p"+i).addEventListener("mouseout",hideTooltip);}'
+
+
+⍝ Start
+ Z,←'renderFrame(0);updateUI();'
+ Z,←'animId=requestAnimationFrame(step);'
+
+ Z,←'})();'
+ Z,←']]></script>'
+ Z,←'</svg>'
+ ⎕←'Animated SVG: ',(⍕≢Z),' characters'

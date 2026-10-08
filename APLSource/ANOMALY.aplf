@@ -1,0 +1,3 @@
+ Z←ANOMALY
+⍝ Selects mean anomaly from orbital elements
+ Z←ORB[;7]

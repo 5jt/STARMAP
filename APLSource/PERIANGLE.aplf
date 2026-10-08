@@ -1,0 +1,3 @@
+ Z←PERIANGLE
+⍝ Selects angle of perihelion from orbital elements
+ Z←ORB[;6]

@@ -1,0 +1,10 @@
+ H←DATES PLANETSPOS P;I;D;PL
+⍝ Table of planet positions for multiple dates
+⍝ Result is 3D array: dates × planets × coordinates
+ DATES←,DATES
+ PL←planets[,P;]
+ H←(0,(1+⍴P),3)⍴I←0
+TEST:→0 IF(⍴DATES)<I←I+1
+ D←DATES[I]
+ H←H,[1](D PLANETPOS PL),[1]D COMETPOS kohoutek
+ →TEST
