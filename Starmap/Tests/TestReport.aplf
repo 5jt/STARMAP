@@ -39,7 +39,7 @@
 ⍝ Work: the parts in the book's order, each a vector of lines
  ts←2026 10 11 15 7 30 0
  parts←(m.Caption sky)(80 m.ReportPlanets sky)(80 m.PlotStars sky)(80 m.ReportStars sky)(ts m.Printed sky)
- lines←{(1=⍴⍴⍵)∧∧/{(1=⍴⍴⍵)∧' '≡⊃0⍴⍵}¨⍵}
+ lines←{(1=≢⍴⍵)∧0∧.=80|⎕DR¨⍵}                ⍝ a vector of character arrays
  R∧←'parts are vectors of lines'same 1(∧/lines¨parts)
  R∧←'Work'same(⊃,/parts)(80 ts m.Work sky)
 
