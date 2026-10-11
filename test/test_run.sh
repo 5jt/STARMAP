@@ -17,7 +17,9 @@ TIMEOUT=600
 runner() {
     perl -e '$t=shift; $p=fork; if(!$p){setpgrp; exec @ARGV}
         $SIG{ALRM}=sub{kill 9,-$p; exit 142}; alarm $t;
-        waitpid $p,0; exit($?>>8)' "$TIMEOUT" dyalog -script test/run.apls
+        waitpid $p,0; exit($?>>8)' "$TIMEOUT" dyalog -script test/run.apls 2>&1 |
+        tr '\r' '\n'   # Dyalog ends lines with CR when output is piped
+    return "${PIPESTATUS[0]}"
 }
 
 check() {
@@ -30,7 +32,7 @@ check() {
 }
 
 echo "=== All tests pass ==="
-OUT=$(runner 2>&1)
+OUT=$(runner)
 CODE=$?
 echo "$OUT" | tail -3
 [[ $CODE -eq 0 ]] && echo "ok:   exit code 0" || { echo "FAIL: exit code $CODE"; FAILED=1; }
@@ -44,7 +46,7 @@ check "summary" "$OUT" "13 passed, 0 failed"
 
 echo
 echo "=== A failing test fails the run ==="
-OUT=$(STARMAP_EXTRA_TESTS=test/fixtures/failing runner 2>&1)
+OUT=$(STARMAP_EXTRA_TESTS=test/fixtures/failing runner)
 CODE=$?
 echo "$OUT" | tail -3
 [[ $CODE -ne 0 ]] && echo "ok:   nonzero exit code" || { echo "FAIL: exit code 0"; FAILED=1; }
