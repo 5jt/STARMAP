@@ -1,0 +1,30 @@
+ Z←W ReportStars Sky;BV;BNAMES;BCOORD;NB;I;ALT;AZ;MX;MY;ENTRY;LINE;ELEN;NCOLS;AAE
+⍝ Bright visible star legend matching book example, for width W
+⍝ Format: NAME ALT AZ  x  y — packed across full width
+ Z←0⍴⊂''
+ BV←Data.BRIGHT∧Sky.StarsVisible
+ NB←+/BV
+ :If NB=0 ⋄ :Return ⋄ :EndIf
+ BNAMES←BV/Data.STARNAMES
+ BCOORD←(Sky.StarsVisible/Data.BRIGHT)⌿Sky.StarCoord
+ AAE←Sky.BrightStarsAA
+ ⍝ Fixed-width entry: 10 name + 4 alt + 5 az + 6 x + 6 y = 31 chars
+ ELEN←31
+ NCOLS←1⌈⌊W÷ELEN
+ Z,←⊂''
+ LINE←''
+ :For I :In ⍳NB
+   ALT←⌊0.5+AAE[I;1]
+   AZ←⌊0.5+AAE[I;2]
+   MX←0.01×⌊0.5+100×BCOORD[I;1]
+   MY←0.01×⌊0.5+100×BCOORD[I;2]
+   ENTRY←(¯10↑⊃BNAMES[I]),(¯4↑⍕ALT),(¯5↑⍕AZ),(¯7↑⍕MX),(¯6↑⍕MY)
+   LINE←LINE,ENTRY
+   :If 0=NCOLS|I
+     Z,←⊂LINE
+     LINE←''
+   :EndIf
+ :EndFor
+ :If 0<≢LINE
+   Z,←⊂LINE
+ :EndIf

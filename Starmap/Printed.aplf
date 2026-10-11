@@ -1,0 +1,9 @@
+ Z←TS Printed Sky;H;MN;AP
+⍝ Footer with generation timestamp TS (as ⎕TS)
+⍝ As in the book, the day name is the observation's (#22)
+ H←12|TS[4]
+ :If H=0 ⋄ H←12 ⋄ :EndIf
+ AP←(1+TS[4]<12)⊃'PM' 'AM'
+ MN←⍕⌊TS[5]
+ :If 1=≢MN ⋄ MN←'0',MN ⋄ :EndIf
+ Z←'' ('GENERATED ',(DAYNAME Sky.StatedDayNo),' ',(⍕TS[1]),'/',(⍕TS[2]),'/',(⍕TS[3]),' AT ',(⍕⌊H),':',MN,' ',AP)
