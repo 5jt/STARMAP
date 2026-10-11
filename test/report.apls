@@ -1,0 +1,37 @@
+⍝ Print the report for one observation, as the book or modern version prints it
+⍝ Used by Starmap/Tests/TestReport to capture printed output
+⍝
+⍝   REPORT_VERSION=book REPORT_PW=80 REPORT_OBS='5 16 1974 5 33.767 ¯117.833' \
+⍝       dyalog -script test/report.apls
+⍝
+⍝ REPORT_VERSION is book or modern; REPORT_PW sets ⎕PW;
+⍝ REPORT_OBS is month day year hour latitude longitude.
+⍝ book:   sets the inputs as EXAMPLE_RENDER does, then runs WORK
+⍝ modern: prints each line of (⎕PW ⎕TS)Work SkyAt, as Display does
+
+⎕IO←1 ⋄ ⎕ML←1
+Env←{2 ⎕NQ'.' 'GetEnvironment'⍵}
+'#.sm'⎕NS''
+{2 #.sm.⎕FIX'file://',⍵}¨⊃⎕NINFO⍠1⊢'APLSource/*.aplf'
+{⍎'#.sm.',(2⊃⎕NPARTS ⍵),'←',∊(⊃⎕NGET ⍵ 1),¨' '}¨⊃⎕NINFO⍠1⊢'APLSource/*.apla'
+'#.Starmap'⎕NS''
+{2 #.Starmap.⎕FIX'file://',⍵}¨⊃⎕NINFO⍠1⊢'Starmap/*.aplf'
+#.Starmap.Data←#.sm
+⎕PW←⍎Env'REPORT_PW'
+#.sm.OBS←⍎Env'REPORT_OBS'
+
+∇ Book
+  #.sm⍎'STATEDDAYNO←JNU 3↑OBS'
+  #.sm⍎'STATEDTIME LAT LONG←3↓OBS'
+  #.sm⍎'TIME←LONG TIMEADJUST STATEDTIME'
+  #.sm⍎'DATE←STATEDDAYNO+(TIME÷24)-LONG÷360'
+  #.sm.WORK
+∇
+
+∇ Modern;sky
+  sky←#.Starmap.SkyAt(#.Starmap.JNU 3↑#.sm.OBS),3↓#.sm.OBS
+  {⎕←⍵}¨(⎕PW ⎕TS)#.Starmap.Work sky
+∇
+
+⍎('book' 'modern'⍳⊂Env'REPORT_VERSION')⊃'Book' 'Modern'
+⎕OFF

@@ -1,0 +1,10 @@
+ Z←OPTS Work Sky;W;TS
+⍝ The whole report for Sky, as lines, in the book's order:
+⍝ caption, planet table, star map, bright star legend, footer
+⍝ OPTS is W TS: page width and generation timestamp (as ⎕TS)
+ W TS←OPTS
+ Z←Caption Sky
+ Z,←W ReportPlanets Sky
+ Z,←W PlotStars Sky
+ Z,←W ReportStars Sky
+ Z,←TS Printed Sky

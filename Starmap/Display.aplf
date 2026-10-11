@@ -1,0 +1,5 @@
+ Display;LINE
+⍝ Main entry point: prompts for the observation and prints its report
+ :For LINE :In (⎕PW ⎕TS)Work SkyAt Entry
+     ⎕←LINE
+ :EndFor

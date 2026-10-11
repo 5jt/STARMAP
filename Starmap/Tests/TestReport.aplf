@@ -1,0 +1,48 @@
+ R←TestReport;m;b;same;capture;cases;c;book;modern;stamp;sky;ts;parts;lines
+⍝ The printed report is character-for-character the book's.
+⍝ Both versions are run in a child Dyalog by test/report.apls, so that
+⍝ each prints through ⎕← at the same ⎕PW, folding long lines alike.
+⍝ The GENERATED line holds the time of printing and is checked
+⍝ separately against Printed with a fixed timestamp.
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestReport: ',⍺}
+
+⍝ capture version width observation → printed lines (empty lines kept)
+ capture←{
+     cmd←'REPORT_VERSION=',⍺,' REPORT_PW=',(⍕⊃⍵),' REPORT_OBS=''',(⍕2⊃⍵),''''
+     t←'UTF-8'⎕UCS ⎕UCS∊(⎕SH cmd,' dyalog -script test/report.apls'),¨⎕UCS 10
+     t←(⎕UCS 10)@{⍵=⎕UCS 13}t
+     {1↓¨(⍵=⎕UCS 10)⊂⍵}(⎕UCS 10),t
+ }
+ stamp←{'GENERATED '≡10↑⍵}¨
+
+⍝ width (month day year hour lat long): Anaheim 1974 at several widths
+⍝ either side of the two-column threshold (100); Kohoutek in range;
+⍝ southern hemisphere
+ cases←(80(5 16 1974 5 33.767 ¯117.833))(99(5 16 1974 5 33.767 ¯117.833))
+ cases,←(100(5 16 1974 5 33.767 ¯117.833))(120(5 16 1974 5 33.767 ¯117.833))
+ cases,←(80(1 10 1974 18 51.5 ¯0.13))(120(12 25 1975 10 ¯33.87 151.21))
+ :For c :In cases
+     book←'book'capture c
+     modern←'modern'capture c
+     R∧←('one GENERATED line, book ',⍕c)same 1(+/stamp book)
+     R∧←('one GENERATED line, modern ',⍕c)same 1(+/stamp modern)
+     R∧←('report ',⍕c)same((~stamp book)/book)((~stamp modern)/modern)
+ :EndFor
+
+⍝ Printed: the book's footer for a given timestamp; as in the book, the
+⍝ day name is the observation's, not the timestamp's (#22)
+ sky←m.SkyAt(b.JNU 5 16 1974)5 33.767 ¯117.833
+ R∧←'Printed afternoon'same(''  'GENERATED THURSDAY 2026/10/11 AT 3:07 PM')(2026 10 11 15 7 30 0 m.Printed sky)
+ R∧←'Printed midnight hour'same('' 'GENERATED THURSDAY 2026/1/2 AT 12:05 AM')(2026 1 2 0 5 0 0 m.Printed sky)
+
+⍝ Work: the parts in the book's order, each a vector of lines
+ ts←2026 10 11 15 7 30 0
+ parts←(m.Caption sky)(80 m.ReportPlanets sky)(80 m.PlotStars sky)(80 m.ReportStars sky)(ts m.Printed sky)
+ lines←{(1=≢⍴⍵)∧0∧.=80|⎕DR¨⍵}                ⍝ a vector of character arrays
+ R∧←'parts are vectors of lines'same 1(∧/lines¨parts)
+ R∧←'Work'same(⊃,/parts)(80 ts m.Work sky)
+
+ :If R
+     ⎕←'PASS: TestReport (',(⍕≢cases),' reports)'
+ :EndIf
