@@ -1,0 +1,4 @@
+ R←TestAlwaysFails
+⍝ Fixture for test/test_run.sh: a test that always fails
+ R←0
+ ⎕←'FAIL: TestAlwaysFails (deliberate)'

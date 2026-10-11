@@ -1,0 +1,74 @@
+⍝ Run every STARMAP test, book and modern
+⍝
+⍝   dyalog -script test/run.apls        (from the repository root)
+⍝
+⍝ Loads APLSource/ as #.sm (book version) and Starmap/ as #.Starmap
+⍝ (modern version, subfolders as child namespaces), sets
+⍝ #.Starmap.Data←#.sm, then runs every TEST_* function in #.sm and
+⍝ every function in #.Starmap.Tests.
+⍝ STARMAP_EXTRA_TESTS names a further folder of tests for #.Starmap.Tests.
+⍝ Prints one line per test and a summary; exits 0 only if all passed.
+
+⎕IO←1 ⋄ ⎕ML←1
+
+∇ ns Load dir;files;f;sub;n
+⍝ Fix every source file in dir into ns; subfolders become child namespaces
+  files←⊃0(⎕NINFO⍠1)dir,'/*'
+  :For f :In files
+      :Select 3⊃⎕NPARTS f
+      :CaseList '.aplf' '.aplo' '.aplc' '.apln' '.apli'
+          2 ns.⎕FIX'file://',f
+      :Case '.apla'
+          n←2⊃⎕NPARTS f
+          ⍎'ns.',n,'←',∊(⊃⎕NGET f 1),¨' '
+      :Case ''
+          :If 1=1 ⎕NINFO f
+              n←2⊃⎕NPARTS f
+              sub←ns⍎n⊣n ns.⎕NS''
+              sub Load f
+          :EndIf
+      :EndSelect
+  :EndFor
+∇
+
+∇ r←ns Run name;label
+⍝ Run one test; r is 1 if it passed
+  label←(2↓⍕ns),'.',name
+  :Trap 0
+      r←1≡ns⍎name
+      ⎕←((1+r)⊃'FAIL' 'PASS'),' ',label
+  :Else
+      r←0
+      ⎕←'ERROR ',label,': ',⊃⎕DM
+  :EndTrap
+∇
+
+∇ Main;root;extra;book;modern;results;code
+  root←⊃1 ⎕NPARTS''
+  '#.sm'⎕NS''
+  #.sm Load root,'APLSource'
+  '#.Starmap'⎕NS''
+  #.Starmap Load root,'Starmap'
+  #.Starmap.Data←#.sm
+  extra←2 ⎕NQ'.' 'GetEnvironment' 'STARMAP_EXTRA_TESTS'
+  :If 0≠≢extra
+      #.Starmap.Tests Load root,extra
+  :EndIf
+  book←{⍵/⍨'TEST_'∘≡¨5↑¨⍵}#.sm.⎕NL ¯3
+  modern←#.Starmap.Tests.⎕NL ¯3
+  results←(#.sm∘Run¨book),#.Starmap.Tests∘Run¨modern
+  ⎕←(⍕+/results),' passed, ',(⍕+/~results),' failed'
+  code←(1 0)[1+∧/results]   ⍝ an integer: ⎕OFF exits 0 when given a Boolean 1
+  ⎕OFF code
+∇
+
+∇ Start
+  :Trap 0
+      Main
+  :Else
+      ⎕←'ERROR loading or running tests:' ⋄ ⎕←↑⎕DM
+      ⎕OFF 2
+  :EndTrap
+∇
+
+Start
