@@ -1,0 +1,12 @@
+ Sky←SkyAt ARGS;STATEDDAYNO;STATEDTIME;LAT;LONG;TIME;DATE
+⍝ Positions of stars, sun, moon, planets and comet for one observation
+⍝ ARGS is STATEDDAYNO STATEDTIME LAT LONG: Julian day number of the
+⍝ stated date, stated time (UTC hours), latitude and longitude (degrees
+⍝ north and east). Sky holds the inputs and every calculated position.
+ STATEDDAYNO STATEDTIME LAT LONG←ARGS
+ TIME←LONG TIMEADJUST STATEDTIME
+ DATE←STATEDDAYNO+(TIME÷24)-LONG÷360
+ Sky←⎕NS ⍬
+ Sky.(StatedDayNo StatedTime Lat Long Time Date)←STATEDDAYNO STATEDTIME LAT LONG TIME DATE
+ Sky.(Planets PlanetsAA PlanetsVisible PlanetCoord Phase VisiblePlanetsAA)←CalculatePlanets LAT,DATE,TIME
+ Sky.(StarsVisible BrightVisible BrightStarsAA StarCoord)←CalculateStars LAT,DATE,TIME
