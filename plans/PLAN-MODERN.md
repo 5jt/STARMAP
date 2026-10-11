@@ -20,11 +20,9 @@ Rewrite STARMAP in idiomatic Dyalog APL 21 alongside the book-faithful version.
   - **`ENTRY`** sets `LAT`, `LONG`, `DATE` and `TIME`.
   - **`CALCULATESTARS` and `CALCULATEPLANETS`** set `VE`, `BRIGHTVIS`, `AAE`, `STARCOORD`, `PLANETS`, `VP`, `PLANETCOORD`, `PLANETAA` and `PHASE`. The output functions (`CAPTION`, `REPORTPLANETS`, `PLOTSTARS`, `REPORTSTARS`, `PRINTED`, `PLOTSVG`, `ANIMATE`, `ANIMATEDSVG`, `WebApp`) read these.
 
-## Open decision for review
+## Unchanged functions
 
-**Should unchanged functions be copied into `Starmap/`, or called from `#.sm`?**
-
-Recommendation: copy. The modern version should read as a complete program, which suits expository programming. The book version is a historical artefact and will change only to stay faithful to the book, so the copies are unlikely to drift. Data tables (`STARS`, `planets`, `moon`, `kohoutek`, `STARNAMES`, `STARCONSTELLATION`, `CONSTELLATIONS`) are not copied: the catalogue errata (#6) must be fixed in one place.
+Functions that need no change are copied into `Starmap/` under their existing names, so the modern version reads as a complete program (decided 2026-10-11). Data tables are not copied: modern code reaches them through `Data`, a reference to the book namespace, so the catalogue errata (#6) are fixed in one place.
 
 ## Stages
 
