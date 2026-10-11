@@ -1,0 +1,31 @@
+ R←TestLoad;names;missing
+⍝ The modern namespace loads and reaches the shared data tables through Data
+⍝ Data is a reference to the book namespace; data tables are not copied
+ R←1
+ :If 9≠⎕NC'##.Data'
+     ⎕←'FAIL: TestLoad: Starmap.Data is not a namespace reference'
+     R←0 ⋄ :Return
+ :EndIf
+ names←'STARS' 'STARNAMES' 'STARCONSTELLATION' 'CONSTELLATIONS' 'BRIGHT' 'BP'
+ names,←'planets' 'moon' 'kohoutek' 'PLANETNAMES' 'reference_positions'
+ names,←'AXITILT' 'CATEPOCH' 'EQUINOX' 'MOONRATIO' 'TROPYR' 'YRLENGTH'
+ missing←names/⍨0=##.Data.⎕NC names
+ :If 0≠≢missing
+     ⎕←'FAIL: TestLoad: missing from Data: ',⍕missing
+     R←0
+ :EndIf
+ :If 332 2≢⍴##.Data.STARS
+     ⎕←'FAIL: TestLoad: Data.STARS shape ',⍕⍴##.Data.STARS
+     R←0
+ :EndIf
+ :If 9 11≢⍴##.Data.planets
+     ⎕←'FAIL: TestLoad: Data.planets shape ',⍕⍴##.Data.planets
+     R←0
+ :EndIf
+ :If 0≠≢names∩##.⎕NL ¯2 ¯3
+     ⎕←'FAIL: TestLoad: data tables copied into Starmap: ',⍕names∩##.⎕NL ¯2 ¯3
+     R←0
+ :EndIf
+ :If R
+     ⎕←'PASS: TestLoad (',(⍕≢names),' shared data tables)'
+ :EndIf
