@@ -1,0 +1,54 @@
+ R←TestSkyAt;m;b;same;obs;o;sky;members;map;pair;before;names;run;stmt
+⍝ SkyAt takes stated day number, stated time (UTC hours), latitude and
+⍝ longitude, and returns a namespace holding what the book's ENTRY,
+⍝ CALCULATEPLANETS and CALCULATESTARS leave in globals, without setting
+⍝ any globals itself. Each member equals the book's global exactly.
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestSkyAt: ',⍺}
+
+⍝ Sky member ←→ book global after CALCULATEPLANETS then CALCULATESTARS
+⍝ The book sets AAE twice: visible planets' alt/az, then bright stars'
+ map←('StatedDayNo' 'STATEDDAYNO')('StatedTime' 'STATEDTIME')('Lat' 'LAT')('Long' 'LONG')
+ map,←('Time' 'TIME')('Date' 'DATE')
+ map,←('Planets' 'PLANETS')('PlanetsAA' 'PLANETAA')('PlanetsVisible' 'VP')
+ map,←('PlanetCoord' 'PLANETCOORD')('Phase' 'PHASE')
+ map,←('StarsVisible' 'VE')('BrightVisible' 'BRIGHTVIS')('BrightStarsAA' 'AAE')('StarCoord' 'STARCOORD')
+ members←(⊃¨map),⊂'VisiblePlanetsAA'
+
+⍝ Observations: (month day year) hour lat long
+⍝ Anaheim 1974 (the book tests' case), Kohoutek within 100 days of
+⍝ perihelion and outside it, southern hemisphere, near midnight
+ obs←⊂(5 16 1974)5 33.767 ¯117.833
+ obs,←⊂(1 10 1974)18 51.5 ¯0.13
+ obs,←⊂(6 1 1973)2.5 40.7 ¯74
+ obs,←⊂(12 25 1975)10 ¯33.87 151.21
+ obs,←⊂(3 21 2000)23.9 0 0
+
+ run←'STATEDDAYNO←JNU⊃OBS' 'STATEDTIME LAT LONG←1↓OBS'
+ run,←'TIME←LONG TIMEADJUST STATEDTIME' 'DATE←STATEDDAYNO+(TIME÷24)-LONG÷360'
+ run,←'CALCULATEPLANETS' 'PLANETVISAA←AAE' 'CALCULATESTARS'   ⍝ as EXAMPLE_RENDER, then WORK
+ before←m.⎕NL ¯2 ¯9
+ :For o :In obs
+     sky←m.SkyAt(b.JNU⊃o),1↓o
+     :If 9≠⎕NC'sky'
+         ⎕←'FAIL: TestSkyAt: result is not a namespace' ⋄ R←0 ⋄ :Continue
+     :EndIf
+     names←sky.⎕NL ¯2
+     R∧←('members ',⍕⊃o)same(members[⍋↑members])(names[⍋↑names])
+     b.OBS←o
+     :For stmt :In run
+         b⍎stmt
+     :EndFor
+     :For pair :In map
+         R∧←((⊃pair),' ',⍕⊃o)same(sky⍎⊃pair)(b⍎2⊃pair)
+     :EndFor
+     R∧←('VisiblePlanetsAA ',⍕⊃o)same sky.VisiblePlanetsAA b.PLANETVISAA
+ :EndFor
+ R∧←'comet in range: 11 objects'same 11(≢(m.SkyAt(b.JNU 1 10 1974)18 51.5 ¯0.13).PlanetsVisible)
+ R∧←'comet out of range: 10 objects'same 10(≢(m.SkyAt(b.JNU 6 1 1973)2.5 40.7 ¯74).PlanetsVisible)
+ R∧←'no globals set'same before(m.⎕NL ¯2 ¯9)
+ b.⎕EX'OBS' 'PLANETVISAA'
+
+ :If R
+     ⎕←'PASS: TestSkyAt (',(⍕≢obs),' observations, ',(⍕≢members),' members)'
+ :EndIf

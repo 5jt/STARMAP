@@ -1,0 +1,28 @@
+ R←TestDrivers;m;b;unchanged;new;retired;missing;differ;present
+⍝ Stage 3: SkyAt and Entry replace ENTRY, CALCULATEPLANETS and
+⍝ CALCULATESTARS; the input prompts are copied unchanged.
+⍝ Entry prompts for date, time, latitude and longitude and returns
+⍝ STATEDDAYNO STATEDTIME LAT LONG, the right argument of SkyAt.
+ m←## ⋄ b←##.Data ⋄ R←1
+ unchanged←'GETDATE' 'GETTIME' 'GETLAT' 'GETLONG'
+ new←'SkyAt' 'Entry'
+ retired←'ENTRY' 'CALCULATEPLANETS' 'CALCULATESTARS'
+
+ missing←(unchanged,new)/⍨3≠⌊m.⎕NC unchanged,new
+ :If 0≠≢missing
+     ⎕←'FAIL: TestDrivers: missing: ',⍕missing ⋄ R←0
+ :EndIf
+ differ←unchanged/⍨~{(m.⎕NR ⍵)≡b.⎕NR ⍵}¨unchanged
+ :If 0≠≢differ
+     ⎕←'FAIL: TestDrivers: source differs from book: ',⍕differ ⋄ R←0
+ :EndIf
+ present←retired/⍨0≠m.⎕NC retired
+ :If 0≠≢present
+     ⎕←'FAIL: TestDrivers: retired names present: ',⍕present ⋄ R←0
+ :EndIf
+ :If 1 0 0≢3↑⊃m.⎕AT'Entry'
+     ⎕←'FAIL: TestDrivers: Entry must be niladic with a result' ⋄ R←0
+ :EndIf
+ :If R
+     ⎕←'PASS: TestDrivers'
+ :EndIf
