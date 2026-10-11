@@ -1,0 +1,3 @@
+ Z←PeriDate ORB
+⍝ Computes date of perihelion from orbital elements ORB
+ Z←(AnomalyDate ORB)-(Period ORB)×(Anomaly ORB)÷360

@@ -1,0 +1,3 @@
+ Z←SemiMajor ORB
+⍝ Selects semimajor axis from orbital elements ORB
+ Z←ORB[;1]

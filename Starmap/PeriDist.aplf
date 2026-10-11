@@ -1,0 +1,3 @@
+ Z←PeriDist ORB
+⍝ Selects perihelion distance (for comets) from orbital elements ORB
+ Z←ORB[;1]

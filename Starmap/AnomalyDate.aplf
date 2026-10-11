@@ -1,0 +1,3 @@
+ Z←AnomalyDate ORB
+⍝ Selects anomaly reference date from orbital elements ORB
+ Z←ORB[;10]

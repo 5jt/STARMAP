@@ -1,0 +1,4 @@
+ Z←ORB AreaDeriv X;Q
+⍝ Derivative of Area
+ Q←PeriDist ORB
+ Z←(Q÷2)+(3×X*2)÷4×Q

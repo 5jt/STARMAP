@@ -1,0 +1,3 @@
+ Z←EpochDate ORB
+⍝ Selects epoch dates from orbital elements ORB
+ Z←ORB[;10 11]

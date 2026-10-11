@@ -1,0 +1,3 @@
+ Z←Secular ORB
+⍝ Selects secular adjustment rates from orbital elements ORB
+ Z←ORB[;8 9]
