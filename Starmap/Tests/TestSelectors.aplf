@@ -1,0 +1,21 @@
+ R←TestSelectors;m;b;pairs;tables;p;t;got;exp
+⍝ Orbital-element selectors take the element table as their argument
+⍝ and agree with the book's selectors, which read ORB from their caller
+ m←## ⋄ b←##.Data ⋄ R←1
+ pairs←('SemiMajor' 'SEMIMAJOR')('Period' 'PERIOD')('Eccentricity' 'ECCENTRICITY')
+ pairs,←('Inclination' 'INCLINATION')('Ascending' 'ASCENDING')('Periangle' 'PERIANGLE')
+ pairs,←('Anomaly' 'ANOMALY')('Secular' 'SECULAR')('EpochDate' 'EPOCHDATE')
+ pairs,←('AnomalyDate' 'ANOMALYDATE')('PeriDist' 'PERIDIST')('PeriDate' 'PERIDATE')
+ tables←b.planets b.moon b.kohoutek (b.planets[,3;])
+ :For p :In pairs
+     :For t :In tables
+         got←(⊃p)m.{⍎⍺,' ⍵'}t
+         exp←t b.{ORB←⍺ ⋄ ⍎⍵}2⊃p
+         :If got≢exp
+             ⎕←'FAIL: TestSelectors: ',(⊃p),' on ',(⍕⍴t),' table' ⋄ R←0
+         :EndIf
+     :EndFor
+ :EndFor
+ :If R
+     ⎕←'PASS: TestSelectors (',(⍕≢pairs),' selectors, ',(⍕≢tables),' tables)'
+ :EndIf

@@ -1,0 +1,39 @@
+ R←TestSky;m;b;same;sep;long;lat;time;date;earth;stars;planets;moon;sun;ref;err
+⍝ Positions on the sky for the Anaheim observation, 1974-05-16 05:00 UTC
+⍝ (33.767N, 117.833W): exactly the book's results, and within the book
+⍝ tests' tolerances of the JPL DE421 reference positions
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestSky: ',⍺}
+⍝ Angular separation in degrees between RA (hours), Dec (degrees) rows
+ sep←{ra←15×|⍺[;1]-⍵[;1] ⋄ ra←(2○○⍵[;2]÷180)×ra⌊360-ra ⋄ ((ra*2)+(⍺[;2]-⍵[;2])*2)*0.5}
+
+ long←¯117.833 ⋄ lat←33.767
+ time←long m.TIMEADJUST 5
+ date←(m.JNU 5 16 1974)+(time÷24)-long÷360
+ earth←lat,date,time
+
+ stars←(date-b.CATEPOCH)m.PRECESS b.STARS
+ R∧←'PRECESS'same stars((date-b.CATEPOCH)b.PRECESS b.STARS)
+ R∧←'SKYPOS stars'same(earth m.SKYPOS stars)(earth b.SKYPOS stars)
+ planets←date m.EARTHVIEW date m.PLANETPOS b.planets
+ R∧←'EARTHVIEW planets'same planets(date b.EARTHVIEW date b.PLANETPOS b.planets)
+ sun←date m.EARTHVIEW 1 3⍴0 0 0
+ R∧←'EARTHVIEW sun'same sun(date b.EARTHVIEW 1 3⍴0 0 0)
+ moon←m.MOONPOS date
+ R∧←'MOONPOS'same moon(b.MOONPOS date)
+ R∧←'PARALLAXADJUST'same(moon[;3]m.PARALLAXADJUST earth m.SKYPOS moon[;1 2])(moon[;3]b.PARALLAXADJUST earth b.SKYPOS moon[;1 2])
+
+ ref←b.reference_positions
+ :If 0.15<err←⌈/stars sep ref[⍳332;]
+     ⎕←'FAIL: TestSky: stars max error ',(⍕err),'deg (tolerance 0.15deg)' ⋄ R←0
+ :EndIf
+ :If 10<err←⊃moon[;1 2]sep ref[,333;]
+     ⎕←'FAIL: TestSky: moon error ',(⍕err),'deg (tolerance 10deg)' ⋄ R←0
+ :EndIf
+ :If 3<err←⊃sun[;1 2]sep ref[,334;]
+     ⎕←'FAIL: TestSky: sun error ',(⍕err),'deg (tolerance 3deg)' ⋄ R←0
+ :EndIf
+
+ :If R
+     ⎕←'PASS: TestSky'
+ :EndIf

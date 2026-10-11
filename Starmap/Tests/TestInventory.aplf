@@ -1,0 +1,34 @@
+ R←TestInventory;m;b;unchanged;kept;revised;retired;missing;differ;present
+⍝ Stage 2 functions are present under the agreed names
+⍝ unchanged: copied from the book version with identical source
+⍝ kept:      book name kept; body restructured, signature unchanged
+⍝ revised:   new bicameral name; ORB is now an explicit argument
+⍝ retired:   book names that must not appear in the modern version
+ m←## ⋄ b←##.Data ⋄ R←1
+ unchanged←'ARCCOS' 'ARCSIN' 'ARCTAN' 'COS' 'SIN' 'TAN' 'PI' 'RADIAN' 'DEGREES' 'SQRT' 'NORM'
+ unchanged,←'TIMES' 'KEPLERFN' 'KEPDERIV' 'TRUEANOMALY' 'CARTESIAN' 'CARTRIPLET' 'COALTITUDE'
+ unchanged,←'PROJECTION' 'VISIBLE' 'MAPCARTESIAN' 'MOONPHASE' 'TIMEADJUST' 'LATROTATE' 'JNUINV' 'DAYNAME'
+ kept←'JNU' 'INCLROTATE' 'LONGROTATE' 'RADECDIST' 'KEPLINVERSE' 'PLANETPOS' 'PLANETSPOS'
+ kept,←'COMETPOS' 'EPOCHADJUST' 'EARTH' 'EARTHVIEW' 'MOONPOS' 'PRECESS' 'SKYPOS' 'PARALLAXADJUST'
+ revised←'SemiMajor' 'Period' 'Eccentricity' 'Inclination' 'Ascending' 'Periangle' 'Anomaly'
+ revised,←'Secular' 'EpochDate' 'AnomalyDate' 'PeriDist' 'PeriDate'
+ revised,←'Radius' 'OrbRotate' 'Perioder' 'Area' 'AreaDeriv' 'Parabola' 'CometSolve'
+ retired←'SEMIMAJOR' 'PERIOD' 'ECCENTRICITY' 'INCLINATION' 'ASCENDING' 'PERIANGLE' 'ANOMALY'
+ retired,←'SECULAR' 'EPOCHDATE' 'ANOMALYDATE' 'PERIDIST' 'PERIDATE'
+ retired,←'RADIUS' 'ORBROTATE' 'PERIODER' 'AREA' 'AREADERIV' 'PARABOLA' 'COMETSOLVE' 'IF'
+
+ missing←(unchanged,kept,revised)/⍨3≠⌊m.⎕NC unchanged,kept,revised
+ :If 0≠≢missing
+     ⎕←'FAIL: TestInventory: missing: ',⍕missing ⋄ R←0
+ :EndIf
+ differ←unchanged/⍨~{(m.⎕NR ⍵)≡b.⎕NR ⍵}¨unchanged
+ :If 0≠≢differ
+     ⎕←'FAIL: TestInventory: source differs from book: ',⍕differ ⋄ R←0
+ :EndIf
+ present←retired/⍨0≠m.⎕NC retired
+ :If 0≠≢present
+     ⎕←'FAIL: TestInventory: retired names present: ',⍕present ⋄ R←0
+ :EndIf
+ :If R
+     ⎕←'PASS: TestInventory (',(⍕≢unchanged),' unchanged, ',(⍕≢kept),' kept, ',(⍕≢revised),' revised)'
+ :EndIf
