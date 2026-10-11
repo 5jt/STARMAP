@@ -1,0 +1,4 @@
+ Z←ORB Radius THETA;E
+⍝ Distance from focus to point on ellipse at angle THETA
+ E←Eccentricity ORB
+ Z←(SemiMajor ORB)×(1-E*2)÷1+E×COS THETA

@@ -12,6 +12,8 @@
 cd "$(dirname "$0")/.." || exit 1
 FAILED=0
 TIMEOUT=600
+# Number of tests the runner should find: book TEST_* and modern Tests
+N=$(( $(ls APLSource/TEST_*.aplf | wc -l) + $(ls Starmap/Tests/*.aplf | wc -l) ))
 
 # Run the runner with a time limit (macOS has no timeout command)
 runner() {
@@ -42,7 +44,7 @@ for T in TEST_ANIMATE TEST_ANIMATEDSVG TEST_CONSTELLATIONS TEST_DAYNAME \
     check "book $T passes" "$OUT" "PASS sm.$T"
 done
 check "modern TestLoad passes" "$OUT" "PASS Starmap.Tests.TestLoad"
-check "summary" "$OUT" "13 passed, 0 failed"
+check "summary" "$OUT" "$N passed, 0 failed"
 
 echo
 echo "=== A failing test fails the run ==="
@@ -51,7 +53,7 @@ CODE=$?
 echo "$OUT" | tail -3
 [[ $CODE -ne 0 ]] && echo "ok:   nonzero exit code" || { echo "FAIL: exit code 0"; FAILED=1; }
 check "failure reported" "$OUT" "FAIL Starmap.Tests.TestAlwaysFails"
-check "summary" "$OUT" "13 passed, 1 failed"
+check "summary" "$OUT" "$N passed, 1 failed"
 
 echo
 [[ $FAILED -eq 0 ]] && echo "test_run.sh: all checks passed" || echo "test_run.sh: checks failed"

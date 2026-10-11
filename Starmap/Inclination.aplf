@@ -1,0 +1,3 @@
+ Z←Inclination ORB
+⍝ Selects inclination from orbital elements ORB
+ Z←ORB[;4]

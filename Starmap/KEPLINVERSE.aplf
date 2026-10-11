@@ -1,0 +1,8 @@
+ PSI←E KEPLINVERSE TIME;ERROR;TOL
+⍝ Inverse of Kepler's function using Newton's method
+⍝ Finds eccentric anomaly PSI given mean anomaly TIME
+ TOL←1E¯10
+ PSI←TIME
+ :While ∨/,TOL≤|ERROR←TIME-E KEPLERFN PSI
+     PSI←PSI+ERROR÷E KEPDERIV PSI
+ :EndWhile
