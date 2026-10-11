@@ -28,14 +28,14 @@ Recommendation: copy. The modern version should read as a complete program, whic
 
 ## Stages
 
-### Stage 1: layout, loading and test runner
+### Stage 1 (#12): layout, loading and test runner
 
 - Create `Starmap/`, linked as `#.Starmap`, with a way to reach the shared data tables from the book version.
 - Add a test runner script under `test/` that loads both versions and runs every `TEST_*` function in each, reporting pass or fail. It replaces ad hoc loading. It must work in Dyalog script mode without the session Link: load functions with `⎕FIX` and arrays from `.apla`.
 - Document how to load and test both versions in the README.
 - Tests: the runner reports the 12 existing book tests as passing; a modern smoke test confirms the modern namespace loads and can see the data tables.
 
-### Stage 2: core calculations
+### Stage 2 (#13): core calculations
 
 - Remove dynamic scoping of `ORB`: orbital-element selectors take the element table as an argument. This changes their signatures, so they get bicameral names. Alternatively, replace them with named column indices; decide while writing the tests.
 - Rewrite the `→` loops: `KEPLINVERSE` and `COMETSOLVE` (Newton iteration: `⍣` with a convergence test, or `:Until`) and `PLANETSPOS` (an each or rank over dates).
@@ -43,30 +43,26 @@ Recommendation: copy. The modern version should read as a complete program, whic
 - `SKYPOS`: unpack the observer as an argument structure rather than reusing global-looking names.
 - Tests: each revised function is compared with its book counterpart over the inputs the book tests use, plus edge cases (scalar planet index, comet dates inside and outside the 100-day window).
 
-### Stage 3: calculation drivers
+### Stage 3 (#14): calculation drivers
 
 - Replace `ENTRY`, `CALCULATESTARS` and `CALCULATEPLANETS` with one function, for example `Sky←SkyAt date time lat long`, returning a namespace: star alt/az, visibility, bright-star subset, projected coordinates, planet positions, moon phase.
 - Keep prompting for input separate from calculation: a `Prompt` function returns the four inputs.
 - Tests: the namespace's members equal the book globals for the Anaheim 1974-05-16 05:00 UTC observation, and agree with `reference_positions` to the existing tolerances.
 
-### Stage 4: terminal output
+### Stage 4 (#15): terminal output
 
 - `CAPTION`, `REPORTPLANETS`, `PLOTSTARS`, `REPORTSTARS` and `PRINTED` take the sky namespace and return character matrices instead of printing. A display function prints them in order, replacing `WORK` and `DISPLAY`.
 - Tests: output is character-for-character identical to the book version's for the Anaheim observation at `⎕PW` 80 and 120.
 
-### Stage 5: SVG, animation and web
+### Stage 5 (#16): SVG, animation and web
 
 - `PLOTSVG`, `FRAMESVG`, `SAVESVG`, `ANIMATE`, `ANIMATEDSVG`, `MAKEVIDEO` and `WebApp` take the sky namespace or explicit arguments. Large functions (`ANIMATEDSVG`, 642 lines; `PLOTSVG`, 226 lines) are split into smaller single-purpose functions.
 - Tests: SVG output is identical to the book version's for the same inputs; the existing animation tests are reproduced against the modern functions.
 
-## Draft issues
+## Issues
 
-One issue per stage, titled:
-
-1. Modernisation stage 1: layout, loading and test runner
-2. Modernisation stage 2: core calculations without globals or branches
-3. Modernisation stage 3: single calculation function returning a sky namespace
-4. Modernisation stage 4: terminal output from the sky namespace
-5. Modernisation stage 5: SVG, animation and web from the sky namespace
-
-Each body is the corresponding stage section above, with a link to this plan.
+1. #12 Stage 1: layout, loading and test runner
+2. #13 Stage 2: core calculations without globals or branches
+3. #14 Stage 3: single calculation function returning a sky namespace
+4. #15 Stage 4: terminal output from the sky namespace
+5. #16 Stage 5: SVG, animation and web from the sky namespace
