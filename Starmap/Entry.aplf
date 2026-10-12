@@ -1,0 +1,7 @@
+ Z←Entry
+⍝ Prompts for date, time, latitude and longitude
+⍝ Result is STATEDDAYNO STATEDTIME LAT LONG, the argument of SkyAt
+ Z←GetDate
+ Z,←GetTime
+ Z,←GetLat
+ Z,←GetLong

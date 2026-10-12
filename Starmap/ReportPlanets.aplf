@@ -1,0 +1,38 @@
+ReportPlanets←{
+   ⍝ Planet table matching book example, for width ⍺
+   ⍝ Two-column if ⍺≥100, single-column otherwise
+    w←⍺
+    bodies aa vp coord phase←⍵.(Planets PlanetsAA PlanetsVisible PlanetCoord Phase)
+    np←≢bodies
+    names←np↑Data.PLANETNAMES
+    symbols←np↑'☾☉☿♀♂♃♄⛢♆♇☄'
+   ⍝ Map-grid coords for all planets (visible get coords, others zero)
+    allcoord←np 2⍴0
+    allcoord[⍸vp;]←coord
+    entry←{
+        rah←⌊bodies[⍵;1]
+        ram←⌊0.5+60×bodies[⍵;1]-rah
+        dec←⌊0.5+bodies[⍵;2]
+        e←symbols[⍵],' ',(¯9↑⊃names[⍵]),(¯3↑⍕rah),(¯3↑⍕ram),(¯6↑⍕dec)
+        ~vp[⍵]: e
+        alt az←⌊0.5+aa[⍵;]
+        mx my←0.01×⌊0.5+100×allcoord[⍵;]
+        e,(¯5↑⍕alt),(¯5↑⍕az),'  ',(¯5↑⍕mx),(¯5↑⍕my)
+    }
+    two←w≥100
+    half←(1+two)⊃np(⌈np÷2)
+    hdr←' ',(9⍴' '),'RT AS  DECL  ALT   AZ  MAP-GRID'
+    lpad←(0⌈⌊(w-(1+two)×≢hdr)÷2)⍴' '
+    head←lpad,(1+two)⊃hdr(hdr,'  │',hdr)
+    row←{
+        ~two: lpad,' ',entry ⍵
+        left←entry ⍵
+        right←{⍵>np: '' ⋄ entry ⍵}⍵+half
+        lpad,' ',left,((0⌈44-≢left)⍴' '),'│ ',right
+    }
+   ⍝ Moon phase
+    illu←0.01×⌊0.5+100×0.5×1-Cos○2×phase
+    wx←(1+phase>0.5)⊃'WAXING' 'WANING'
+    phaseline←'MOON PHASE ',(⍕illu),' ',wx
+    title←((0⌈⌊(w-34)÷2)⍴' '),'POSITION OF SUN, MOON AND PLANETS'
+    ('' title '' head),(row¨⍳half),(((0⌈w-≢phaseline)⍴' '),phaseline) '' }

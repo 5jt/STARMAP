@@ -1,0 +1,3 @@
+Sqrt←{
+   ⍝ Square root of ⍵
+    ⍵*0.5 }

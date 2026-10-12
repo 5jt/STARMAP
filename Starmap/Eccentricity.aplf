@@ -1,0 +1,3 @@
+Eccentricity←{
+   ⍝ Selects eccentricity from orbital elements ⍵
+    ⍵[;3] }

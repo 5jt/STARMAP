@@ -1,0 +1,6 @@
+ ExampleRender;LINE
+⍝ Anaheim, CA — May 15, 1974 10 PM PDT (= May 16 05:00 UTC)
+⍝ Replicates the star map in EXAMPLE_RENDER.png
+ :For LINE :In (⎕PW ⎕TS)Work SkyAt(Jnu 5 16 1974)5 33.767 ¯117.833
+     ⎕←LINE
+ :EndFor

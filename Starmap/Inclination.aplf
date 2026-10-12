@@ -1,0 +1,3 @@
+Inclination←{
+   ⍝ Selects inclination from orbital elements ⍵
+    ⍵[;4] }

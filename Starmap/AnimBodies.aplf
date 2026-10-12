@@ -1,0 +1,30 @@
+AnimBodies←{
+   ⍝ Elements of the animated SVG that script places in each frame: every
+   ⍝ star, bright star labels, the 11 bodies and their labels, and the
+   ⍝ tooltip; ⍵ is ignored
+    bright←Data.BRIGHT
+    star←{
+        class radius←(1+bright[⍵])⊃('faint' 3)('bright' 8)
+        '<circle class="',class,'" id="s',(⍕⍵-1),'" cx="0" cy="0" r="',(⍕radius),'" visibility="hidden"/>'
+    }
+    label←{'<text class="star-label" id="sl',(⍕⍺-1),'" x="0" y="0" visibility="hidden">',⍵,'</text>'}
+    symbols←11↑'☾☉☿♀♂♃♄⛢♆♇☄'
+    names←11↑Data.PLANETNAMES
+    body←{
+        id←⍕⍵-1
+        s←'<text class="planet" id="p',id,'" x="0" y="0" visibility="hidden" style="cursor:pointer">',(⍵⊃symbols),'</text>'
+        s,'<text class="planet-label" id="plbl',id,'" x="0" y="0" visibility="hidden" style="pointer-events:none">',(⊃names[⍵]),'</text>'
+    }
+    ∊(
+        star¨⍳≢bright
+        (⍳+/bright)label¨bright/Data.STARNAMES
+        body¨⍳11
+        '<g id="tooltip" visibility="hidden">'
+        '<rect id="tt-bg" x="0" y="0" width="340" height="116" rx="8"/>'
+        '<circle id="tt-dot" cx="22" cy="24" r="0" fill="#ffd700"/>'
+        '<text id="tt-name" x="40" y="32" font-size="26" fill="#ccc"></text>'
+        '<text id="tt-const" x="22" y="60" font-size="22" fill="#888"></text>'
+        '<text id="tt-radec" x="22" y="84" font-size="20" fill="#666"></text>'
+        '<text id="tt-altaz" x="22" y="106" font-size="20" fill="#666"></text>'
+        '</g>'
+    ) }

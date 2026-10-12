@@ -1,0 +1,4 @@
+Cartesian←{
+   ⍝ Converts polar coordinates ⍵ (theta, rho) to Cartesian
+    theta←⍵[;1] ⋄ rho←⍵[;2]
+    (rho×Cos theta),[1.5]-rho×Sin theta }

@@ -1,0 +1,5 @@
+Parabola←{
+   ⍝ Second coordinate of comet position on parabola at ⍵
+   ⍝ ⍺ is orbital elements
+    q←PeriDist ⍺
+    q-(⍵*2)÷4×q }

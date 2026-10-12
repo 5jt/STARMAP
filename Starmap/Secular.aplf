@@ -1,0 +1,3 @@
+Secular←{
+   ⍝ Selects secular adjustment rates from orbital elements ⍵
+    ⍵[;8 9] }

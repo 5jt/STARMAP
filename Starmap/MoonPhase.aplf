@@ -1,0 +1,3 @@
+MoonPhase←{
+   ⍝ Phase of moon (0=new, 0.5=full) from RA of moon ⍺ and sun ⍵
+    1|(⍺-⍵)÷24 }

@@ -1,0 +1,39 @@
+AnimScriptData←{
+   ⍝ JavaScript for the animated SVG: constants, the star catalogue, the
+   ⍝ planet data, constellation figures and names
+   ⍝ ⍺ is FPS NFRAMES JD1 SKIP; ⍵ is LAT LONG TIME, and the planet data as JSON
+    fps nframes jd1 skip←⍺ ⋄ lat long t json←⍵
+    fjs←{'¯'⎕R'-'⊢⍕⍵} ⋄ fj←{1↓∊',',¨fjs¨⍵}
+    ∊(
+        ⍝ Constants
+        'const PI=Math.PI,EQUINOX=2441762.5,YRLENGTH=365.24219,AXITILT=23.4428,CATEPOCH=2451545;'
+        'const CX=1160,CY=1160,R=1080;'
+        'const FPS=',(fjs fps),',NFRAMES=',(fjs nframes),',JD1=',(fjs jd1),',SKIP=',(fjs skip),';'
+        'const LAT=',(fjs lat),',LONG=',(fjs long),',TIME_UTC=',(fjs t),';'
+        ⍝ Star catalog
+        'const SRA=[',(fj Data.STARS[;1]),'];'
+        'const SDEC=[',(fj Data.STARS[;2]),'];'
+        'const BRIGHT=[',(fj Data.BRIGHT),'];'
+        'const BRIGHT_IDX=[',(fj ¯1+⍸Data.BRIGHT),'];'
+        'const STARS_RA=SRA;'
+        ⍝ Planet data
+        'const PD={',json,'};'
+        ⍝ Constellation line pairs grouped by constellation (0-based star indices)
+        'const CG={',(1↓∊{',"',(⊃⍵),'":[',(1↓∊',',¨{'[',(fj ⍵-1),']'}¨↓2⊃⍵),']'}¨Data.CONSTELLATIONS),'};'
+        ⍝ Star names and constellation data
+        'const SNAMES=[',(1↓∊',',¨{'"',⍵,'"'}¨Data.STARNAMES),'];'
+        'const SCONST=[',(1↓∊',',¨{'"',⍵,'"'}¨Data.STARCONSTELLATION),'];'
+        'const CF={'
+        'And:"Andromeda",Aql:"Aquila",Aqr:"Aquarius",Ara:"Ara",Ari:"Aries",'
+        'Aur:"Auriga",Boo:"Bootes",Cap:"Capricornus",Car:"Carina",Cas:"Cassiopeia",'
+        'Cen:"Centaurus",Cep:"Cepheus",Cet:"Cetus",CMa:"Canis Major",CMi:"Canis Minor",'
+        'Cnc:"Cancer",Col:"Columba",CrB:"Corona Borealis",Cru:"Crux",Crv:"Corvus",'
+        'CVn:"Canes Venatici",Cyg:"Cygnus",Del:"Delphinus",Dor:"Dorado",Dra:"Draco",'
+        'Eri:"Eridanus",Gem:"Gemini",Gru:"Grus",Her:"Hercules",Hya:"Hydra",'
+        'Hyi:"Hydrus",Ind:"Indus",Leo:"Leo",Lep:"Lepus",Lib:"Libra",'
+        'Lup:"Lupus",Lyr:"Lyra",Mus:"Musca",Oph:"Ophiuchus",Ori:"Orion",'
+        'Pav:"Pavo",Peg:"Pegasus",Per:"Perseus",Phe:"Phoenix",PsA:"Piscis Austrinus",'
+        'Psc:"Pisces",Pup:"Puppis",Sco:"Scorpius",Ser:"Serpens",Sgr:"Sagittarius",'
+        'Tau:"Taurus",TrA:"Triangulum Australe",Tri:"Triangulum",Tuc:"Tucana",'
+        'UMa:"Ursa Major",UMi:"Ursa Minor",Vel:"Vela",Vir:"Virgo"};'
+    ) }

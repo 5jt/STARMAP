@@ -1,0 +1,6 @@
+Caption←{
+   ⍝ Header line matching book example:
+   ⍝ VIEW FROM {lat} NORTH, {long} WEST, ON {day} {date} AT {time}
+    m d y←JnuInv ⍵.StatedDayNo
+    h mn ap←Clock ⍵.StatedTime
+    ,⊂(Place ⍵.(Lat Long)),', ON ',(DayName ⍵.StatedDayNo),' ',(⍕y),'/',(⍕m),'/',(⍕d),' AT ',h,' ',mn,' ',ap }

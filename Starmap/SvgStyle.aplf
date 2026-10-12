@@ -1,0 +1,20 @@
+SvgStyle←{
+   ⍝ Style sheet for the SVG star maps, followed by further rules ⍵
+    ∊(
+        '<defs><style>'
+        'text{font-family:monospace;fill:#ccc}'
+        '.bright{fill:#ffd700}'
+        '.faint{fill:#aaa}'
+        '.star-label{font-size:28px;fill:#ffd700}'
+        '.planet{fill:#4fc3f7;font-size:36px}'
+        '.planet-label{font-size:24px;fill:#4fc3f7}'
+        '.cardinal{font-size:40px;fill:#888;text-anchor:middle;dominant-baseline:central}'
+        '.legend{font-size:22px;fill:#999}'
+        '.title{font-size:26px;fill:#999;text-anchor:middle}'
+        '.table-header{font-size:28px;fill:#bbb;text-anchor:middle}'
+        '.table-text{font-size:26px;fill:#999}'
+        '.table-hdr-r{font-size:26px;fill:#bbb;text-anchor:end}'
+        '.table-r{font-size:26px;fill:#999;text-anchor:end}'
+        ⍵
+        '</style></defs>'
+    ) }

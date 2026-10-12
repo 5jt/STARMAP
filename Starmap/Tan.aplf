@@ -1,0 +1,3 @@
+Tan←{
+   ⍝ Tangent of ⍵ (in radians)
+    3○⍵ }

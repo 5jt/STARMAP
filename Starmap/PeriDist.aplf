@@ -1,0 +1,3 @@
+PeriDist←{
+   ⍝ Selects perihelion distance (for comets) from orbital elements ⍵
+    ⍵[;1] }

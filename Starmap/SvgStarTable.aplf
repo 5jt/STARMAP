@@ -1,0 +1,24 @@
+SvgStarTable←{
+   ⍝ SVG table of the bright stars visible in sky ⍵, starting at height ⍺
+   ⍝ Result is the SVG and the height below it
+    pad←80 ⋄ ty←⍺
+    text←{⍺←'' ⋄ x y s←⍵ ⋄ '<text',((0<≢⍺)/' class="',⍺,'"'),' x="',(⍕pad+x),'" y="',(⍕y),'">',s,'</text>'}
+    bright←Data.BRIGHT∧⍵.StarsVisible
+    n←+/bright
+    n=0: '' ty
+    names←bright/Data.STARNAMES
+    coord←(⍵.StarsVisible/Data.BRIGHT)⌿⍵.StarCoord
+    aa←⍵.BrightStarsAA
+    head←'<text class="table-header" x="',(⍕pad+1080),'" y="',(⍕ty),'">BRIGHT STARS</text>'
+    ty←ty+50
+    columns←(340 'ALT')(440 'AZ')(560 'MAP X')(680 'MAP Y')
+    head,←'<g class="table-text">',(text 60 ty 'STAR'),∊{x s←⍵ ⋄ 'table-hdr-r'text x ty s}¨columns
+    head,←'<line x1="',(⍕pad+40),'" y1="',(⍕ty+8),'" x2="',(⍕pad+720),'" y2="',(⍕ty+8),'" stroke="#555" stroke-width="1"/>'
+    ty←ty+40
+    row←{
+        y←ty+34×⍵-1
+        alt az←⌊0.5+aa[⍵;]
+        mx my←0.01×⌊0.5+100×coord[⍵;]
+        (text 60 y(⊃names[⍵])),∊'table-r'∘text¨(340 y(⍕alt))(440 y(⍕az))(560 y(⍕mx))(680 y(⍕my))
+    }
+    (head,(∊row¨⍳n),'</g>')(ty+34×n) }

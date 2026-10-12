@@ -1,0 +1,9 @@
+KeplInverse←{
+   ⍝ Inverse of Kepler's function using Newton's method
+   ⍝ Finds eccentric anomaly given mean anomaly ⍵ and eccentricity ⍺
+    e←⍺ ⋄ time←⍵ ⋄ tol←1E¯10
+    {
+        error←time-e KeplerFn ⍵
+        ∨/,tol≤|error: ∇ ⍵+error÷e KepDeriv ⍵
+        ⍵
+    }time }

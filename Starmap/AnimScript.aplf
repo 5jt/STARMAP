@@ -1,0 +1,7 @@
+AnimScript←{
+   ⍝ The script element of the animated SVG
+   ⍝ ⍺ is FPS NFRAMES JD1 SKIP; ⍵ is LAT LONG TIME, and the planet data as JSON
+    lat long t←3↑⍵
+    data←⍺ AnimScriptData ⍵
+    tables←AnimScriptTables t lat long
+    '<script type="text/javascript"><![CDATA[(function(){',data,(AnimScriptSky ⍬),tables,(AnimScriptPlayback ⍬),(AnimScriptTips ⍬),'})();]]></script>' }

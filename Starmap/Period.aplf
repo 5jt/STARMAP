@@ -1,0 +1,3 @@
+Period←{
+   ⍝ Selects orbital period from orbital elements ⍵
+    ⍵[;2] }

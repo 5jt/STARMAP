@@ -1,0 +1,52 @@
+ R←TestRestructured;m;b;same;gq;e;t;k;d
+⍝ Functions whose branches or loops were restructured return exactly
+⍝ what the book version returns, on both paths of every former branch
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestRestructured: ',⍺}
+
+⍝ JNU: month after February, and January/February (year adjusted)
+ :For d :In (5 16 1974)(12 31 1999)(1 15 1974)(2 28 2000)(10 15 1582)
+     R∧←('JNU ',⍕d)same(m.Jnu d)(b.JNU d)
+ :EndFor
+
+⍝ INCLROTATE, LONGROTATE: scalar angle gives 3 3; vector gives N 3 3
+ R∧←'INCLROTATE scalar'same(m.InclRotate 0.3)(b.INCLROTATE 0.3)
+ R∧←'INCLROTATE vector'same(m.InclRotate 0.1 0.2 0.3)(b.INCLROTATE 0.1 0.2 0.3)
+ R∧←'INCLROTATE 1-vector'same(m.InclRotate,0.3)(b.INCLROTATE,0.3)
+ R∧←'INCLROTATE shape'same(3 3)(⍴m.InclRotate 0.3)
+ R∧←'LONGROTATE scalar'same(m.LongRotate ¯0.7)(b.LONGROTATE ¯0.7)
+ R∧←'LONGROTATE vector'same(m.LongRotate 0.1 ¯0.2 2.3)(b.LONGROTATE 0.1 ¯0.2 2.3)
+ R∧←'LONGROTATE 1-vector'same(m.LongRotate,¯0.7)(b.LONGROTATE,¯0.7)
+
+⍝ RADECDIST: RA and Dec only, and with distance
+ gq←4 3⍴0.3 0.5 ¯0.8 ¯1.2 0.1 0.4 0.9 ¯0.6 0.2 ¯0.05 0.7 ¯0.3
+ R∧←'RADECDIST 2'same(2 m.RaDecDist gq)(2 b.RADECDIST gq)
+ R∧←'RADECDIST 3'same(3 m.RaDecDist gq)(3 b.RADECDIST gq)
+
+⍝ KEPLINVERSE: Newton iteration, same stopping rule as the book
+ e←b.planets[;3]                          ⍝ eccentricities
+ t←○2×0.05 0.3 0.5 0.71 0.9 0.15 0.62 0.48 0.99
+ R∧←'KEPLINVERSE vector'same(e m.KeplInverse t)(e b.KEPLINVERSE t)
+ R∧←'KEPLINVERSE scalar'same(0.2 m.KeplInverse 1.1)(0.2 b.KEPLINVERSE 1.1)
+ R∧←'KEPLINVERSE no iteration'same(0 m.KeplInverse 1.1)(0 b.KEPLINVERSE 1.1)
+
+⍝ CometSolve: Newton iteration, same stopping rule as the book
+ k←b.kohoutek
+ R∧←'CometSolve scalar'same(k m.CometSolve 0.02)(k b.{ORB←⍺ ⋄ COMETSOLVE ⍵}0.02)
+ R∧←'CometSolve vector'same(k m.CometSolve ¯0.05 0.001 0.3)(k b.{ORB←⍺ ⋄ COMETSOLVE ⍵}¯0.05 0.001 0.3)
+
+⍝ COMETPOS: no date, or one date (PLANETSPOS handles several)
+ R∧←'COMETPOS empty'same(⍬ m.CometPos k)(⍬ b.COMETPOS k)
+ R∧←'COMETPOS empty shape'same(0 3)(⍴⍬ m.CometPos k)
+ R∧←'COMETPOS scalar'same(2442100.5 m.CometPos k)(2442100.5 b.COMETPOS k)
+ R∧←'COMETPOS before perihelion'same(2442000.5 m.CometPos k)(2442000.5 b.COMETPOS k)
+
+⍝ PLANETSPOS: one planet or several, one date or several
+ R∧←'PLANETSPOS scalar P, scalar date'same(2442183.7 m.PlanetsPos 3)(2442183.7 b.PLANETSPOS 3)
+ R∧←'PLANETSPOS vector P, scalar date'same(2442183.7 m.PlanetsPos 1 2 5)(2442183.7 b.PLANETSPOS 1 2 5)
+ R∧←'PLANETSPOS vector P, vector dates'same(2442000.5 2442183.7 m.PlanetsPos 1 2 5)(2442000.5 2442183.7 b.PLANETSPOS 1 2 5)
+ R∧←'PLANETSPOS scalar P, vector dates'same(2442000.5 2442183.7 m.PlanetsPos 4)(2442000.5 2442183.7 b.PLANETSPOS 4)
+
+ :If R
+     ⎕←'PASS: TestRestructured'
+ :EndIf

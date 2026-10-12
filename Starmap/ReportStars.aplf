@@ -1,0 +1,17 @@
+ReportStars←{
+   ⍝ Bright visible star legend matching book example, for width ⍺
+   ⍝ Format: NAME ALT AZ  x  y — packed across full width
+    bright←Data.BRIGHT∧⍵.StarsVisible
+    n←+/bright
+    n=0: 0⍴⊂''
+    names←bright/Data.STARNAMES
+    coord←(⍵.StarsVisible/Data.BRIGHT)⌿⍵.StarCoord
+    aa←⍵.BrightStarsAA
+    entry←{
+        alt az←⌊0.5+aa[⍵;]
+        mx my←0.01×⌊0.5+100×coord[⍵;]
+        (¯10↑⊃names[⍵]),(¯4↑⍕alt),(¯5↑⍕az),(¯7↑⍕mx),(¯6↑⍕my)
+    }
+   ⍝ Entries per line, as in the book, allowing 31 characters for each
+    ncols←1⌈⌊⍺÷31
+    (⊂''),{∊entry¨⍵}¨(1+⌊(¯1+⍳n)÷ncols)⊆⍳n }

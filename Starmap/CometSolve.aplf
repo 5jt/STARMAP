@@ -1,0 +1,9 @@
+CometSolve←{
+   ⍝ Inverse of Area using Newton's method
+   ⍝ As in the book, iteration stops when any element has converged (#19)
+    orb←⍺ ⋄ time←⍵
+    {
+        error←time-orb Area ⍵
+        ∧/1E¯8≤|error: ∇ ⍵+error÷orb AreaDeriv ⍵
+        ⍵
+    }2×⍵÷PeriDist ⍺ }

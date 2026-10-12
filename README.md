@@ -181,3 +181,30 @@ Project goals
 4.  **Deploy STARMAP as an API**
 
 5.  **Develop an HTML front end**
+
+Running the code
+----------------
+
+The code requires Dyalog APL 21.
+
+There are two versions:
+
+* `APLSource/` is the book version, as close to the 1978 listings as modern Dyalog allows; load it as `#.sm`
+* `Starmap/` is the modern version (in progress, see `plans/PLAN-MODERN.md`); load it as `#.Starmap`. It shares the book version's data tables through `#.Starmap.Data`, a reference to `#.sm`, and `#.Starmap.Initialise` sets its constants once `Data` is set
+
+To work on both in a session:
+
+```apl
+]link.create #.sm APLSource
+]link.create #.Starmap Starmap
+#.Starmap.Data←#.sm
+#.Starmap.Initialise
+```
+
+To run every test from the repository root:
+
+```
+dyalog -script test/run.apls
+```
+
+The runner prints one line per test and a summary, and exits 0 only if every test passed. `test/test_run.sh` tests the runner itself.

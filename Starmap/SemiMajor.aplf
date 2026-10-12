@@ -1,0 +1,3 @@
+SemiMajor←{
+   ⍝ Selects semimajor axis from orbital elements ⍵
+    ⍵[;1] }

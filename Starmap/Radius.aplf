@@ -1,0 +1,5 @@
+Radius←{
+   ⍝ Distance from focus to point on ellipse at angle ⍵
+   ⍝ ⍺ is orbital elements
+    e←Eccentricity ⍺
+    (SemiMajor ⍺)×(1-e*2)÷1+e×Cos ⍵ }

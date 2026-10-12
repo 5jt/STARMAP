@@ -1,0 +1,7 @@
+Printed←{
+   ⍝ Footer with generation timestamp ⍺ (as ⎕TS)
+   ⍝ As in the book, the day name is the observation's (#22)
+    h←12|⍺[4] ⋄ h←h+12×h=0
+    ap←(1+⍺[4]<12)⊃'PM' 'AM'
+    mn←¯2↑'0',⍕⌊⍺[5]
+    '' ('GENERATED ',(DayName ⍵.StatedDayNo),' ',(⍕⍺[1]),'/',(⍕⍺[2]),'/',(⍕⍺[3]),' AT ',(⍕⌊h),':',mn,' ',ap) }

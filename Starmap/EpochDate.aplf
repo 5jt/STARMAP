@@ -1,0 +1,3 @@
+EpochDate←{
+   ⍝ Selects epoch dates from orbital elements ⍵
+    ⍵[;10 11] }

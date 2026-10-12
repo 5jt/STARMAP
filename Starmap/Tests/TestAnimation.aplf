@@ -1,0 +1,53 @@
+ R←TestAnimation;m;b;same;cases;c;before;args;dirs;files;empty;bytes;videos;pngs
+⍝ AnimatedSvg returns exactly the book's animated SVG, Animate writes
+⍝ exactly the book's frame files, and MakeVideo converts them to exactly
+⍝ the book's images and video (or, given no frames, returns what the
+⍝ book's does), all without setting globals.
+⍝ MakeVideo needs rsvg-convert and ffmpeg.
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestAnimation: ',⍺}
+
+⍝ OPTS (FPS [HIRES [SKIP]]) and ARGS ((M D Y)(M D Y) TIME LAT LONG):
+⍝ defaults; full size; every other day; across the end of
+⍝ Kohoutek's 100-day window (Apr 7 1974), so frames have 11 then 10 objects
+ cases←⊂(30)((5 15 1974)(5 17 1974)5 33.767 ¯117.833)
+ cases,←⊂(24 1)((1 9 1974)(1 11 1974)18 51.5 ¯0.13)
+ cases,←⊂(30 0 2)((12 20 1975)(12 26 1975)10 ¯33.87 151.21)
+ cases,←⊂(30)((4 5 1974)(4 9 1974)5 33.767 ¯117.833)
+ before←m.⎕NL ¯2 ¯9
+ :For c :In cases
+     R∧←('ANIMATEDSVG ',⍕c)same((⊃c)m.AnimatedSvg 2⊃c)((⊃c)b.ANIMATEDSVG 2⊃c)
+ :EndFor
+
+⍝ Animate: frame files in two directories under output/
+ args←(4 5 1974)(4 8 1974)5 33.767 ¯117.833
+ dirs←'output/TestAnimation_book' 'output/TestAnimation_modern'
+ {}3 ⎕MKDIR¨dirs
+ {}(⎕NDELETE⍠1)¨dirs,¨⊂'/frame_*.svg'
+ args b.ANIMATE⊃dirs
+ args m.Animate 2⊃dirs
+ files←{{⍵[⍋↑⍵]}⊃⎕NINFO⍠1⊢⍵,'/frame_*.svg'}¨dirs   ⍝ sorted by name
+ R∧←'ANIMATE frame names'same({2⊃⎕NPARTS ⍵}¨⊃files)({2⊃⎕NPARTS ⍵}¨2⊃files)
+ R∧←'ANIMATE frame count'same 4(≢2⊃files)
+ R∧←'ANIMATE frames'same(⊃∘⎕NGET¨⊃files)(⊃∘⎕NGET¨2⊃files)
+
+⍝ MakeVideo: the frames above, as PNG images and an mp4 video
+ bytes←{t←⍵ ⎕NTIE 0 ⋄ d←⎕NREAD t 83 ¯1 ⋄ d⊣⎕NUNTIE t}
+ {}(⎕NDELETE⍠1)¨dirs,¨⊂'/frame_*.png'
+ videos←(30 b.MAKEVIDEO⊃dirs)(30 m.MakeVideo 2⊃dirs)
+ R∧←'MakeVideo result'same(dirs,¨⊂'/animation.mp4')videos
+ pngs←{{⍵[⍋↑⍵]}⊃⎕NINFO⍠1⊢⍵,'/frame_*.png'}¨dirs
+ R∧←'MakeVideo image count'same 4(≢2⊃pngs)
+ R∧←'MakeVideo images'same(bytes¨⊃pngs)(bytes¨2⊃pngs)
+ R∧←'MakeVideo video'same(bytes⊃videos)(bytes 2⊃videos)
+ {}(⎕NDELETE⍠1)¨(dirs,¨⊂'/frame_*'),dirs,¨⊂'/animation.mp4'
+
+⍝ MakeVideo with no frames to convert
+ empty←'output/TestAnimation_empty'
+ {}3 ⎕MKDIR empty
+ R∧←'MakeVideo no frames'same(30 m.MakeVideo empty)(30 b.MAKEVIDEO empty)
+ R∧←'no globals set'same before(m.⎕NL ¯2 ¯9)
+
+ :If R
+     ⎕←'PASS: TestAnimation (',(⍕≢cases),' animated SVGs, ',(⍕≢2⊃files),' frames)'
+ :EndIf

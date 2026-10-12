@@ -1,0 +1,3 @@
+Degrees←{
+   ⍝ Converts radians ⍵ to degrees
+    ⍵×180÷○1 }

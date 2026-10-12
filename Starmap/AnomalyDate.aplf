@@ -1,0 +1,3 @@
+AnomalyDate←{
+   ⍝ Selects anomaly reference date from orbital elements ⍵
+    ⍵[;10] }

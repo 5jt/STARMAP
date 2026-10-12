@@ -1,0 +1,3 @@
+Ascending←{
+   ⍝ Selects ascending node from orbital elements ⍵
+    ⍵[;5] }

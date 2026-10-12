@@ -1,0 +1,4 @@
+Perioder←{
+   ⍝ Fraction of orbital period elapsed on date ⍵ since last perihelion
+   ⍝ ⍺ is orbital elements
+    1|((Anomaly ⍺)÷360)+(⍵-AnomalyDate ⍺)÷(Period ⍺)×Data.TROPYR }

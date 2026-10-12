@@ -1,0 +1,7 @@
+CalculateStars←{
+   ⍝ Positions of stars for observer ⍵ (LAT,DATE,TIME)
+   ⍝ Result is VE BRIGHTVIS AAE STARCOORD
+    stars←⍵ SkyPos(⍵[2]-Data.CATEPOCH)Precess Data.STARS
+    ve←Visible stars
+    bright←Data.BRIGHT∧ve
+    ve bright(bright⌿stars)(MapCartesian Projection ve⌿stars) }

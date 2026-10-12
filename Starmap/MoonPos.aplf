@@ -1,0 +1,4 @@
+MoonPos←{
+   ⍝ Position of moon in geocentric equatorial coordinates on date ⍵
+    gc←⍵ PlanetPos Data.moon
+    3 RaDecDist gc+.×InclRotate-Radian Data.AXITILT }

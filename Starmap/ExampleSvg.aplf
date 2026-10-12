@@ -1,0 +1,4 @@
+ ExampleSvg
+⍝ SVG star map for Anaheim, CA — May 15, 1974 10 PM PDT (= May 16 05:00 UTC)
+⍝ Same observation as ExampleRender, written to starmap.svg
+ 'starmap.svg'SaveSvg SkyAt(Jnu 5 16 1974)5 33.767 ¯117.833

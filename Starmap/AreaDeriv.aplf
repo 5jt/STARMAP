@@ -1,0 +1,4 @@
+AreaDeriv←{
+   ⍝ Derivative of Area
+    q←PeriDist ⍺
+    (q÷2)+(3×⍵*2)÷4×q }

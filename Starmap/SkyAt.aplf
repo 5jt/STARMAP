@@ -1,0 +1,13 @@
+SkyAt←{
+   ⍝ Positions of stars, sun, moon, planets and comet for one observation
+   ⍝ ⍵ is STATEDDAYNO STATEDTIME LAT LONG: Julian day number of the
+   ⍝ stated date, stated time (UTC hours), latitude and longitude (degrees
+   ⍝ north and east). The result holds the inputs and every calculated position.
+    day stated lat long←⍵
+    time←long TimeAdjust stated
+    date←day+(time÷24)-long÷360
+    sky←⎕NS ⍬
+    sky.(StatedDayNo StatedTime Lat Long Time Date)←day stated lat long time date
+    sky.(Planets PlanetsAA PlanetsVisible PlanetCoord Phase VisiblePlanetsAA)←CalculatePlanets lat,date,time
+    sky.(StarsVisible BrightVisible BrightStarsAA StarCoord)←CalculateStars lat,date,time
+    sky }

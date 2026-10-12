@@ -1,0 +1,4 @@
+FrameSvg←{
+   ⍝ SVG star map of sky ⍵ at least 3800 high, so that animation frames
+   ⍝ are all the same height
+    3800 PlotSvg ⍵ }

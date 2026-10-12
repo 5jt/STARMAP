@@ -1,0 +1,3 @@
+Sin←{
+   ⍝ Sine of ⍵ (in radians)
+    1○⍵ }

@@ -1,0 +1,31 @@
+ R←TestStyle;m;fns;code;branching;bare;data;long;vars;lower
+⍝ No function in the modern version branches with → or exceeds 100
+⍝ lines; data tables are reached only through Data; variables in the
+⍝ modern namespace are constants, named in upper case
+ m←## ⋄ R←1
+ fns←m.⎕NL ¯3
+ code←{⍵/⍨~∨\'⍝'=⍵}¨¨m.⎕NR¨fns          ⍝ source lines without comments
+ code←('''[^'']*'''⎕R'''''')¨code          ⍝ ... and without the text of strings
+ branching←fns/⍨∨/¨'→'∊¨¨code
+ :If 0≠≢branching
+     ⎕←'FAIL: TestStyle: → in: ',⍕branching ⋄ R←0
+ :EndIf
+ long←fns/⍨100<≢¨m.⎕NR¨fns
+ :If 0≠≢long
+     ⎕←'FAIL: TestStyle: over 100 lines: ',⍕long ⋄ R←0
+ :EndIf
+ data←'planets' 'moon' 'kohoutek' 'STARS' 'BRIGHT' 'BP' 'STARNAMES' 'PLANETNAMES'
+ data,←'STARCONSTELLATION' 'CONSTELLATIONS' 'reference_positions'
+ data,←'AXITILT' 'CATEPOCH' 'EQUINOX' 'MOONRATIO' 'TROPYR' 'YRLENGTH'
+ bare←fns/⍨{0≠≢('(?<![\w.])(',(¯1↓∊data,¨'|'),')(?!\w)')⎕S 0⊢⍵}¨code
+ :If 0≠≢bare
+     ⎕←'FAIL: TestStyle: data table not reached through Data in: ',⍕bare ⋄ R←0
+ :EndIf
+ vars←m.⎕NL ¯2
+ lower←vars/⍨{∨/⍵∊⎕C ⎕A}¨vars
+ :If 0≠≢lower
+     ⎕←'FAIL: TestStyle: variable not named in upper case: ',⍕lower ⋄ R←0
+ :EndIf
+ :If R
+     ⎕←'PASS: TestStyle (',(⍕≢fns),' functions, ',(⍕≢vars),' constants)'
+ :EndIf

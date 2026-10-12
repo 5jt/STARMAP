@@ -1,0 +1,4 @@
+KeplerFn←{
+   ⍝ Kepler's function: time as function of eccentric anomaly ⍵
+   ⍝ ⍺ is eccentricity
+    ⍵-⍺×Sin ⍵ }

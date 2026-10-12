@@ -1,0 +1,35 @@
+ R←TestOrbits;m;b;same;book;p;k;e;dates;d;theta;xy;x
+⍝ Functions that now take the element table ORB as an argument return
+⍝ exactly what the book's versions return with ORB in their caller's scope;
+⍝ functions that already took ORB return exactly the book's results
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestOrbits: ',⍺}
+ book←{⍺ b.{ORB←⍺ ⋄ ⍎⍵}⍵}          ⍝ ORB book⊢'expression': book with ORB bound
+ p←b.planets ⋄ k←b.kohoutek ⋄ e←p[,3;]
+ dates←2441720.5 2442183.7 2451545
+
+ theta←0.3 1.2 2.5 3.9 5.1 0.8 4.4 2.2 6.0
+ R∧←'Radius'same(p m.Radius theta)(p book'RADIUS ',⍕theta)
+ :For d :In dates
+     R∧←('Perioder ',⍕d)same(p m.Perioder d)(p book'PERIODER ',⍕d)
+     R∧←('Perioder moon ',⍕d)same(b.moon m.Perioder d)(b.moon book'PERIODER ',⍕d)
+ :EndFor
+ xy←9 2⍴0.4 ¯0.2 1.1 0.3 ¯0.9 0.7 2.0 ¯1.5 ¯3.1 0.2 5.0 4.0 ¯12 7 20 ¯3 ¯30 25
+ R∧←'OrbRotate'same(p m.OrbRotate xy)(p b.{ORB←⍺ ⋄ ORBROTATE ⍵}xy)
+
+ x←¯0.6 ¯0.1 0 0.25 0.9
+ R∧←'Area'same(k m.Area x)(k book'AREA ',⍕x)
+ R∧←'AreaDeriv'same(k m.AreaDeriv x)(k book'AREADERIV ',⍕x)
+ R∧←'Parabola'same(k m.Parabola x)(k book'PARABOLA ',⍕x)
+
+ :For d :In dates
+     R∧←('EPOCHADJUST ',⍕d)same(d m.EpochAdjust p)(d b.EPOCHADJUST p)
+     R∧←('PLANETPOS planets ',⍕d)same(d m.PlanetPos p)(d b.PLANETPOS p)
+     R∧←('PLANETPOS moon ',⍕d)same(d m.PlanetPos b.moon)(d b.PLANETPOS b.moon)
+     R∧←('PLANETPOS earth ',⍕d)same(d m.PlanetPos e)(d b.PLANETPOS e)
+ :EndFor
+ R∧←'EARTH'same(m.EARTH)(b.EARTH)
+
+ :If R
+     ⎕←'PASS: TestOrbits'
+ :EndIf

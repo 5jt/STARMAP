@@ -1,0 +1,15 @@
+MakeVideo←{
+   ⍝ Converts the SVG frames frame_NNNNN.svg in directory ⍵ to an mp4
+   ⍝ video at ⍺ frames per second, using rsvg-convert and ffmpeg
+   ⍝ Result is the path of the video, or an empty string on error
+    count←⎕SHELL'ls -1 ',⍵,'/frame_*.svg 2>/dev/null | wc -l'
+    n←⊃2⊃⎕VFI(∊⊃count)~' '
+    n=0: ''⊣⎕←'No SVG frames found in ',⍵
+    _←⎕←'Converting ',(⍕n),' SVGs to PNGs...'
+    r←⎕SHELL'ls -1 ',⍵,'/frame_*.svg | xargs -P 8 -I {} sh -c ''f="{}"; rsvg-convert -w 2320 "$f" -o "${f%.svg}.png"'''
+    0≠3⊃r: ''⊣⎕←'Error converting SVGs: ',∊⊃r
+    _←⎕←'Encoding mp4 at ',(⍕⍺),' fps...'
+    video←⍵,'/animation.mp4'
+    r←⎕SHELL'ffmpeg -y -framerate ',(⍕⍺),' -i ',⍵,'/frame_%05d.png -c:v libx264 -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" ',video
+    0≠3⊃r: ''⊣⎕←'Error encoding video'
+    video⊣⎕←'Video written to ',video }
