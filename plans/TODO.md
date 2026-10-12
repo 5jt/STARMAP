@@ -3,6 +3,7 @@
 ## Active tasks
 
 - Housekeeping after merge of PR #3 (#10)
+
 ## Up next
 
 - Book phase 1: complete Typst rendering of existing content (#4)
