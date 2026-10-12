@@ -187,10 +187,12 @@ Running the code
 
 The code requires Dyalog APL 21.
 
+Making videos from animation frames (`MAKEVIDEO` and `MakeVideo`, and the web UI's mp4 export) also needs two command-line tools on the `PATH`: `rsvg-convert`, from [librsvg](https://wiki.gnome.org/Projects/LibRsvg), and [`ffmpeg`](https://ffmpeg.org). On macOS: `brew install librsvg ffmpeg`. The modern tests convert frames to video, so they need both tools too.
+
 There are two versions:
 
 * `APLSource/` is the book version, as close to the 1978 listings as modern Dyalog allows; load it as `#.sm`
-* `Starmap/` is the modern version (in progress, see `plans/PLAN-MODERN.md`); load it as `#.Starmap`. It shares the book version's data tables through `#.Starmap.Data`, a reference to `#.sm`, and `#.Starmap.Initialise` sets its constants once `Data` is set
+* `Starmap/` is the modern version (see `plans/PLAN-MODERN.md`); load it as `#.Starmap`. It shares the book version's data tables through `#.Starmap.Data`, a reference to `#.sm`, and `#.Starmap.Initialise` sets its constants once `Data` is set
 
 To work on both in a session:
 
