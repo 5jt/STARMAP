@@ -1,0 +1,11 @@
+Animate←{
+   ⍝ Writes SVG frames for an animation, one per day, to directory ⍵,
+   ⍝ which must exist, as frame_00001.svg through frame_NNNNN.svg
+   ⍝ ⍺ is (M D Y)(M D Y) TIME LAT LONG: start date, end date, UTC time,
+   ⍝ latitude and longitude
+    start end t lat long←⍺
+    days←(Jnu start)+¯1+⍳1+(Jnu end)-Jnu start
+    file←{⍵,'/frame_',(¯5↑'00000',⍕⍺),'.svg'}
+    dir←⍵
+    _←(⍳≢days){(⊂FrameSvg SkyAt ⍵ t lat long)⎕NPUT(⍺ file dir)1}¨days
+    1:_←⎕←'Generated ',(⍕≢days),' frames in ',⍵ }

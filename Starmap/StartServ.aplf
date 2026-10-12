@@ -1,0 +1,9 @@
+ StartServ;app
+⍝ Starts the star map animation web server on port 8080, and serves for ever
+⍝ Needs Stark linked as #.Stark, and Starmap loaded with Data set and
+⍝ Initialise run, for example:
+⍝   gritt -l -link 'sm:APLSource' -link 'Starmap:Starmap' -link 'Stark:~/dev/Stark/APLSource'
+⍝     -e 'Starmap.Data←sm ⋄ Starmap.Initialise ⋄ Starmap.StartServ'
+ app←⎕NEW WebApp(##.Stark.Stark ⎕THIS)
+ app.Start 8080
+ :While 1 ⋄ ⎕DL 3600 ⋄ :EndWhile

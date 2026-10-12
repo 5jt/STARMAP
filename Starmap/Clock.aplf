@@ -1,0 +1,4 @@
+Clock←{
+   ⍝ Time ⍵ (hours) on a 12-hour clock, as text: hour, minutes, AM or PM
+    h←12|⍵ ⋄ h←h+12×h=0
+    (⍕⌊h)(¯2↑'0',⍕⌊0.5+60×h-⌊h)((1+⍵<12)⊃'PM' 'AM') }

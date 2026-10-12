@@ -1,0 +1,51 @@
+AnimScriptPlayback←{
+   ⍝ JavaScript for the animated SVG: playback, speed and scrub controls
+    fjs←{'¯'⎕R'-'⊢⍕⍵}
+    pad←80
+    ∊(
+        ⍝ Playback state
+        'let frame=0,playing=true,speed=1,animId=null,lastTime=0;'
+        ⍝ Playback controls (SVG elements)
+        'const scrubTrack=document.getElementById("scrub-track");'
+        'const scrubFill=document.getElementById("scrub-fill");'
+        'const scrubThumb=document.getElementById("scrub-thumb");'
+        'const frameLabel=document.getElementById("frame-label");'
+        'const playBtn=document.getElementById("play-btn");'
+        'const speedLabel=document.getElementById("speed-label");'
+        'const TRACK_X=',(fjs pad+60),',TRACK_W=2060;'
+        'const svgEl=document.querySelector("svg");'
+        ⍝ Convert mouse event to SVG x coordinate
+        'function svgX(e){const p=svgEl.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svgEl.getScreenCTM().inverse()).x;}'
+        ⍝ Set frame from SVG x position
+        'function scrubTo(x){const f=Math.round(((x-TRACK_X)/TRACK_W)*(NFRAMES-1));frame=Math.max(0,Math.min(NFRAMES-1,f));renderFrame(frame);updateUI();}'
+        'function updateUI(){'
+        'const frac=frame/(NFRAMES-1);'
+        'scrubFill.setAttribute("width",Math.round(TRACK_W*frac));'
+        'scrubThumb.setAttribute("cx",Math.round(TRACK_X+TRACK_W*frac));'
+        'const jd=JD1+frame*SKIP,mdy=jdToDate(jd);'
+        'frameLabel.textContent=mdy[2]+"/"+mdy[0]+"/"+mdy[1]+" ("+frame+"/"+NFRAMES+")";'
+        '}'
+        'function step(ts){'
+        'if(!playing){animId=null;return;}'
+        'if(!lastTime)lastTime=ts;'
+        'const elapsed=ts-lastTime;'
+        'if(elapsed>=1000/(FPS*speed)){'
+        'lastTime=ts;'
+        'frame++;if(frame>=NFRAMES){frame=0;}'
+        'renderFrame(frame);updateUI();}'
+        'animId=requestAnimationFrame(step);}'
+        'function togglePlay(){'
+        'playing=!playing;'
+        'playBtn.textContent=playing?"\u23F8":"\u25B6";'
+        'if(playing){lastTime=0;animId=requestAnimationFrame(step);}}'
+        'function setSpeed(s){speed=s;speedLabel.textContent=s+"x";}'
+        ⍝ Scrub: click on track, drag thumb
+        'let dragging=false;'
+        'scrubTrack.addEventListener("mousedown",e=>{playing=false;playBtn.textContent="\u25B6";dragging=true;scrubTo(svgX(e));});'
+        'scrubThumb.addEventListener("mousedown",e=>{playing=false;playBtn.textContent="\u25B6";dragging=true;e.preventDefault();});'
+        'document.addEventListener("mousemove",e=>{if(dragging)scrubTo(svgX(e));});'
+        'document.addEventListener("mouseup",()=>{dragging=false;});'
+        'playBtn.addEventListener("click",togglePlay);'
+        'document.getElementById("spd-dn").addEventListener("click",()=>{const s=[0.25,0.5,1,2,4,8];let i=s.indexOf(speed);if(i>0)setSpeed(s[i-1]);});'
+        'document.getElementById("spd-up").addEventListener("click",()=>{const s=[0.25,0.5,1,2,4,8];let i=s.indexOf(speed);if(i<s.length-1)setSpeed(s[i+1]);});'
+    ) }

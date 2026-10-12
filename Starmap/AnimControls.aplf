@@ -1,0 +1,16 @@
+AnimControls←{
+   ⍝ Playback controls of the animated SVG, below height ⍵: play button and
+   ⍝ scrub bar, then speed controls and date label
+    pad←80 ⋄ ty←⍵+30
+    ∊(
+        '<text id="play-btn" x="',(⍕pad),'" y="',(⍕ty),'" font-size="32" fill="#ccc" style="cursor:pointer">&#x23F8;</text>'
+        '<rect id="scrub-track" x="',(⍕pad+60),'" y="',(⍕ty-14),'" width="2060" height="8" rx="4" fill="#333" style="cursor:pointer"/>'
+        '<rect id="scrub-fill" x="',(⍕pad+60),'" y="',(⍕ty-14),'" width="0" height="8" rx="4" fill="#4fc3f7" style="pointer-events:none"/>'
+        '<circle id="scrub-thumb" cx="',(⍕pad+60),'" cy="',(⍕ty-10),'" r="10" fill="#ccc" style="cursor:pointer"/>'
+        '<g id="spd-dn" style="cursor:pointer"><rect x="',(⍕pad),'" y="',(⍕ty+40-24),'" width="36" height="32" rx="4" fill="#333" stroke="#555" stroke-width="1"/>'
+        '<text x="',(⍕pad+18),'" y="',(⍕ty+40),'" font-size="26" fill="#ccc" text-anchor="middle">-</text></g>'
+        '<text id="speed-label" x="',(⍕pad+70),'" y="',(⍕ty+40),'" font-size="24" fill="#999" text-anchor="middle">1x</text>'
+        '<g id="spd-up" style="cursor:pointer"><rect x="',(⍕pad+104),'" y="',(⍕ty+40-24),'" width="36" height="32" rx="4" fill="#333" stroke="#555" stroke-width="1"/>'
+        '<text x="',(⍕pad+122),'" y="',(⍕ty+40),'" font-size="26" fill="#ccc" text-anchor="middle">+</text></g>'
+        '<text id="frame-label" x="',(⍕pad+2120),'" y="',(⍕ty+40),'" font-size="24" fill="#999" text-anchor="end"> </text>'
+    ) }

@@ -1,0 +1,49 @@
+AnimTables←{
+   ⍝ Tables of the animated SVG, starting at height ⍵, with values filled
+   ⍝ in by script: sun, moon and planets, moon phase, and bright stars in
+   ⍝ two columns. Result is the SVG and the height below it
+    pad←80 ⋄ ty←⍵
+    text←{⍺←'' ⋄ x y s←⍵ ⋄ '<text',((0<≢⍺)/' class="',⍺,'"'),' x="',(⍕pad+x),'" y="',(⍕y),'">',s,'</text>'}
+    value←{x y id←⍵ ⋄ '<text class="',⍺,'" id="',id,'" x="',(⍕pad+x),'" y="',(⍕y),'"> </text>'}
+    headers←{y←⍵ ⋄ ∊{x s←⍵ ⋄ 'table-hdr-r'text x y s}¨⍺}
+    line←{x1 x2 y←⍵ ⋄ '<line x1="',(⍕pad+x1),'" y1="',(⍕y),'" x2="',(⍕pad+x2),'" y2="',(⍕y),'" stroke="#555" stroke-width="1"/>'}
+    symbols←11↑'☾☉☿♀♂♃♄⛢♆♇☄'
+    names←11↑Data.PLANETNAMES
+   ⍝ Sun, moon and planets
+    z←'table-header'text 1080 ty'POSITION OF SUN, MOON AND PLANETS'
+    ty←ty+50
+    z,←'<g class="table-text">',(text 60 ty'BODY')
+    z,←(340 'RA h')(440 'RA m')(560 'DEC')(680 'ALT')(790 'AZ')(920 'MAP X')(1050 'MAP Y')headers ty
+    z,←(line 40 1080(ty+8)),'</g>'
+    ty←ty+40
+    fields←(340 'rah')(440 'ram')(560 'dec')(680 'alt')(790 'az')(920 'mx')(1050 'my')
+    body←{
+        y←ty+34×⍵-1 ⋄ i←⍕⍵-1
+        s←'<g class="pt-row" id="pt-row-',i,'">',(text 60 y((⍵⊃symbols),' ',⊃names[⍵]))
+        s,(∊{x f←⍵ ⋄ 'pt-val'value x y('pt-',f,'-',i)}¨fields),'</g>'
+    }
+    z,←∊body¨⍳11
+    ty←ty+(11×34)+10
+    z,←'<text class="table-text" id="moon-phase" x="',(⍕pad+60),'" y="',(⍕ty),'"> </text>'
+    ty←ty+60
+   ⍝ Bright stars: left column first, then right
+    stars←(Data.BRIGHT)/Data.STARNAMES
+    n←≢stars ⋄ rows←⌈n÷2
+    z,←'table-header'text 1080 ty'BRIGHT STARS'
+    ty←ty+50
+    z,←'<g class="table-text">',(text 60 ty'STAR'),(340 'ALT')(440 'AZ')(560 'MAP X')(680 'MAP Y')headers ty
+    z,←(text 1140 ty'STAR'),(1420 'ALT')(1520 'AZ')(1640 'MAP X')(1760 'MAP Y')headers ty
+    z,←(line 40 720(ty+8)),(line 1120 1800(ty+8)),'</g>'
+    ty←ty+40
+    entry←{
+        k y x←⍵ ⋄ i←⍕k-1
+        s←'<g class="bst-row" id="bst-row-',i,'">',(text x y(⊃stars[k]))
+        s,(∊{dx f←⍵ ⋄ 'bst-val'value(x+dx)y('bst-',f,'-',i)}¨(280 'alt')(380 'az')(500 'mx')(620 'my')),'</g>'
+    }
+    row←{
+        y←ty+34×⍵-1
+        s←entry ⍵ y 60
+        n<⍵+rows: s
+        s,entry(⍵+rows)y 1140
+    }
+    (z,∊row¨⍳rows)(ty+34×rows) }

@@ -1,0 +1,5 @@
+SaveSvg←{
+   ⍝ Writes the SVG star map of sky ⍵ to file ⍺
+    svg←PlotSvg ⍵
+    _←(⊂svg)⎕NPUT ⍺ 1
+    1:_←⎕←'SVG written to ',⍺,' (',(⍕≢svg),' chars)' }

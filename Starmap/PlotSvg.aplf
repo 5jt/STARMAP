@@ -1,0 +1,11 @@
+PlotSvg←{
+   ⍝ SVG star map of sky ⍵ (a stereographic projection centred on the
+   ⍝ zenith) with tables of the sun, moon and planets, and of bright stars
+   ⍝ ⍺ is the least height of the picture (default 0)
+    ⍺←0
+    pad←80 ⋄ width←⍕2160+2×pad
+    table y←(pad+2160+120)SvgPlanetTable ⍵
+    stars y←y SvgStarTable ⍵
+    height←⍕⍺⌈y+pad
+    head←'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ',width,' ',height,'" width="',width,'" height="',height,'">'
+    head,(SvgStyle''),'<rect width="',width,'" height="',height,'" fill="#0a0a1a"/>',(SvgMap ⍵),table,stars,'</svg>' }

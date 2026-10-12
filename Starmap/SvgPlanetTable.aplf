@@ -1,0 +1,34 @@
+SvgPlanetTable←{
+   ⍝ SVG table of sun, moon and planets in sky ⍵, starting at height ⍺,
+   ⍝ followed by the moon's phase
+   ⍝ Result is the SVG and the height below it
+    pad←80 ⋄ ty←⍺
+    text←{⍺←'' ⋄ x y s←⍵ ⋄ '<text',((0<≢⍺)/' class="',⍺,'"'),' x="',(⍕pad+x),'" y="',(⍕y),'">',s,'</text>'}
+    bodies vp coord aa phase←⍵.(Planets PlanetsVisible PlanetCoord PlanetsAA Phase)
+    np←≢bodies
+    names←np↑Data.PLANETNAMES
+    allcoord←np 2⍴0
+    allcoord[⍸vp;]←coord
+    head←'<text class="table-header" x="',(⍕pad+1080),'" y="',(⍕ty),'">POSITION OF SUN, MOON AND PLANETS</text>'
+    ty←ty+50
+    columns←(340 'RA h')(440 'RA m')(560 'DEC')(680 'ALT')(790 'AZ')(920 'MAP X')(1050 'MAP Y')
+    head,←'<g class="table-text">',(text 60 ty 'BODY'),∊{x s←⍵ ⋄ 'table-hdr-r'text x ty s}¨columns
+    head,←'<line x1="',(⍕pad+40),'" y1="',(⍕ty+8),'" x2="',(⍕pad+1080),'" y2="',(⍕ty+8),'" stroke="#555" stroke-width="1"/>'
+    ty←ty+40
+    row←{
+        y←ty+34×⍵-1
+        rah←⌊bodies[⍵;1]
+        ram←⌊0.5+60×bodies[⍵;1]-rah
+        dec←⌊0.5+bodies[⍵;2]
+        r←(text 60 y((⍵⊃np↑'☾☉☿♀♂♃♄⛢♆♇☄'),' ',⊃names[⍵])),∊'table-r'∘text¨(340 y(⍕rah))(440 y(⍕ram))(560 y(⍕dec))
+        ~vp[⍵]: r
+        alt az←⌊0.5+aa[⍵;]
+        mx my←0.01×⌊0.5+100×allcoord[⍵;]
+        r,∊'table-r'∘text¨(680 y(⍕alt))(790 y(⍕az))(920 y(⍕mx))(1050 y(⍕my))
+    }
+    rows←∊row¨⍳np
+    ty←ty+(34×np)+10
+    illu←0.01×⌊0.5+100×0.5×1-Cos○2×phase
+    wx←(1+phase>0.5)⊃'WAXING' 'WANING'
+    phaseline←'<text class="table-text" x="',(⍕pad+60),'" y="',(⍕ty),'">MOON PHASE ',(⍕illu),' ',wx,'</text>'
+    (head,rows,'</g>',phaseline)(ty+60) }

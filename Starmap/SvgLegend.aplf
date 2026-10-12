@@ -1,0 +1,12 @@
+SvgLegend←{
+   ⍝ Zenith marker and legend of the SVG star maps, for padding ⍵
+    pad←⍵ ⋄ c←⍕pad+1080
+    ∊(
+        '<circle cx="',c,'" cy="',c,'" r="4" fill="none" stroke="#666" stroke-width="1.5"/>'
+        '<g class="legend" transform="translate(',(⍕pad+40),',',(⍕pad+2160+10),')">'
+        '<circle class="bright" cx="0" cy="0" r="8"/><text x="16" y="6">bright</text>'
+        '<circle class="faint" cx="120" cy="0" r="3"/><text x="130" y="6">faint</text>'
+        '<circle cx="230" cy="0" r="4" fill="none" stroke="#666" stroke-width="1.5"/><text x="242" y="6">zenith</text>'
+        '<text x="350" y="6" fill="#555">— horizon</text>'
+        '</g>'
+    ) }

@@ -1,0 +1,40 @@
+ R←TestSvg;m;b;same;obs;o;sky;run;stmt;fn;before;svg
+⍝ PlotSvg and FrameSvg return exactly the SVG that the book's PLOTSVG
+⍝ and FRAMESVG return for the same observation; SaveSvg writes it
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestSvg: ',⍺}
+ run←'STATEDDAYNO←JNU⊃OBS' 'STATEDTIME LAT LONG←1↓OBS'
+ run,←'TIME←LONG TIMEADJUST STATEDTIME' 'DATE←STATEDDAYNO+(TIME÷24)-LONG÷360'
+ run,←'CALCULATEPLANETS' 'CALCULATESTARS'   ⍝ as EXAMPLE_SVG
+
+⍝ Anaheim 1974; Kohoutek in range; southern hemisphere
+ obs←⊂(5 16 1974)5 33.767 ¯117.833
+ obs,←⊂(1 10 1974)18 51.5 ¯0.13
+ obs,←⊂(12 25 1975)10 ¯33.87 151.21
+ before←m.⎕NL ¯2 ¯9
+ :For o :In obs
+     sky←m.SkyAt(b.JNU⊃o),1↓o
+     b.OBS←o
+     :For stmt :In run
+         b⍎stmt
+     :EndFor
+     R∧←('PlotSvg ',⍕⊃o)same(m.PlotSvg sky)(b.PLOTSVG)
+     R∧←('FrameSvg ',⍕⊃o)same(m.FrameSvg sky)(b.FRAMESVG)
+     R∧←('3800 PlotSvg ',⍕⊃o)same(3800 m.PlotSvg sky)(m.FrameSvg sky)
+ :EndFor
+ b.⎕EX'OBS'
+
+⍝ SaveSvg writes the same file as the book's SAVESVG (book globals are
+⍝ still set for the last observation)
+ {}3 ⎕MKDIR'output'
+ fn←'output/TestSvg_book.svg' 'output/TestSvg_modern.svg'
+ b.SAVESVG⊃fn
+ (2⊃fn)m.SaveSvg sky
+ R∧←'SaveSvg file'same(⊃⎕NGET⊃fn)(⊃⎕NGET 2⊃fn)
+ R∧←'SaveSvg content'same(m.PlotSvg sky)(¯1↓⊃⎕NGET 2⊃fn)
+ {}⎕NDELETE¨fn
+ R∧←'no globals set'same before(m.⎕NL ¯2 ¯9)
+
+ :If R
+     ⎕←'PASS: TestSvg (',(⍕≢obs),' observations)'
+ :EndIf
