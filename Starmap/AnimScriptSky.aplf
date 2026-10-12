@@ -1,0 +1,81 @@
+AnimScriptSky←{
+   ⍝ JavaScript for the animated SVG: sky arithmetic, and the start of
+   ⍝ renderFrame, which places the stars, their labels and the planets
+    ∊(
+        ⍝ Math helpers
+        'const rad=d=>d*PI/180,deg=r=>r*180/PI;'
+        'const clamp=(v,lo,hi)=>Math.min(hi,Math.max(lo,v));'
+        'const hm=n=>{const s=String(n);return s[0]==="-"?"\u00AF"+s.slice(1):s;};'
+        ⍝ Matrix operations
+        'function mm(A,B){const C=[[0,0,0],[0,0,0],[0,0,0]];for(let i=0;i<3;i++)for(let j=0;j<3;j++)for(let k=0;k<3;k++)C[i][j]+=A[i][k]*B[k][j];return C;}'
+        'function vm(v,M){return[v[0]*M[0][0]+v[1]*M[1][0]+v[2]*M[2][0],v[0]*M[0][1]+v[1]*M[1][1]+v[2]*M[2][1],v[0]*M[0][2]+v[1]*M[1][2]+v[2]*M[2][2]];}'
+        ⍝ Rotation matrices
+        'function iRot(a){const c=Math.cos(a),s=Math.sin(a);return[[1,0,0],[0,c,-s],[0,s,c]];}'
+        'function lRot(a){const c=Math.cos(a),s=Math.sin(a);return[[c,0,s],[0,1,0],[-s,0,c]];}'
+        'function latR(a){const c=Math.cos(a),s=Math.sin(a);return[[c,s,0],[-s,c,0],[0,0,1]];}'
+        ⍝ RA/Dec to unit vector
+        'function rv(ra,dec){const r=ra*PI/12,d=rad(dec),cd=Math.cos(d);return[Math.cos(r)*cd,Math.sin(d),-Math.sin(r)*cd];}'
+        ⍝ Pre-compute star unit vectors
+        'const sv=SRA.map((ra,i)=>rv(ra,SDEC[i]));'
+        ⍝ Julian day to calendar date
+        'function jdToDate(jd){let a=Math.floor(jd+0.5);'
+        'if(a>=2299161){let x=Math.floor((a-1867216.25)/36524.25);a=a+1+x-Math.floor(x/4);}'
+        'let b=a+1524,c=Math.floor((b-122.1)/365.25),d=Math.floor(365.25*c),e=Math.floor((b-d)/30.6001);'
+        'let day=b-d-Math.floor(30.6001*e),m=e<14?e-1:e-13,y=m>2?c-4716:c-4715;return[m,day,y];}'
+        ⍝ Day name
+        'const DN=["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"];'
+        'function dayName(jd){return DN[Math.floor(jd+0.5)%7];}'
+        ⍝ Per-star alt/az storage (for tooltip)
+        'const starAlt=new Float32Array(SRA.length),starAz=new Float32Array(SRA.length);'
+        ⍝ Compute and render a frame
+        'function renderFrame(fi){'
+        'const jd=JD1+fi*SKIP;'
+        'const localTime=TIME_UTC+LONG/15;'
+        'const date=jd+localTime/24-LONG/360;'
+        'const interval=date-CATEPOCH;'
+        ⍝ Precession matrix
+        'const tilt=rad(AXITILT);'
+        'const precAng=-interval*2*PI/(25800*YRLENGTH);'
+        'const precRot=mm(mm(iRot(tilt),lRot(precAng)),iRot(-tilt));'
+        ⍝ Sky rotation
+        'let dm=((date-EQUINOX)%YRLENGTH+YRLENGTH)%YRLENGTH;'
+        'const sunRA=(24/YRLENGTH)*dm;'
+        'const rot=PI*(sunRA+localTime-12)/12;'
+        'const latRad=rad(90-LAT);'
+        'const skyRot=mm(lRot(rot),latR(latRad));'
+        'const combined=mm(precRot,skyRot);'
+        ⍝ Update stars
+        'const nStars=SRA.length;'
+        'for(let i=0;i<nStars;i++){'
+        'const vr=vm(sv[i],combined);'
+        'const alt=deg(Math.asin(clamp(vr[1],-1,1)));'
+        'starAlt[i]=alt;'
+        'const el=document.getElementById("s"+i);'
+        'if(alt<0){starAz[i]=0;el.setAttribute("visibility","hidden");continue;}'
+        'el.setAttribute("visibility","visible");'
+        'const s=-Math.sign(vr[2]);'
+        'const xy=Math.sqrt(vr[0]*vr[0]+vr[2]*vr[2]);'
+        'let az=0;if(xy>1e-10){const ca=clamp(-vr[0]/xy,-1,1);az=(s<=0?360:0)+s*deg(Math.acos(ca));}'
+        'starAz[i]=az;'
+        'const pr=Math.tan(rad(90-alt)/2),ar=rad(az);'
+        'const sx=Math.round(CX+R*(-pr*Math.sin(ar))),sy=Math.round(CY-R*(pr*Math.cos(ar)));'
+        'el.setAttribute("cx",sx);el.setAttribute("cy",sy);'
+        '}'
+        ⍝ Bright star labels (follow their stars)
+        'for(let i=0;i<BRIGHT_IDX.length;i++){'
+        'const si=BRIGHT_IDX[i],el=document.getElementById("sl"+i);'
+        'const sel=document.getElementById("s"+si);'
+        'if(sel.getAttribute("visibility")==="hidden"){el.setAttribute("visibility","hidden");}'
+        'else{el.setAttribute("visibility","visible");'
+        'el.setAttribute("x",+sel.getAttribute("cx")+12);'
+        'el.setAttribute("y",+sel.getAttribute("cy")-12);}}'
+        ⍝ Planets (from pre-computed data)
+        'const np=PD.px.length;'
+        'for(let i=0;i<np;i++){'
+        'const pe=document.getElementById("p"+i),pl=document.getElementById("plbl"+i);'
+        'if(PD.vis[i][fi]){'
+        'pe.setAttribute("visibility","visible");pl.setAttribute("visibility","visible");'
+        'pe.setAttribute("x",PD.px[i][fi]);pe.setAttribute("y",PD.py[i][fi]);'
+        'pl.setAttribute("x",PD.px[i][fi]+20);pl.setAttribute("y",PD.py[i][fi]-16);'
+        '}else{pe.setAttribute("visibility","hidden");pl.setAttribute("visibility","hidden");}}'
+    ) }

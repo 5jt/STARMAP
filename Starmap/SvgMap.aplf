@@ -1,0 +1,39 @@
+SvgMap←{
+   ⍝ SVG map of sky ⍵: title, crosshairs, horizon, cardinal points, stars
+   ⍝ with the bright ones named, planets with their names, zenith and legend
+    pad←80 ⋄ c←pad+1080 ⋄ r←1080
+    fmt←{⍕⌊0.5+⍵}
+    m d y←JnuInv ⍵.StatedDayNo
+    h mn ap←Clock ⍵.StatedTime
+    title←(Place ⍵.(Lat Long)),', ON ',(DayName ⍵.StatedDayNo),' ',(⍕y),'/',(⍕m),'/',(⍕d),' AT ',h,':',mn,' ',ap
+   ⍝ Positions on the map, as x y pairs
+    at←{↓(c+r×⍵[;1]),[1.5]c-r×⍵[;2]}
+    bright←⍵.StarsVisible/Data.BRIGHT
+    star←{
+        class radius←(1+⍺)⊃('faint' 3)('bright' 8)
+        '<circle class="',class,'" cx="',(fmt⊃⍵),'" cy="',(fmt 2⊃⍵),'" r="',(⍕radius),'"/>'
+    }
+    label←{'<text class="star-label" x="',(fmt 12+⊃⍵),'" y="',(fmt ¯12+2⊃⍵),'">',⍺,'</text>'}
+    vp←⍵.PlanetsVisible
+    planet←{
+        symbol name←⍺ ⋄ x y←⍵
+        '<text class="planet" x="',(fmt x),'" y="',(fmt y),'">',symbol,'</text><text class="planet-label" x="',(fmt x+20),'" y="',(fmt y-16),'">',name,'</text>'
+    }
+    stars←at ⍵.StarCoord
+    bodies←((vp/(≢vp)↑'☾☉☿♀♂♃♄⛢♆♇☄'),¨⊂¨vp/(≢vp)↑Data.PLANETNAMES)planet¨at ⍵.PlanetCoord
+    ∊(
+        '<text class="title" x="',(⍕c),'" y="',(⍕pad-20),'">',title,'</text>'
+        '<g id="crosshairs" stroke="#333" stroke-width="1">'
+        '<line x1="',(⍕pad),'" y1="',(⍕c),'" x2="',(⍕pad+2160),'" y2="',(⍕c),'"/>'
+        '<line x1="',(⍕c),'" y1="',(⍕pad),'" x2="',(⍕c),'" y2="',(⍕pad+2160),'"/>'
+        '</g>'
+        '<circle id="horizon" cx="',(⍕c),'" cy="',(⍕c),'" r="',(⍕r),'" fill="none" stroke="#555" stroke-width="2"/>'
+        '<text class="cardinal" x="',(⍕c),'" y="',(fmt c-r-20),'">N</text>'
+        '<text class="cardinal" x="',(⍕c),'" y="',(fmt c+r+35),'">S</text>'
+        '<text class="cardinal" x="',(fmt c-r-25),'" y="',(⍕c),'">E</text>'
+        '<text class="cardinal" x="',(fmt c+r+25),'" y="',(⍕c),'">W</text>'
+        bright star¨stars
+        ((Data.BRIGHT∧⍵.StarsVisible)/Data.STARNAMES)label¨bright/stars
+        bodies
+        SvgLegend pad
+    ) }

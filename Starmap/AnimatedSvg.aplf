@@ -1,0 +1,27 @@
+AnimatedSvg←{
+   ⍝ Animated SVG of the sky, day by day, driven by JavaScript
+   ⍝ ⍺ is FPS [HIRES [SKIP]]:
+   ⍝   FPS: playback frames per second
+   ⍝   HIRES: 1=full-size display (default 0=half-size); as in the book,
+   ⍝     it has no effect (#26)
+   ⍝   SKIP: days between frames (default 1=every day, 2=every other day)
+   ⍝ ⍵ is (M D Y)(M D Y) TIME LAT LONG
+   ⍝ Stars are computed in JavaScript (ported sky math);
+   ⍝ planet positions are computed here and embedded as JSON
+    opts←,⍺
+    fps hires skip←opts,(≢opts)↓0 0 1
+    start end t lat long←⍵
+    jd1←Jnu start
+    nframes←⌈(1+(Jnu end)-jd1)÷skip
+    _←⎕←'Computing ',(⍕nframes),' frames (skip ',(⍕skip),')...'
+    json←AnimJson(jd1+skip×¯1+⍳nframes)AnimFrames t lat long
+    _←⎕←'Building SVG...'
+   ⍝ Height: map, planet table, bright star table and controls
+    ty←80+2160+120+50+8+32+(11×34)+10+60
+    ty←ty+50+8+32+34×⌈(+/Data.BRIGHT)÷2
+    head←AnimHead 80+ty+20+80
+    tables y←AnimTables 80+2160+120
+    script←(fps nframes jd1 skip)AnimScript lat long t json
+    svg←head,(AnimBodies ⍬),tables,(AnimControls y),script,'</svg>'
+    _←⎕←'Animated SVG: ',(⍕≢svg),' characters'
+    svg }

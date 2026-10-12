@@ -1,0 +1,7 @@
+AnimJson←{
+   ⍝ Planet data ⍵ (from AnimFrames) as members of a JSON object:
+   ⍝ for each field, an array per body of its values in each frame
+    fjs←{'¯'⎕R'-'⊢⍕⍵} ⋄ fj←{1↓∊',',¨fjs¨⍵}
+    field←{'"',⍺,'":[',(1↓∊',',¨{'[',(fj ⍵),']'}¨↓⍉⍵),'],'}
+    names←'px' 'py' 'vis' 'rah' 'ram' 'dec' 'alt' 'az' 'mx' 'my'
+    (∊names field¨10↑⍵),'"phase":[',(fj 11⊃⍵),']' }

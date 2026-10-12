@@ -1,0 +1,9 @@
+Place←{
+   ⍝ The observer's place ⍵ (latitude, longitude) as captions give it:
+   ⍝ VIEW FROM {lat} NORTH, {long} WEST, in degrees and arcminutes
+    lat long←⍵
+    latd←⌊|lat ⋄ latm←⌊0.5+60×(|lat)-latd
+    longd←⌊|long ⋄ longm←⌊0.5+60×(|long)-longd
+    hemi←(1+lat<0)⊃'NORTH' 'SOUTH'
+    side←(1+long>0)⊃'WEST' 'EAST'
+    'VIEW FROM ',(⍕latd),' DEGREES ',(⍕latm),' MINUTES ',hemi,', ',(⍕longd),' DEGREES ',(⍕longm),' MINUTES ',side }

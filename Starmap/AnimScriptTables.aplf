@@ -1,0 +1,53 @@
+AnimScriptTables←{
+   ⍝ JavaScript for the animated SVG: the rest of renderFrame, which writes
+   ⍝ the title and the planet and bright star tables
+   ⍝ ⍵ is TIME LAT LONG, for the title
+    t lat long←⍵
+    h mn ap←Clock t
+    ∊(
+        ⍝ Title
+        'const mdy=jdToDate(jd),dn=dayName(jd);'
+        'document.getElementById("title").textContent='
+        '"',(Place lat long)
+        ', ON "+dn+" "+mdy[2]+"/"+mdy[0]+"/"+mdy[1]+"'
+        ' AT ',h,':',mn,' ',ap,'";'
+        ⍝ Planet table values (always show, dim when below horizon)
+        'for(let i=0;i<np;i++){'
+        'const row=document.getElementById("pt-row-"+i);'
+        'row.setAttribute("class",PD.vis[i][fi]?"pt-row":"pt-row dim");'
+        'document.getElementById("pt-rah-"+i).textContent=hm(PD.rah[i][fi]);'
+        'document.getElementById("pt-ram-"+i).textContent=hm(PD.ram[i][fi]);'
+        'document.getElementById("pt-dec-"+i).textContent=hm(PD.dec[i][fi]);'
+        'document.getElementById("pt-alt-"+i).textContent=hm(PD.alt[i][fi]);'
+        'document.getElementById("pt-az-"+i).textContent=hm(PD.az[i][fi]);'
+        'if(PD.vis[i][fi]){'
+        'document.getElementById("pt-mx-"+i).textContent=hm(PD.mx[i][fi]);'
+        'document.getElementById("pt-my-"+i).textContent=hm(PD.my[i][fi]);'
+        '}else{'
+        'document.getElementById("pt-mx-"+i).textContent="";'
+        'document.getElementById("pt-my-"+i).textContent="";}}'
+        ⍝ Moon phase
+        'const ph=PD.phase[fi],illu=Math.round(50*(1-Math.cos(2*PI*ph)))/100;'
+        'const wx=ph>0.5?"WANING":"WAXING";'
+        'document.getElementById("moon-phase").textContent="MOON PHASE "+illu+" "+wx;'
+        ⍝ Bright star table (all stars, dim below-horizon)
+        'for(let i=0;i<BRIGHT_IDX.length;i++){'
+        'const si=BRIGHT_IDX[i],row=document.getElementById("bst-row-"+i);'
+        'const vr=vm(sv[si],combined);'
+        'const alt=deg(Math.asin(clamp(vr[1],-1,1)));'
+        'const s2=-Math.sign(vr[2]);'
+        'const xy2=Math.sqrt(vr[0]*vr[0]+vr[2]*vr[2]);'
+        'let az2=0;if(xy2>1e-10){const ca=clamp(-vr[0]/xy2,-1,1);az2=(s2<=0?360:0)+s2*deg(Math.acos(ca));}'
+        'row.setAttribute("class",alt>=0?"bst-row":"bst-row dim");'
+        'document.getElementById("bst-alt-"+i).textContent=hm(Math.round(alt));'
+        'document.getElementById("bst-az-"+i).textContent=hm(Math.round(az2));'
+        'if(alt>=0){'
+        'const pr2=Math.tan(rad(90-alt)/2),ar2=rad(az2);'
+        'const mx=-pr2*Math.sin(ar2),my=pr2*Math.cos(ar2);'
+        'document.getElementById("bst-mx-"+i).textContent=hm(Math.round(mx*100)/100);'
+        'document.getElementById("bst-my-"+i).textContent=hm(Math.round(my*100)/100);'
+        '}else{'
+        'document.getElementById("bst-mx-"+i).textContent="";'
+        'document.getElementById("bst-my-"+i).textContent="";}}'
+        '}'  ⍝ end renderFrame
+    ) }

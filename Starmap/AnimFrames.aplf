@@ -1,0 +1,25 @@
+AnimFrames←{
+   ⍝ Planet data for the frames of an animation, at stated day numbers ⍺
+   ⍝ ⍵ is TIME LAT LONG
+   ⍝ Result is PX PY VIS RAH RAM DEC ALT AZ MX MY, each frames × 11 bodies
+   ⍝ (rows padded when the comet is out of range), then the moon's phases
+    t lat long←⍵
+    frame←{
+        sky←SkyAt ⍵ t lat long
+        n←11-≢sky.Planets
+        coord←(≢sky.Planets)2⍴0
+        coord[⍸sky.PlanetsVisible;]←sky.PlanetCoord
+        coord←coord⍪n 2⍴0
+        bodies←sky.Planets⍪n 3⍴0
+        aa←sky.PlanetsAA⍪n 2⍴¯90 0
+        rah←⌊bodies[;1]
+        px←⌊0.5+1160+1080×coord[;1]
+        py←⌊0.5+1160-1080×coord[;2]
+        ram←⌊0.5+60×bodies[;1]-rah
+        dec←⌊0.5+bodies[;2]
+        alt az←↓⌊0.5+⍉aa
+        mx my←↓0.01×⌊0.5+100×⍉coord
+        px py(sky.PlanetsVisible,n⍴0)rah ram dec alt az mx my sky.Phase
+    }
+    frames←frame¨,⍺
+    ({↑⍵⊃¨frames}¨⍳10),⊂11⊃¨frames }
