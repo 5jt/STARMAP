@@ -81,6 +81,8 @@ None currently.
 - Stage 6 (#16): SVG, animation and web, PR #27; `TestStyle` now ignores string literals, as approved
 - Found inside dfns in Dyalog 21: an embedded assignment after a function call (`x←F t←⍵`) and a strand of indexed names (`a[;1]b[;2]`) do not behave as in tradfns; such lines are split
 - Opened issues #19, #22 and #26 for book bugs the modern version replicates
+- Stage 6 merged (PR #27); README notes the video dependencies (`rsvg-convert`, `ffmpeg`)
+- Drafted a one-page summary of the modernisation for the Dyalog user meeting, as a Claude Doc ("Reviving STARMAP with Claude")
 
 ### 2026-10-11 (post-merge housekeeping)
 - Pulled PR #3 (Neil Kirsopp's fork) into main

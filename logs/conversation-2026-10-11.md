@@ -1,6 +1,6 @@
 # Conversation log
 
-Claude Code session 2026-10-11 to 2026-10-12: housekeeping after the merge of PR #3, and modernisation stages 1-6 for Dyalog APL 21. User and assistant messages only; tool calls and their output are omitted.
+Claude Code session 2026-10-11 to 2026-10-12: housekeeping after the merge of PR #3, modernisation stages 1-6 for Dyalog APL 21, and a one-page summary of the modernisation. User and assistant messages only; tool calls and their output are omitted.
 
 ---
 
@@ -1724,3 +1724,250 @@ It's safe to reboot.
 **User** (2026-10-12 11:12 UTC)
 
 Update conversation as well
+
+---
+
+**Claude** (2026-10-12 11:13 UTC)
+
+I've saved the conversation log as `logs/conversation-2026-10-11.md` and pushed it on the housekeeping branch, so it's part of PR #11 alongside the TODO update.
+
+- **Contents:** your messages and my replies, timestamped, from the pull of PR #3 to the stage 6 status report. It leaves out tool calls and their output. The exchanges since that report, about the reboot and these updates, aren't in it.
+- **Checked before pushing:** no tokens or email addresses. The log does include our discussion of how `gh` gets permission to open PRs, though no credentials. If you'd rather not have that in a pushed file, tell me and I'll take it out before you merge #11.
+
+I'm back on the stage 6 branch with nothing uncommitted, and every branch is pushed. It's safe to reboot.
+
+---
+
+**User** (2026-10-12 11:29 UTC)
+
+And we're back. I see a push on #16 awaiting a PR
+
+---
+
+**Claude** (2026-10-12 11:29 UTC)
+
+Yes, the stage 6 branch is pushed, but I haven't drafted the PR because one test still fails.
+
+23 of 24 tests pass. The exception is `TestStyle`. Its rule that data tables must be reached through `Data` searches whole lines, so it also catches table names that appear only inside quoted text. Examples are the SVG heading `'BRIGHT STARS'` and the JavaScript line `'const BRIGHT=['`. With the strings removed, nothing in the code breaks the rule.
+
+The fix is one added line in `Starmap/Tests/TestStyle.aplf`, which removes the text of strings before the check:
+
+```apl
+ code←{⍵/⍨~∨\'⍝'=⍵}¨¨m.⎕NR¨fns          ⍝ source lines without comments
+ code←('''[^'']*'''⎕R'''''')¨code          ⍝ ... and without the text of strings
+```
+
+CLAUDE.md requires your approval to change a test. Do you approve? If so, I'll make the change, run the full suite, push, and give you the PR message to paste.
+
+---
+
+**User** (2026-10-12 11:30 UTC)
+
+Explain the test
+
+---
+
+**Claude** (2026-10-12 11:30 UTC)
+
+`TestStyle` makes four checks across every function in the modern namespace. Three pass; the data-table check is the one failing.
+
+**What it checks** (`Starmap/Tests/TestStyle.aplf`)
+
+1. **No branching with `→`.** Line 7 removes comments from each function's source (everything from `⍝` to the end of the line). Line 8 fails any function whose remaining code contains `→`. This enforces your first modernisation aim: control structures or dfn guards, not branches.
+2. **No function over 100 lines** (line 12), counted from `⎕NR`.
+3. **Data tables only through `Data`** (lines 16–19), explained below.
+4. **Variables in the namespace are upper case** (lines 23–24). Only constants such as `PI` and `EARTH` may live there, and upper case marks them as constants.
+
+**The data-table check**
+
+The book's tables (`planets`, `moon`, `STARS`, `BRIGHT`, `AXITILT` and so on) live only in the book namespace. The modern version reaches them as `Data.STARS` and so on. That was decided in stage 1 so the tables exist once, and catalogue corrections such as #6 are made in one place.
+
+Line 19 searches each function's code for any table name written bare. The pattern is:
+
+```
+(?<![\w.])(planets|moon|…|YRLENGTH)(?!\w)
+```
+
+It matches a table name only when the character before it is not a letter, digit, underscore or dot, and the character after it is not a letter, digit or underscore. So:
+
+- `Data.STARS` passes, because of the dot;
+- `STARNAMES` doesn't count as `STARS`, and `moonrise` doesn't count as `moon`;
+- `moon←MoonPos date` fails, because it reads like the book's table.
+
+The check is useful beyond the rule itself: it caught my local variables `planets` and `moon`, which I renamed, because a reader would take them for the tables.
+
+**Why it now fails**
+
+The search runs over whole lines, including the text inside quotes. Stage 6 is the first code that contains output text, and some of that text uses the same words:
+
+- `SvgStarTable`: `'BRIGHT STARS'`, the table heading in the SVG;
+- `AnimTables`: `'moon-phase'` (an element id) and `'BRIGHT STARS'`;
+- `AnimScriptData`: `'const BRIGHT=['` and `'const PI=Math.PI,EQUINOX=2441762.5,YRLENGTH=365.24219,AXITILT=23.4428,…'` (JavaScript constants);
+- `AnimScriptSky`, `AnimScriptTables` and `AnimScriptTips`: similar JavaScript names.
+
+None of these refer to a table. They are characters the program writes out. I confirmed this by removing every quoted string from the six functions and searching again: no matches.
+
+**The proposed fix**
+
+Add one line after line 7:
+
+```apl
+ code←('''[^'']*'''⎕R'''''')¨code          ⍝ ... and without the text of strings
+```
+
+In regex terms, the pattern is `'[^']*'`: a quote, any characters other than a quote, then a quote. That is one APL string; a doubled quote inside a string is read as two strings in a row, so it is still covered. Each string is replaced by `''`, an empty string, so the rest of the line is left as it was. For example:
+
+```
+before:  z←'table-header'text 1080 ty'BRIGHT STARS'
+after:   z←''text 1080 ty''
+```
+
+Code outside quotes is checked exactly as before, so a bare `STARS` in code would still fail. The `→` check gains the same correction, so an arrow inside a string would no longer count as branching.
+
+**A limitation in both versions**
+
+Comments are removed first, by cutting at the first `⍝`. If a string ever contains `⍝`, the line is cut inside the string. No current function has one, so this doesn't affect the change, but it is a known weakness of the test.
+
+---
+
+**User** (2026-10-12 11:33 UTC)
+
+Change approved. Carry on.
+
+---
+
+**Claude** (2026-10-12 11:34 UTC)
+
+I've made the `TestStyle` change you approved, and all 24 tests now pass. The runner's own checks (`test/test_run.sh`) pass too. The commit is `1e0a478`, and the branch is pushed.
+
+Before committing I checked that the revised test still catches what it should:
+- `x←STARS+≢'BRIGHT STARS'` is flagged, because `STARS` appears outside the quotes;
+- `'it''s BRIGHT'`, a string containing a doubled quote, is not flagged;
+- `Data.STARS` is not flagged.
+
+Here is the PR message to paste. The branch is `16-modernisation-stage-6-svg-animation-and-web`.
+
+**Title:** Modernisation stage 6: SVG, animation and web from the sky namespace
+
+```markdown
+Closes #16.
+
+Adds the SVG, animation and web functions to the modern version, following the stage 5 conventions. All the book version's code is now modernised.
+
+## Changes
+
+- `PLOTSVG`, `FRAMESVG`, `SAVESVG`, `ANIMATE`, `ANIMATEDSVG` and `MAKEVIDEO` become the dfns `PlotSvg`, `FrameSvg`, `SaveSvg`, `Animate`, `AnimatedSvg` and `MakeVideo`; `EXAMPLE_SVG` and `STARTSERV` become the tradfns `ExampleSvg` and `StartServ`.
+- `PlotSvg` takes the least height as an optional left argument in place of the global `PLOTSVG_MINHT`; `FrameSvg` is `3800 PlotSvg`. `StartServ` keeps the server in a local, not the global `HTTP_APP`. No function sets globals.
+- `PLOTSVG` (226 lines) and `ANIMATEDSVG` (642 lines) are split into dfns of at most 100 lines: `SvgStyle`, `SvgMap`, `SvgLegend`, `SvgPlanetTable` and `SvgStarTable`; `AnimFrames`, `AnimJson`, `AnimHead`, `AnimBodies`, `AnimTables`, `AnimControls`, and `AnimScript` with five script parts. The JavaScript is written as array notation, one string per line.
+- `Place` and `Clock` build the caption parts that `Caption`, `PlotSvg` and the animation share; `Caption` now uses them.
+- `MakeVideo` is a dfn whose early returns become guards.
+- The `WebApp` class is the book's, calling `Animate`, `AnimatedSvg` and `MakeVideo`.
+- `AnimatedSvg` ignores its HIRES option, as the book's does (#26).
+
+## Tests
+
+- `TestSvg`: `PlotSvg`, `FrameSvg` and `SaveSvg` return and write exactly the book's SVG for three observations.
+- `TestAnimation`: `AnimatedSvg` returns exactly the book's animated SVG in four cases (default options, full size, every other day, and a range across the end of Kohoutek's window); `Animate` writes the book's frame files; `MakeVideo` writes the book's PNG images and mp4 video byte for byte, and with no frames returns what the book's does. Needs `rsvg-convert` (librsvg) and `ffmpeg`.
+- `TestInventory` adds the new names, the helper functions, the two tradfns and the `WebApp` check.
+- `TestStyle` now ignores the text of string literals in its check that data tables are reached only through `Data`, as approved: SVG and JavaScript text such as `'BRIGHT STARS'` and `'const BRIGHT=['` matched table names. Code outside quotes is checked as before.
+- The book's `TEST_*` functions are unchanged and pass.
+
+## Note
+
+Inside a dfn in Dyalog 21.0, a strand of indexed names such as `bodies[;2]aa[;1]aa[;2]` gave a RANK ERROR, as the embedded assignment noted in #25 misbehaved. Such lines are written as separate expressions.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+```
+
+PR #11 (housekeeping, now also carrying the TODO update and conversation log) is still open. It branched before the modernisation merges and will probably conflict in the README, so it needs a rebase first. Shall I do that now?
+
+---
+
+**User** (2026-10-12 11:35 UTC)
+
+Merged and deleted on remote
+
+---
+
+**Claude** (2026-10-12 11:36 UTC)
+
+Missing blank line after the active task; fixing that.
+
+---
+
+**Claude** (2026-10-12 11:36 UTC)
+
+Main is up to date with the merge of PR #27, and #16 is closed. That completes all six modernisation stages.
+
+PR #11 (housekeeping) doesn't need a rebase after all: Git merges it into main without conflicts. Its text was out of date, though, so I've pushed updates to it:
+
+- **`plans/TODO.md`:** modernisation moves to Completed, listing stages 1–6 with their issues and PRs. The session log now records the approved `TestStyle` change, which it previously described as awaiting approval.
+- **README status section:** a new line for the modern version in `Starmap/`, linking to `plans/PLAN-MODERN.md`.
+
+GitHub is still re-checking #11 after that push. Before it, the PR showed as mergeable with no conflicts.
+
+The README still doesn't say that making videos needs `rsvg-convert` and `ffmpeg`. I offered that line earlier but you didn't take it up; I can add it to #11 if you want it.
+
+Open issues now are the book work (#4, #5, #7), the catalogue errata (#6), two small fixes (#8, #9), and the three book bugs the modern version reproduces on purpose (#19, #22, #26). PR #11 is the only one waiting on you.
+
+---
+
+**User** (2026-10-12 11:40 UTC)
+
+Yes update `README.md` to note video dependencies. Docker is installed on this machine; should we be using it?
+
+---
+
+**Claude** (2026-10-12 11:40 UTC)
+
+I've noted the video dependencies in the README and pushed the change to PR #11.
+
+- **New paragraph:** making videos (`MAKEVIDEO`, `MakeVideo` and the web UI's mp4 export) needs `rsvg-convert` from librsvg and `ffmpeg` on the `PATH`. It gives the Homebrew command and says the modern tests need both tools too.
+- **Wording fix:** the modern version is no longer described as "in progress".
+- **Branch update:** to edit that part of the README, I first merged `main` into the PR #11 branch, because the "Running the code" section exists only on `main`. There were no conflicts.
+
+**Docker:** I'd use it only if you want automated testing (CI) on GitHub.
+
+- **Day-to-day work gains little.** Dyalog 21, librsvg and ffmpeg are installed here and the suite runs directly. A container would add a layer between you and the interactive Dyalog session and Link, which is how the code is meant to be explored.
+- **CI is the real case, and this repository has none.** There is no `.github/` folder, so CLAUDE.md's "Verify CI" step has nothing to check, and nothing tests a PR except me running the suite here. A Dockerfile that installs Dyalog 21, librsvg and ffmpeg would let a GitHub Actions workflow run `test/run.apls` on every PR. It would also make the video byte-for-byte comparisons independent of whatever library versions a given machine has.
+- **Two things to check first.** Dyalog publishes official images on Docker Hub, but I couldn't confirm a Dyalog 21 image or its licence terms for CI use: Docker's background service isn't running, so I couldn't search. And it needs care with the GitHub permission rules you set up. The deny rules block `gh workflow` and `gh run` for me, so you'd be the one watching results.
+
+If you want CI, I can open an issue for it, with a Dockerfile and a workflow as the first stage. Start Docker Desktop first so I can check the image.
+
+---
+
+**User** (2026-10-12 11:43 UTC)
+
+Morten will talk at this week's Dyalog user meeting about what AI can do to revive old APL code. Draft a 1-page summary of the modernisation of STARMAP.
+
+---
+
+**Claude** (2026-10-12 11:44 UTC)
+
+Outline is up in your doc. Checking the book's authorship in the README before filling the first section.
+
+---
+
+**Claude** (2026-10-12 11:45 UTC)
+
+All four sections are filled in. Reading the doc back to check the formatting and numbering.
+
+---
+
+**Claude** (2026-10-12 11:45 UTC)
+
+I've drafted the one-page summary, [Reviving STARMAP with Claude](https://claude.ai/code/artifact/564dea42-d2de-4586-9a32-dfecee56d30f), about 600 words. You can edit it in place or comment on it, and I'll revise. It's private until you share it with Morten from the page's Share menu.
+
+It has four sections:
+- **Starting point:** the 1978 book code and Neil's Dyalog port.
+- **How the work ran:** the six stages, tests first.
+- **Before and after:** a table comparing the book and modern versions.
+- **Who did what:** your decisions, and what Claude found.
+
+The byline's author chip shows the signed-in account's name, which is "Jack", while the text credits Stephen. Change either if that's wrong.
+
+---
+
+**User** (2026-10-12 12:57 UTC)
+
+let's wrasp up
