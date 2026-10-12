@@ -3,6 +3,9 @@
 ## Active tasks
 
 - Housekeeping after merge of PR #3 (#10)
+- **Modernisation for Dyalog APL 21** (see `plans/PLAN-MODERN.md`): the modern version in `Starmap/`, linked as `#.Starmap`, reproduces the book version's results exactly, bugs included
+  - Done: stages 1-5 (#12, #13, #14, #15, #24; PRs #17, #18, #20, #21, #23, #25)
+  - Stage 6 (#16): SVG, animation and web. Tests and implementation on branch `16-modernisation-stage-6-svg-animation-and-web`, pushed; 23 of 24 tests pass. Waiting for approval to change `TestStyle` to ignore string literals in its data-table check (JavaScript and SVG text such as `'const BRIGHT=['` trips it). Then push and open the PR.
 
 ## Up next
 
@@ -12,6 +15,7 @@
 - Constellation stick figures matched to the 332-star catalogue (#7, after #6)
 - Document UTC input convention in ENTRY (#8)
 - Tighten Sun tolerance in TEST_POSITIONS (#9; test change, needs approval)
+- Book bugs replicated in the modern version, to fix after modernisation: CometSolve stops when any element converges (#19); PRINTED shows the observation's weekday, not the print date's (#22); ANIMATEDSVG ignores HIRES (#26)
 - Continue proofreading transcribed book text
 
 ## Blocked
@@ -65,6 +69,18 @@ None currently.
 ---
 
 ## Session log
+
+### 2026-10-11 to 2026-10-12 (modernisation stages 1-6)
+- Agreed the modernisation plan (`plans/PLAN-MODERN.md`, PR #17): book version stays in `APLSource/` as `#.sm`; modern version in `Starmap/` as `#.Starmap`, sharing data tables through `Data`; tests first, one issue and branch per stage
+- Stage 1 (#12): test runner `test/run.apls` and its tests `test/test_run.sh`
+- Stage 2 (#13): orbital selectors take the element table as argument; `→` loops and guards replaced
+- Stage 3 (#14): `SkyAt` returns a sky namespace, replacing ENTRY, CALCULATEPLANETS and CALCULATESTARS
+- Stage 4 (#15): terminal output functions return lines from the sky namespace
+- Rulings of 2026-10-12: all code in scope, including Neil Kirsopp's additions; tradfns become dfns with bicameral names; immutable constants become upper-case variables set by `Initialise`
+- Stage 5 (#24): dfns and bicameral names throughout
+- Stage 6 (#16): SVG, animation and web implemented; awaiting approval of the `TestStyle` change
+- Found inside dfns in Dyalog 21: an embedded assignment after a function call (`x←F t←⍵`) and a strand of indexed names (`a[;1]b[;2]`) do not behave as in tradfns; such lines are split
+- Opened issues #19, #22 and #26 for book bugs the modern version replicates
 
 ### 2026-10-11 (post-merge housekeeping)
 - Pulled PR #3 (Neil Kirsopp's fork) into main
