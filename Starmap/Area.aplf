@@ -1,4 +1,4 @@
- Z←ORB Area X;Q
-⍝ Area swept by comet as function of distance from axis
- Q←PeriDist ORB
- Z←(Q×X÷2)+(X*3)÷4×Q
+Area←{
+   ⍝ Area swept by comet with orbital elements ⍺ as function of distance ⍵ from axis
+    q←PeriDist ⍺
+    (q×⍵÷2)+(⍵*3)÷4×q }

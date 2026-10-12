@@ -1,0 +1,5 @@
+Times←{
+   ⍝ Matrix product of stacked rotation matrices
+   ⍝ Computes product of corresponding pairs in 3D arrays
+    2≥≢⍴⍺: ⍺+.×⍵
+    ⍺(+.×⍤2)⍵ }

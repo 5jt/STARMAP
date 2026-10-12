@@ -1,3 +1,3 @@
- Z←Eccentricity ORB
-⍝ Selects eccentricity from orbital elements ORB
- Z←ORB[;3]
+Eccentricity←{
+   ⍝ Selects eccentricity from orbital elements ⍵
+    ⍵[;3] }

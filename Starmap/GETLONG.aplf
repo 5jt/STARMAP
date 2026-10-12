@@ -1,4 +1,0 @@
- Z←GETLONG
-⍝ Prompts user for longitude (degrees east)
- ⎕←'Enter longitude (degrees east, negative for west):'
- Z←⎕

@@ -1,4 +1,0 @@
- Z←GETTIME
-⍝ Prompts user for time in hours
- ⎕←'Enter time (hours, 0-24):'
- Z←⎕

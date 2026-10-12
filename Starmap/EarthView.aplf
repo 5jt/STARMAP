@@ -1,0 +1,4 @@
+EarthView←{
+   ⍝ Converts heliocentric ⍵ to geocentric equatorial coordinates on date ⍺
+    gc←⍵-(⍴⍵)⍴⍺ PlanetPos EARTH
+    3 RaDecDist gc+.×InclRotate-Radian Data.AXITILT }

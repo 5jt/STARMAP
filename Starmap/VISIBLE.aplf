@@ -1,4 +1,0 @@
- Z←VISIBLE X;ALT
-⍝ Returns boolean: which objects are above horizon
- ALT←X[;1]
- Z←ALT≥0

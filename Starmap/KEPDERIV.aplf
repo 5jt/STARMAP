@@ -1,3 +1,0 @@
- Z←E KEPDERIV PSI
-⍝ Derivative of Kepler's function
- Z←1-E×COS PSI

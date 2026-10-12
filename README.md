@@ -190,7 +190,7 @@ The code requires Dyalog APL 21.
 There are two versions:
 
 * `APLSource/` is the book version, as close to the 1978 listings as modern Dyalog allows; load it as `#.sm`
-* `Starmap/` is the modern version (in progress, see `plans/PLAN-MODERN.md`); load it as `#.Starmap`. It shares the book version's data tables through `#.Starmap.Data`, a reference to `#.sm`
+* `Starmap/` is the modern version (in progress, see `plans/PLAN-MODERN.md`); load it as `#.Starmap`. It shares the book version's data tables through `#.Starmap.Data`, a reference to `#.sm`, and `#.Starmap.Initialise` sets its constants once `Data` is set
 
 To work on both in a session:
 
@@ -198,6 +198,7 @@ To work on both in a session:
 ]link.create #.sm APLSource
 ]link.create #.Starmap Starmap
 #.Starmap.Data←#.sm
+#.Starmap.Initialise
 ```
 
 To run every test from the repository root:

@@ -1,0 +1,5 @@
+ Z←GetDate;D
+⍝ Prompts user for date and returns Julian day number
+ ⎕←'Enter date (month day year):'
+ D←⎕
+ Z←Jnu D

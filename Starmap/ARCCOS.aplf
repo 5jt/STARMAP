@@ -1,3 +1,0 @@
- Z←ARCCOS X
-⍝ Arccosine function (result in radians)
- Z←¯2○X

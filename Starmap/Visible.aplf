@@ -1,0 +1,3 @@
+Visible←{
+   ⍝ Which objects in ⍵ (altitude, azimuth) are above the horizon
+    ⍵[;1]≥0 }

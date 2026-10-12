@@ -1,6 +1,0 @@
- Z←CARTRIPLET RADEC;Z1;Z2;Z3
-⍝ Converts RA/Dec to 3D Cartesian (non-normalized)
- Z1←COS PI×RADEC[;1]÷12
- Z2←TAN RADIAN RADEC[;2]
- Z3←-SIN PI×RADEC[;1]÷12
- Z←Z1,Z2,[1.5]Z3

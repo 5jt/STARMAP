@@ -1,4 +1,0 @@
- GQ←MOONPOS DATE;GC
-⍝ Position of moon in geocentric equatorial coordinates
- GC←DATE PLANETPOS Data.moon
- GQ←3 RADECDIST GC+.×INCLROTATE-RADIAN Data.AXITILT

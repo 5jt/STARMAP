@@ -1,0 +1,4 @@
+Projection←{
+   ⍝ Projects sky ⍵ (altitude, azimuth) onto flat surface (stereographic)
+   ⍝ Condensed at zenith, expanded at horizon
+    (Tan 0.5×Coaltitude ⍵[;1]),[1.5]Radian ⍵[;2] }

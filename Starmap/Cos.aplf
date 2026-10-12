@@ -1,0 +1,3 @@
+Cos←{
+   ⍝ Cosine of ⍵ (in radians)
+    2○⍵ }

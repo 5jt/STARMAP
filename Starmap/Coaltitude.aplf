@@ -1,0 +1,3 @@
+Coaltitude←{
+   ⍝ Coaltitude: 90 minus altitude ⍵, in radians
+    Radian 90-⍵ }

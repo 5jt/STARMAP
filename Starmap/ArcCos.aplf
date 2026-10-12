@@ -1,0 +1,3 @@
+ArcCos←{
+   ⍝ Arccosine of ⍵ (result in radians)
+    ¯2○⍵ }

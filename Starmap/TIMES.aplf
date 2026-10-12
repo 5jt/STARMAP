@@ -1,8 +1,0 @@
- Z←A TIMES B
-⍝ Matrix product of stacked rotation matrices
-⍝ Computes product of corresponding pairs in 3D arrays
- :If 2≥≢⍴A
-     Z←A+.×B
- :Else
-     Z←A(+.×⍤2)B
- :EndIf

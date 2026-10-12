@@ -1,0 +1,4 @@
+KepDeriv←{
+   ⍝ Derivative of Kepler's function at eccentric anomaly ⍵
+   ⍝ ⍺ is eccentricity
+    1-⍺×Cos ⍵ }

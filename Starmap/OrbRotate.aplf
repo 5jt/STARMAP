@@ -1,12 +1,11 @@
- H←ORB OrbRotate X;INCL;I;OMEGA;O;OMEG4;Q
-⍝ Converts 2D orbital plane coordinates to 3D heliocentric
-⍝ Accounts for orientation and tilt of each orbit in ORB
- X←((⍴X),1)⍴X←1 0 1\X
- OMEGA←RADIAN(Periangle ORB)-Ascending ORB
- OMEG4←RADIAN Ascending ORB
- INCL←RADIAN Inclination ORB
- I←INCLROTATE INCL
- O←LONGROTATE OMEGA
- Q←LONGROTATE OMEG4
- H←(Q TIMES I TIMES O)TIMES X
- H←(¯1↓⍴H)⍴H
+OrbRotate←{
+   ⍝ Converts 2D orbital plane coordinates ⍵ to 3D heliocentric
+   ⍝ Accounts for orientation and tilt of each orbit in orbital elements ⍺
+    x←((⍴x),1)⍴x←1 0 1\⍵
+    omega←Radian(Periangle ⍺)-Ascending ⍺
+    omeg4←Radian Ascending ⍺
+    i←InclRotate Radian Inclination ⍺
+    o←LongRotate omega
+    q←LongRotate omeg4
+    h←(q Times i Times o)Times x
+    (¯1↓⍴h)⍴h }

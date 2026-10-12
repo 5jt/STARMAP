@@ -1,4 +1,0 @@
- Z←GETLAT
-⍝ Prompts user for latitude (degrees north)
- ⎕←'Enter latitude (degrees north, negative for south):'
- Z←⎕

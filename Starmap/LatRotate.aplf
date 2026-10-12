@@ -1,0 +1,4 @@
+LatRotate←{
+   ⍝ Generates rotation matrix for latitude ⍵
+   ⍝ Related to inclination rotation by axis swap
+    ⌽⊖InclRotate ⍵ }

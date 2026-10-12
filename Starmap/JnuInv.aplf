@@ -1,0 +1,17 @@
+JnuInv←{
+   ⍝ Inverse of Jnu: Julian day number ⍵ → M D Y
+   ⍝ Standard Meeus inverse algorithm
+    l←⌊⍵+68569.5
+    n←⌊4×l÷146097
+    l←l-⌊((146097×n)+3)÷4
+    i←⌊4000×(l+1)÷1461001
+    l←31+l-⌊1461×i÷4
+    j←⌊80×l÷2447
+    d←l-⌊2447×j÷80
+    l←⌊j÷11
+    m←j+2-12×l
+    y←(100×n-49)+i+l
+    z←m d y
+    ⍝ Verify round-trip; adjust day if needed
+    ⍵=Jnu z: z
+    m(d+⌊0.5+⍵-Jnu z)y }

@@ -1,3 +1,3 @@
- Z←Ascending ORB
-⍝ Selects ascending node from orbital elements ORB
- Z←ORB[;5]
+Ascending←{
+   ⍝ Selects ascending node from orbital elements ⍵
+    ⍵[;5] }

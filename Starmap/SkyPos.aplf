@@ -1,0 +1,14 @@
+SkyPos←{
+   ⍝ Converts geocentric equatorial ⍵ to altitude/azimuth
+   ⍝ ⍺ is the observer: LAT,DATE,TIME
+    lat date time←⍺
+    sun←(24÷Data.YRLENGTH)×Data.YRLENGTH|date-Data.EQUINOX
+    rot←PI×(sun+time-12)÷12
+    colat←Radian 90-lat
+    gq←CarTriplet ⍵
+    gq←gq÷⍉(⌽⍴gq)⍴Norm gq
+    gq←gq+.×(LongRotate rot)+.×LatRotate colat
+    alt←Degrees ArcSin gq[;2]
+    s←-×gq[;3]
+    az←(360×s≤0)+s×Degrees ArcCos(-gq[;1])÷Norm gq[;1 3]
+    alt,[1.5]az }
