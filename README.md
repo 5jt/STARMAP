@@ -25,6 +25,7 @@ The core logic runs in Dyalog APL (`APLSource/`), contributed by Neil Kirsopp in
 * SVG and animated SVG star maps, and a simple web UI (`WebApp.aplc`, `web/index.html`) hosted at <https://starmap.kirsopp.me>
   - [sample animated SVG](animated.svg) (download and open in a browser)
   - [screen recording of the web UI](demos/starmap-animation-demo.mp4)
+* a modern version in `Starmap/` (dfns, no globals, Dyalog APL 21 idioms) that reproduces the book version's results exactly – see [plans/PLAN-MODERN.md](plans/PLAN-MODERN.md)
 * an A5 rendering of the book in Typst (`book/typst/`, [book/starmap-a5.pdf](book/starmap-a5.pdf)) – in progress
 
 Open work is tracked in [GitHub issues](https://github.com/5jt/STARMAP/issues) and [plans/TODO.md](plans/TODO.md).

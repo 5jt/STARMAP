@@ -3,10 +3,6 @@
 ## Active tasks
 
 - Housekeeping after merge of PR #3 (#10)
-- **Modernisation for Dyalog APL 21** (see `plans/PLAN-MODERN.md`): the modern version in `Starmap/`, linked as `#.Starmap`, reproduces the book version's results exactly, bugs included
-  - Done: stages 1-5 (#12, #13, #14, #15, #24; PRs #17, #18, #20, #21, #23, #25)
-  - Stage 6 (#16): SVG, animation and web. Tests and implementation on branch `16-modernisation-stage-6-svg-animation-and-web`, pushed; 23 of 24 tests pass. Waiting for approval to change `TestStyle` to ignore string literals in its data-table check (JavaScript and SVG text such as `'const BRIGHT=['` trips it). Then push and open the PR.
-
 ## Up next
 
 - Book phase 1: complete Typst rendering of existing content (#4)
@@ -23,6 +19,9 @@
 None currently.
 
 ## Completed
+
+- **Modernisation for Dyalog APL 21** (see `plans/PLAN-MODERN.md`): the modern version in `Starmap/`, linked as `#.Starmap`, reproduces the book version's results exactly, bugs included
+  - Stages 1-6 (#12, #13, #14, #15, #24, #16; PRs #17, #18, #20, #21, #23, #25, #27)
 
 - **Dyalog implementation, web UI and book rendering** (PR #3, Neil Kirsopp, merged 2026-10-08)
   - Recorded in the session log entries 2026-02-23 to 2026-03-23 below and in `CHANGES.md`; branch names in those entries refer to the fork
@@ -78,7 +77,7 @@ None currently.
 - Stage 4 (#15): terminal output functions return lines from the sky namespace
 - Rulings of 2026-10-12: all code in scope, including Neil Kirsopp's additions; tradfns become dfns with bicameral names; immutable constants become upper-case variables set by `Initialise`
 - Stage 5 (#24): dfns and bicameral names throughout
-- Stage 6 (#16): SVG, animation and web implemented; awaiting approval of the `TestStyle` change
+- Stage 6 (#16): SVG, animation and web, PR #27; `TestStyle` now ignores string literals, as approved
 - Found inside dfns in Dyalog 21: an embedded assignment after a function call (`x←F t←⍵`) and a strand of indexed names (`a[;1]b[;2]`) do not behave as in tradfns; such lines are split
 - Opened issues #19, #22 and #26 for book bugs the modern version replicates
 
