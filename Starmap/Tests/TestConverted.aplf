@@ -1,0 +1,69 @@
+ R←TestConverted;m;b;same;x;a;deg;e;psi;polar;radec;aa;none;rot;stack;jdn;j
+⍝ Functions converted from book tradfns to dfns without other change
+⍝ return exactly what the book's versions return for the same arguments
+ m←## ⋄ b←##.Data ⋄ R←1
+ same←{(⊃⍵)≡2⊃⍵:1 ⋄ 0⊣⎕←'FAIL: TestConverted: ',⍺}
+
+⍝ Trigonometry and angle conversion
+ x←¯0.9 ¯0.3 0 0.5 0.99
+ a←¯3 ¯1 0 0.4 1.2 2.9
+ deg←¯180 0 45 90 360.25
+ R∧←'ARCCOS'same(m.ArcCos x)(b.ARCCOS x)
+ R∧←'ARCSIN'same(m.ArcSin x)(b.ARCSIN x)
+ R∧←'ARCTAN'same(m.ArcTan a)(b.ARCTAN a)
+ R∧←'COS'same(m.Cos a)(b.COS a)
+ R∧←'SIN'same(m.Sin a)(b.SIN a)
+ R∧←'TAN'same(m.Tan a)(b.TAN a)
+ R∧←'COS scalar'same(m.Cos 0.4)(b.COS 0.4)
+ R∧←'RADIAN'same(m.Radian deg)(b.RADIAN deg)
+ R∧←'DEGREES'same(m.Degrees a)(b.DEGREES a)
+ R∧←'SQRT'same(m.Sqrt 0 2 9 1E¯8)(b.SQRT 0 2 9 1E¯8)
+ R∧←'NORM vector'same(m.Norm 3 4)(b.NORM 3 4)
+ R∧←'NORM matrix'same(m.Norm 2 3⍴1 2 2 0.3 ¯4 1.2)(b.NORM 2 3⍴1 2 2 0.3 ¯4 1.2)
+
+⍝ Matrix products: one pair, and stacks of pairs
+ rot←b.INCLROTATE 0.3
+ stack←b.LONGROTATE 0.1 ¯0.2 2.3
+ R∧←'TIMES matrices'same(rot m.Times b.LATROTATE 0.6)(rot b.TIMES b.LATROTATE 0.6)
+ R∧←'TIMES matrix, vectors'same(rot m.Times 3 2⍴⍳6)(rot b.TIMES 3 2⍴⍳6)
+ R∧←'TIMES stacks'same(stack m.Times b.INCLROTATE 0.4 0.5 0.6)(stack b.TIMES b.INCLROTATE 0.4 0.5 0.6)
+
+⍝ Kepler's equation
+ e←b.planets[;3]
+ psi←○2×0.05 0.3 0.5 0.71 0.9 0.15 0.62 0.48 0.99
+ R∧←'KEPLERFN'same(e m.KeplerFn psi)(e b.KEPLERFN psi)
+ R∧←'KEPDERIV'same(e m.KepDeriv psi)(e b.KEPDERIV psi)
+ R∧←'TRUEANOMALY'same(e m.TrueAnomaly psi)(e b.TRUEANOMALY psi)
+ R∧←'TRUEANOMALY scalar'same(0.2 m.TrueAnomaly 1.1)(0.2 b.TRUEANOMALY 1.1)
+
+⍝ Coordinates and projection, including no visible objects
+ polar←5 2⍴0.3 1 1.2 0.5 ¯2 0.25 3.1 0 5.9 0.9
+ radec←4 2⍴0.5 ¯20 6.75 45 12 0 23.9 ¯80
+ aa←6 2⍴45 120 ¯10 300 0 0 89.5 10 ¯60 200 12 359
+ none←0 2⍴0
+ R∧←'CARTESIAN'same(m.Cartesian polar)(b.CARTESIAN polar)
+ R∧←'CARTRIPLET'same(m.CarTriplet radec)(b.CARTRIPLET radec)
+ R∧←'COALTITUDE'same(m.Coaltitude aa[;1])(b.COALTITUDE aa[;1])
+ R∧←'PROJECTION'same(m.Projection aa)(b.PROJECTION aa)
+ R∧←'PROJECTION none'same(m.Projection none)(b.PROJECTION none)
+ R∧←'VISIBLE'same(m.Visible aa)(b.VISIBLE aa)
+ R∧←'VISIBLE none'same(m.Visible none)(b.VISIBLE none)
+ R∧←'MAPCARTESIAN'same(m.MapCartesian b.PROJECTION aa)(b.MAPCARTESIAN b.PROJECTION aa)
+ R∧←'MAPCARTESIAN none'same(m.MapCartesian none)(b.MAPCARTESIAN none)
+ R∧←'LATROTATE scalar'same(m.LatRotate 0.59)(b.LATROTATE 0.59)
+ R∧←'LATROTATE vector'same(m.LatRotate 0.1 ¯0.6)(b.LATROTATE 0.1 ¯0.6)
+
+⍝ Time and calendar
+ R∧←'MOONPHASE'same(10.2 m.MoonPhase 3.5)(10.2 b.MOONPHASE 3.5)
+ R∧←'MOONPHASE vectors'same(1 13 23.9 m.MoonPhase 22 13 0.1)(1 13 23.9 b.MOONPHASE 22 13 0.1)
+ R∧←'TIMEADJUST'same(¯117.833 m.TimeAdjust 5)(¯117.833 b.TIMEADJUST 5)
+ R∧←'TIMEADJUST east'same(151.21 m.TimeAdjust 23.5)(151.21 b.TIMEADJUST 23.5)
+ jdn←2442184 2451545 2299161 2442049 2442773 2440588
+ :For j :In jdn
+     R∧←('JNUINV ',⍕j)same(m.JnuInv j)(b.JNUINV j)
+     R∧←('DAYNAME ',⍕j)same(m.DayName j)(b.DAYNAME j)
+ :EndFor
+
+ :If R
+     ⎕←'PASS: TestConverted'
+ :EndIf
