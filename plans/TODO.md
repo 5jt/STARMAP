@@ -2,42 +2,30 @@
 
 ## Active tasks
 
-- **Book modernisation** (branch `tmp`, see `plans/PLAN-BOOK.md`)
-  - Phase 1: Typst rendering of existing `starmap.md` content as A5 PDF
-  - First working render complete: body text, code blocks, figures, data tables, full 332-row star table
-  - Remaining phase 1 work:
-    - Add Table 1 (function call hierarchy diagram)
-    - Fix figure numbering (rotation matrices Fig. out of sequence)
-    - Tune page breaks to match original
-    - Side-by-side comparison with original page scans
-  - Phase 2: code audit (diff every listing against APLSource)
-  - Phase 3: apply updated Dyalog v20 code and update invalidated prose
-- **Web UI + tooltips** (branch `animated-svg`)
-  - Hover tooltips on stars/planets: name, constellation, RA/Dec, alt/az
-  - Constellation lines appear on hover (only for stars in stick figure)
-  - Constellation data rebuilt from Stellarium modern_iau (was dcf21)
-  - Hit box fix: transparent stroke-width:16 + pointer-events:all
-  - Remaining:
-    - Server needs restart to test rebuilt constellation data
-    - Star catalog errata (bugs 18-20 in docs/calculation-fixes.md):
-      - Star 205: labeled δ Lyr but is θ¹ Ser (HR 7141, Dec +4° is correct; Bayer designation is wrong)
-      - Star 244: labeled γ Per but is γ Phe (typo PER→PHE)
-      - Star 320: labeled ζ UMi, HR 5909, but position (Dec 17°) and magnitude (6.36) wrong (real ζ UMi is Dec +78°, mag 4.3)
-    - Fix STARCONSTELLATION for stars 205 and 244
-    - Constellation completeness: current stick figures (Stellarium modern_iau) are incomplete because they use stars outside our 332-star catalog. Need stick figures designed for our specific star set — the book's 332 stars were chosen to support constellation outlines, so a matched source should give near-complete figures for many constellations
-- Continue proofreading transcribed book text
-- Clean up debug scripts (`debug_skypos*.py`, `debug_final.py`) from sky position investigation
+- Housekeeping after merge of PR #3 (#10)
 
 ## Up next
 
-- Update ENTRY documentation to clarify UTC input convention
-- Tighten SUN_TOL in TEST_POSITIONS (currently 3 deg, actual error 0.006 deg; comment about LST error is misleading for geocentric RA/Dec)
+- Book phase 1: complete Typst rendering of existing content (#4)
+- Book phases 2-3: audit code listings and apply Dyalog code (#5)
+- Star catalogue errata: stars 205, 244, 320 (#6)
+- Constellation stick figures matched to the 332-star catalogue (#7, after #6)
+- Document UTC input convention in ENTRY (#8)
+- Tighten Sun tolerance in TEST_POSITIONS (#9; test change, needs approval)
+- Book bugs replicated in the modern version, to fix after modernisation: CometSolve stops when any element converges (#19); PRINTED shows the observation's weekday, not the print date's (#22); ANIMATEDSVG ignores HIRES (#26)
+- Continue proofreading transcribed book text
 
 ## Blocked
 
 None currently.
 
-## Previously completed
+## Completed
+
+- **Modernisation for Dyalog APL 21** (see `plans/PLAN-MODERN.md`): the modern version in `Starmap/`, linked as `#.Starmap`, reproduces the book version's results exactly, bugs included
+  - Stages 1-6 (#12, #13, #14, #15, #24, #16; PRs #17, #18, #20, #21, #23, #25, #27)
+
+- **Dyalog implementation, web UI and book rendering** (PR #3, Neil Kirsopp, merged 2026-10-08)
+  - Recorded in the session log entries 2026-02-23 to 2026-03-23 below and in `CHANGES.md`; branch names in those entries refer to the fork
 
 - **Restore book-faithful APL architecture** (branch `restore-book-architecture`)
   - 11 selector functions: removed `:If`/`:Else` rank guards, restored `Z←ORB[;N]` one-liners
@@ -81,6 +69,24 @@ None currently.
 ---
 
 ## Session log
+
+### 2026-10-11 to 2026-10-12 (modernisation stages 1-6)
+- Agreed the modernisation plan (`plans/PLAN-MODERN.md`, PR #17): book version stays in `APLSource/` as `#.sm`; modern version in `Starmap/` as `#.Starmap`, sharing data tables through `Data`; tests first, one issue and branch per stage
+- Stage 1 (#12): test runner `test/run.apls` and its tests `test/test_run.sh`
+- Stage 2 (#13): orbital selectors take the element table as argument; `→` loops and guards replaced
+- Stage 3 (#14): `SkyAt` returns a sky namespace, replacing ENTRY, CALCULATEPLANETS and CALCULATESTARS
+- Stage 4 (#15): terminal output functions return lines from the sky namespace
+- Rulings of 2026-10-12: all code in scope, including Neil Kirsopp's additions; tradfns become dfns with bicameral names; immutable constants become upper-case variables set by `Initialise`
+- Stage 5 (#24): dfns and bicameral names throughout
+- Stage 6 (#16): SVG, animation and web, PR #27; `TestStyle` now ignores string literals, as approved
+- Found inside dfns in Dyalog 21: an embedded assignment after a function call (`x←F t←⍵`) and a strand of indexed names (`a[;1]b[;2]`) do not behave as in tradfns; such lines are split
+- Opened issues #19, #22 and #26 for book bugs the modern version replicates
+
+### 2026-10-11 (post-merge housekeeping)
+- Pulled PR #3 (Neil Kirsopp's fork) into main
+- Ran all 12 `TEST_*` functions in Dyalog 21.0: all pass
+- Opened issues #4-#10 for the open items from the fork's TODO
+- Branch `10-housekeeping-after-merge-of-3`: README status section replaces the fork note; TODO restated in terms of issues; removed duplicate root `starmap-animation-demo.mp4`
 
 ### 2026-03-23 (constellation data rebuild)
 - Switched constellation source from dcf21 to Stellarium modern_iau (CC BY-SA 4.0)

@@ -1,23 +1,6 @@
 STARMAP
 =======
 
-## An aside regarding this repository
-
-This is based on [Stephen Taylor's scan of the STARMAP book](https://github.com/5jt/STARMAP).
-I intend to create a PR there, once I have updated this documentation and checked
-for any stray files that might have found their way committed to GitHub.
-
-Work done:
-
-* Make it work with Dyalog APL
-* Add tests based on JPL data
-* Fix some issues such as transcription ones
-* Create a simple web UI - hosted at https://starmap.kirsopp.me
-  - [Sample .svg created](animated.svg) (very small - download and open in a browser)
-  - [Sample .mp4 of the web UI](starmap-animation-demo.mp4) (large - but should work everywhere)
-
-## Back to the original README...
-
 ![Sample output of program to plot heliocentric coordinates](book/extracted-figures/figure-05.png)
 
 This is a project to recreate STARMAP, a classic example of Expository Programming:
@@ -29,6 +12,23 @@ This is a project to recreate STARMAP, a classic example of Expository Programmi
 > The idea was to explain the movement of the stars and planets across the sky and to do it by writing programs that clearly stated the simple formulas that described their motion.
 > 
 > — from Paul Berry, "[Expository Programming](vector/expository-programming.md)" in *Vector*, Vol.22, No.3
+
+
+Status
+------
+
+The core logic runs in Dyalog APL (`APLSource/`), contributed by Neil Kirsopp in [PR #3](https://github.com/5jt/STARMAP/pull/3):
+
+* transcription errors, dialect differences and data errors fixed – see [CHANGES.md](CHANGES.md) and [docs/calculation-fixes.md](docs/calculation-fixes.md)
+* tests, including comparison with JPL DE421 reference positions (`TEST_*` functions in `APLSource/`)
+* terminal output reproducing the book's star map and reports
+* SVG and animated SVG star maps, and a simple web UI (`WebApp.aplc`, `web/index.html`) hosted at <https://starmap.kirsopp.me>
+  - [sample animated SVG](animated.svg) (download and open in a browser)
+  - [screen recording of the web UI](demos/starmap-animation-demo.mp4)
+* a modern version in `Starmap/` (dfns, no globals, Dyalog APL 21 idioms) that reproduces the book version's results exactly – see [plans/PLAN-MODERN.md](plans/PLAN-MODERN.md)
+* an A5 rendering of the book in Typst (`book/typst/`, [book/starmap-a5.pdf](book/starmap-a5.pdf)) – in progress
+
+Open work is tracked in [GitHub issues](https://github.com/5jt/STARMAP/issues) and [plans/TODO.md](plans/TODO.md).
 
 
 Background
