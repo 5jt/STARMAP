@@ -5,6 +5,7 @@
  m←## ⋄ R←1
  fns←m.⎕NL ¯3
  code←{⍵/⍨~∨\'⍝'=⍵}¨¨m.⎕NR¨fns          ⍝ source lines without comments
+ code←('''[^'']*'''⎕R'''''')¨code          ⍝ ... and without the text of strings
  branching←fns/⍨∨/¨'→'∊¨¨code
  :If 0≠≢branching
      ⎕←'FAIL: TestStyle: → in: ',⍕branching ⋄ R←0
