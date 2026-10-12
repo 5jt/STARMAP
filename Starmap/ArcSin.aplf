@@ -1,0 +1,3 @@
+ArcSin←{
+   ⍝ Arcsine of ⍵ (result in radians)
+    ¯1○⍵ }

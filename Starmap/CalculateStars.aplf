@@ -1,11 +1,7 @@
- Z←CalculateStars OBSERVER;DATE;STARDATA;VE;BRIGHTVIS;AAE;STARCOORD
-⍝ Calculates positions of stars for given location/time
-⍝ OBSERVER is LAT,DATE,TIME
-⍝ Z is VE BRIGHTVIS AAE STARCOORD
- DATE←OBSERVER[2]
- STARDATA←OBSERVER SKYPOS(DATE-Data.CATEPOCH)PRECESS Data.STARS
- VE←VISIBLE STARDATA
- BRIGHTVIS←Data.BRIGHT∧VE
- AAE←BRIGHTVIS⌿STARDATA
- STARCOORD←MAPCARTESIAN PROJECTION VE⌿STARDATA
- Z←VE BRIGHTVIS AAE STARCOORD
+CalculateStars←{
+   ⍝ Positions of stars for observer ⍵ (LAT,DATE,TIME)
+   ⍝ Result is VE BRIGHTVIS AAE STARCOORD
+    stars←⍵ SkyPos(⍵[2]-Data.CATEPOCH)Precess Data.STARS
+    ve←Visible stars
+    bright←Data.BRIGHT∧ve
+    ve bright(bright⌿stars)(MapCartesian Projection ve⌿stars) }

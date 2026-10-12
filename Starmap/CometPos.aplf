@@ -1,0 +1,6 @@
+CometPos←{
+   ⍝ Heliocentric position of the comet with orbital elements ⍵ on date ⍺
+   ⍝ Uses parabolic orbit calculations; no date gives no rows
+    0=⍴,⍺: 0 3⍴0
+    x←⍵ CometSolve(PI×Sqrt 2×PeriDist ⍵)×(⍺-AnomalyDate ⍵)÷Data.TROPYR
+    ((1⌈⍴,⍺),3)⍴⍵ OrbRotate(⍵ Parabola x),-x }

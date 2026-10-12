@@ -1,0 +1,4 @@
+ Initialise
+⍝ Sets the constants; run once, after Data is set
+ PI←○1
+ EARTH←Data.planets[,3;]   ⍝ orbital elements of the earth

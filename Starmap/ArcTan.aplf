@@ -1,0 +1,3 @@
+ArcTan←{
+   ⍝ Arctangent of ⍵ (result in radians)
+    ¯3○⍵ }

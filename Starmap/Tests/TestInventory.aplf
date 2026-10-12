@@ -1,34 +1,68 @@
- R←TestInventory;m;b;unchanged;kept;revised;retired;missing;differ;present
-⍝ Stage 2 functions are present under the agreed names
-⍝ unchanged: copied from the book version with identical source
-⍝ kept:      book name kept; body restructured, signature unchanged
-⍝ revised:   new bicameral name; ORB is now an explicit argument
-⍝ retired:   book names that must not appear in the modern version
+ R←TestInventory;m;b;table;tradfns;constants;modern;retired;missing;notdfn;nottrad;present;camel;extra
+⍝ Every modern function is present under its agreed bicameral name:
+⍝ a dfn, except the agreed tradfns, which are niladic and not constants.
+⍝ Immutable constants are upper-case variables.
+⍝ Book names replaced by modern names are absent, and there are no
+⍝ functions besides these.
  m←## ⋄ b←##.Data ⋄ R←1
- unchanged←'ARCCOS' 'ARCSIN' 'ARCTAN' 'COS' 'SIN' 'TAN' 'PI' 'RADIAN' 'DEGREES' 'SQRT' 'NORM'
- unchanged,←'TIMES' 'KEPLERFN' 'KEPDERIV' 'TRUEANOMALY' 'CARTESIAN' 'CARTRIPLET' 'COALTITUDE'
- unchanged,←'PROJECTION' 'VISIBLE' 'MAPCARTESIAN' 'MOONPHASE' 'TIMEADJUST' 'LATROTATE' 'JNUINV' 'DAYNAME'
- kept←'JNU' 'INCLROTATE' 'LONGROTATE' 'RADECDIST' 'KEPLINVERSE' 'PLANETPOS' 'PLANETSPOS'
- kept,←'COMETPOS' 'EPOCHADJUST' 'EARTH' 'EARTHVIEW' 'MOONPOS' 'PRECESS' 'SKYPOS' 'PARALLAXADJUST'
- revised←'SemiMajor' 'Period' 'Eccentricity' 'Inclination' 'Ascending' 'Periangle' 'Anomaly'
- revised,←'Secular' 'EpochDate' 'AnomalyDate' 'PeriDist' 'PeriDate'
- revised,←'Radius' 'OrbRotate' 'Perioder' 'Area' 'AreaDeriv' 'Parabola' 'CometSolve'
- retired←'SEMIMAJOR' 'PERIOD' 'ECCENTRICITY' 'INCLINATION' 'ASCENDING' 'PERIANGLE' 'ANOMALY'
- retired,←'SECULAR' 'EPOCHDATE' 'ANOMALYDATE' 'PERIDIST' 'PERIDATE'
- retired,←'RADIUS' 'ORBROTATE' 'PERIODER' 'AREA' 'AREADERIV' 'PARABOLA' 'COMETSOLVE' 'IF'
 
- missing←(unchanged,kept,revised)/⍨3≠⌊m.⎕NC unchanged,kept,revised
+⍝ book name, modern name: converted to dfns, or revised in stages 2–4
+ table←('ARCCOS' 'ArcCos')('ARCSIN' 'ArcSin')('ARCTAN' 'ArcTan')('COS' 'Cos')('SIN' 'Sin')('TAN' 'Tan')
+ table,←('RADIAN' 'Radian')('DEGREES' 'Degrees')('SQRT' 'Sqrt')('NORM' 'Norm')('TIMES' 'Times')
+ table,←('KEPLERFN' 'KeplerFn')('KEPDERIV' 'KepDeriv')('KEPLINVERSE' 'KeplInverse')('TRUEANOMALY' 'TrueAnomaly')
+ table,←('CARTESIAN' 'Cartesian')('CARTRIPLET' 'CarTriplet')('COALTITUDE' 'Coaltitude')('PROJECTION' 'Projection')
+ table,←('VISIBLE' 'Visible')('MAPCARTESIAN' 'MapCartesian')('MOONPHASE' 'MoonPhase')('TIMEADJUST' 'TimeAdjust')
+ table,←('LATROTATE' 'LatRotate')('INCLROTATE' 'InclRotate')('LONGROTATE' 'LongRotate')
+ table,←('JNU' 'Jnu')('JNUINV' 'JnuInv')('DAYNAME' 'DayName')('RADECDIST' 'RaDecDist')
+ table,←('PLANETPOS' 'PlanetPos')('PLANETSPOS' 'PlanetsPos')('COMETPOS' 'CometPos')('EPOCHADJUST' 'EpochAdjust')
+ table,←('EARTHVIEW' 'EarthView')('MOONPOS' 'MoonPos')('PRECESS' 'Precess')('SKYPOS' 'SkyPos')('PARALLAXADJUST' 'ParallaxAdjust')
+ table,←('SEMIMAJOR' 'SemiMajor')('PERIOD' 'Period')('ECCENTRICITY' 'Eccentricity')('INCLINATION' 'Inclination')
+ table,←('ASCENDING' 'Ascending')('PERIANGLE' 'Periangle')('ANOMALY' 'Anomaly')('SECULAR' 'Secular')
+ table,←('EPOCHDATE' 'EpochDate')('ANOMALYDATE' 'AnomalyDate')('PERIDIST' 'PeriDist')('PERIDATE' 'PeriDate')
+ table,←('RADIUS' 'Radius')('ORBROTATE' 'OrbRotate')('PERIODER' 'Perioder')('AREA' 'Area')('AREADERIV' 'AreaDeriv')
+ table,←('PARABOLA' 'Parabola')('COMETSOLVE' 'CometSolve')
+ table,←('CALCULATEPLANETS' 'CalculatePlanets')('CALCULATESTARS' 'CalculateStars')('ENTRY' 'SkyAt')
+ table,←('CAPTION' 'Caption')('REPORTPLANETS' 'ReportPlanets')('PLOTSTARS' 'PlotStars')
+ table,←('REPORTSTARS' 'ReportStars')('PRINTED' 'Printed')('WORK' 'Work')
+
+⍝ niladic tradfns that are not constants: prompts, entry points, demonstration,
+⍝ and Initialise, which sets the constants
+ tradfns←'GetDate' 'GetTime' 'GetLat' 'GetLong' 'Entry' 'Display' 'ExampleRender' 'Initialise'
+ constants←'PI' 'EARTH'
+ modern←2⊃¨table
+ retired←(⊃¨table),'GETDATE' 'GETTIME' 'GETLAT' 'GETLONG' 'DISPLAY' 'EXAMPLE_RENDER' 'IF'
+
+ missing←(modern,tradfns)/⍨3≠⌊m.⎕NC modern,tradfns
  :If 0≠≢missing
      ⎕←'FAIL: TestInventory: missing: ',⍕missing ⋄ R←0
  :EndIf
- differ←unchanged/⍨~{(m.⎕NR ⍵)≡b.⎕NR ⍵}¨unchanged
- :If 0≠≢differ
-     ⎕←'FAIL: TestInventory: source differs from book: ',⍕differ ⋄ R←0
+ notdfn←modern/⍨3.2≠m.⎕NC modern
+ :If 0≠≢notdfn
+     ⎕←'FAIL: TestInventory: not a dfn: ',⍕notdfn ⋄ R←0
+ :EndIf
+ nottrad←tradfns/⍨{(3.1≠m.⎕NC⊂⍵)∨(1 0 0≢3↑⊃m.⎕AT ⍵)∧0 0 0≢3↑⊃m.⎕AT ⍵}¨tradfns
+ :If 0≠≢nottrad
+     ⎕←'FAIL: TestInventory: not a niladic tradfn: ',⍕nottrad ⋄ R←0
+ :EndIf
+ camel←{(∨/⍵∊⎕A)∧∨/⍵∊⎕C ⎕A}                ⍝ bicameral: upper and lower case
+ :If ~∧/camel¨modern,tradfns
+     ⎕←'FAIL: TestInventory: not bicameral: ',⍕(modern,tradfns)/⍨~camel¨modern,tradfns ⋄ R←0
+ :EndIf
+ :If ~∧/2=⌊m.⎕NC constants
+     ⎕←'FAIL: TestInventory: not a variable: ',⍕constants/⍨2≠⌊m.⎕NC constants ⋄ R←0
+ :ElseIf (○1)≢m.PI
+     ⎕←'FAIL: TestInventory: PI is not ○1' ⋄ R←0
+ :ElseIf b.EARTH≢m.EARTH
+     ⎕←'FAIL: TestInventory: EARTH differs from book' ⋄ R←0
+ :EndIf
+ extra←(m.⎕NL ¯3)~modern,tradfns
+ :If 0≠≢extra
+     ⎕←'FAIL: TestInventory: unexpected functions: ',⍕extra ⋄ R←0
  :EndIf
  present←retired/⍨0≠m.⎕NC retired
  :If 0≠≢present
      ⎕←'FAIL: TestInventory: retired names present: ',⍕present ⋄ R←0
  :EndIf
  :If R
-     ⎕←'PASS: TestInventory (',(⍕≢unchanged),' unchanged, ',(⍕≢kept),' kept, ',(⍕≢revised),' revised)'
+     ⎕←'PASS: TestInventory (',(⍕≢modern),' dfns, ',(⍕≢tradfns),' tradfns, ',(⍕≢constants),' constants)'
  :EndIf

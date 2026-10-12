@@ -4,8 +4,9 @@
 ⍝
 ⍝ Loads APLSource/ as #.sm (book version) and Starmap/ as #.Starmap
 ⍝ (modern version, subfolders as child namespaces), sets
-⍝ #.Starmap.Data←#.sm, then runs every TEST_* function in #.sm and
-⍝ every function in #.Starmap.Tests.
+⍝ #.Starmap.Data←#.sm, runs #.Starmap.Initialise to set the constants,
+⍝ then runs every TEST_* function in #.sm and every function in
+⍝ #.Starmap.Tests.
 ⍝ STARMAP_EXTRA_TESTS names a further folder of tests for #.Starmap.Tests.
 ⍝ Prints one line per test and a summary; exits 0 only if all passed.
 
@@ -50,6 +51,9 @@
   '#.Starmap'⎕NS''
   #.Starmap Load root,'Starmap'
   #.Starmap.Data←#.sm
+  :If 3=#.Starmap.⎕NC'Initialise'     ⍝ absent until stage 5 is implemented
+      #.Starmap.Initialise
+  :EndIf
   extra←2 ⎕NQ'.' 'GetEnvironment' 'STARMAP_EXTRA_TESTS'
   :If 0≠≢extra
       #.Starmap.Tests Load root,extra

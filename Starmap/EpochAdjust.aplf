@@ -1,0 +1,6 @@
+EpochAdjust←{
+   ⍝ Adjusts ascending node and periangle of orbital elements ⍵
+   ⍝ for secular drift over interval ⍺
+    orb←⍵
+    orb[;5 6]←orb[;5 6]+(Secular ⍵)×⍺
+    orb }

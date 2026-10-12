@@ -1,0 +1,6 @@
+CarTriplet←{
+   ⍝ Converts RA/Dec ⍵ to 3D Cartesian (non-normalized)
+    z1←Cos PI×⍵[;1]÷12
+    z2←Tan Radian ⍵[;2]
+    z3←-Sin PI×⍵[;1]÷12
+    z1,z2,[1.5]z3 }

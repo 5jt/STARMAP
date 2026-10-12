@@ -1,0 +1,6 @@
+PlanetPos←{
+   ⍝ Heliocentric positions on date ⍺ of the bodies with orbital elements ⍵
+    orb←(⍺-EpochDate ⍵)EpochAdjust ⍵
+    e←Eccentricity orb
+    theta←e TrueAnomaly e KeplInverse 2×PI×orb Perioder ⍺
+    orb OrbRotate Cartesian theta,[1.5]orb Radius theta }

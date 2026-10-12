@@ -1,0 +1,9 @@
+Jnu←{
+   ⍝ Converts calendar date ⍵ (month day year) to Julian day number
+   ⍝ January and February count as months 13 and 14 of the year before
+    m d y←⍵
+    m←m+12×m≤2 ⋄ y←y-⍵[1]≤2
+    a←⌊y÷100
+    b←(2-a)+⌊a÷4
+    z←(⌊365.25×y+4716)+⌊30.6001×m+1
+    z+d+b-1524.5 }

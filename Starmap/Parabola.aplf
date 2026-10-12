@@ -1,4 +1,5 @@
- Z←ORB Parabola X;Q
-⍝ Second coordinate of comet position on parabola
- Q←PeriDist ORB
- Z←Q-(X*2)÷4×Q
+Parabola←{
+   ⍝ Second coordinate of comet position on parabola at ⍵
+   ⍝ ⍺ is orbital elements
+    q←PeriDist ⍺
+    q-(⍵*2)÷4×q }

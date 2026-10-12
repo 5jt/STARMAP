@@ -1,0 +1,6 @@
+ParallaxAdjust←{
+   ⍝ Adjusts moon altitude in ⍵ for parallax from observer position
+   ⍝ ⍺ is distance
+    z←⍵
+    z[;1]←⍵[;1]-(Cos Radian ⍵[;1])×Data.MOONRATIO÷⍺
+    z }

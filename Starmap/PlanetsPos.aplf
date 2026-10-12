@@ -1,0 +1,9 @@
+PlanetsPos←{
+   ⍝ Table of positions of planets ⍵ for dates ⍺
+   ⍝ Result is 3D array: dates × planets × coordinates
+   ⍝ Each date contributes the planets in ⍵ followed by the comet;
+   ⍝ they are joined as the book's loop joins them, by catenation on the
+   ⍝ first axis to an empty table, so a scalar ⍵ stacks the rows instead
+    pl←Data.planets[,⍵;]
+    rows←{(⍵ PlanetPos pl),[1]⍵ CometPos Data.kohoutek}¨,⍺
+    ⊃{⍵,[1]⍺}/⌽(⊂(0,(1+⍴⍵),3)⍴0),rows }

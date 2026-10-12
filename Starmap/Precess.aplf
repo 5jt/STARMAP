@@ -1,0 +1,9 @@
+Precess←{
+   ⍝ Adjusts star positions ⍵ for precession of equinoxes over interval ⍺
+    x←CarTriplet ⍵
+    tilt←Radian Data.AXITILT
+    retilt←InclRotate tilt
+    detilt←InclRotate-tilt
+    precession←LongRotate-⍺×2×PI÷25800×Data.YRLENGTH
+    rot←retilt+.×precession+.×detilt
+    2 RaDecDist x+.×rot }

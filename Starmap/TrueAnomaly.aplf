@@ -1,0 +1,4 @@
+TrueAnomaly←{
+   ⍝ Converts eccentric anomaly ⍵ to true anomaly
+   ⍝ ⍺ is eccentricity
+    (2×PI)|2×ArcTan(Sqrt(1+⍺)÷1-⍺)×Tan ⍵÷2 }

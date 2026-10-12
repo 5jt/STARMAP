@@ -17,6 +17,7 @@ Env←{2 ⎕NQ'.' 'GetEnvironment'⍵}
 '#.Starmap'⎕NS''
 {2 #.Starmap.⎕FIX'file://',⍵}¨⊃⎕NINFO⍠1⊢'Starmap/*.aplf'
 #.Starmap.Data←#.sm
+#.Starmap.Initialise
 ⎕PW←⍎Env'REPORT_PW'
 #.sm.OBS←⍎Env'REPORT_OBS'
 
@@ -29,7 +30,7 @@ Env←{2 ⎕NQ'.' 'GetEnvironment'⍵}
 ∇
 
 ∇ Modern;sky
-  sky←#.Starmap.SkyAt(#.Starmap.JNU 3↑#.sm.OBS),3↓#.sm.OBS
+  sky←#.Starmap.SkyAt(#.Starmap.Jnu 3↑#.sm.OBS),3↓#.sm.OBS
   {⎕←⍵}¨(⎕PW ⎕TS)#.Starmap.Work sky
 ∇
 

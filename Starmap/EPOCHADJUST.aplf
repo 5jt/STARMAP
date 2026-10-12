@@ -1,4 +1,0 @@
- Z←INTERVAL EPOCHADJUST ORB
-⍝ Adjusts ascending node and periangle for secular drift
- ORB[;5 6]←ORB[;5 6]+(Secular ORB)×INTERVAL
- Z←ORB

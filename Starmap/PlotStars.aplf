@@ -1,96 +1,53 @@
- Z←W PlotStars Sky;STARCOORD;PLANETCOORD;VE;VP;GRID;ROWS;COLS;CR;CC;RR;RC;A;HR;HC;IDX;I;R;C;BVIS;PCHARS;VPCHARS;N;VPNAMES;L;MARGIN;NAME;NR;NC;OK
-⍝ ASCII star map - stereographic projection centered on zenith
-⍝ Size adapts to width W. Matches book example layout:
-⍝ horizon circle, crosshairs, cardinal directions, planet labels
- STARCOORD PLANETCOORD VE VP←Sky.(StarCoord PlanetCoord StarsVisible PlanetsVisible)
- Z←0⍴⊂''
- MARGIN←4
- COLS←W-2×MARGIN
- ROWS←1+⌊COLS÷2
- CR←1+⌊ROWS÷2 ⋄ CC←1+⌊COLS÷2
- RR←⌊(ROWS-3)÷2 ⋄ RC←⌊(COLS-3)÷2
- GRID←ROWS COLS⍴' '
- ⍝
- ⍝ --- Crosshairs ---
- GRID[CR;]←'─'
- GRID[;CC]←'│'
- GRID[CR;CC]←'┼'
- ⍝
- ⍝ --- Horizon circle (360 points) ---
- A←(⍳360)×(○2)÷360
- HR←⌊0.5+CR-RR×2○A
- HC←⌊0.5+CC+RC×1○A
- HR←1⌈ROWS⌊HR ⋄ HC←1⌈COLS⌊HC
- IDX←∪((HR-1)×COLS)+HC
- (,GRID)[IDX]←'·'
- ⍝
- ⍝ --- Cardinal directions ---
- :If 1≤CR-RR-1
-   GRID[CR-RR-1;CC]←'N'
- :EndIf
- :If ROWS≥CR+RR+1
-   GRID[CR+RR+1;CC]←'S'
- :EndIf
- :If 1≤CC-RC-1
-   GRID[CR;CC-RC-1]←'E'
- :EndIf
- :If COLS≥CC+RC+1
-   GRID[CR;CC+RC+1]←'W'
- :EndIf
- ⍝
- ⍝ --- Scale mark ---
- :If 1≤CC-RC-4
-   GRID[CR;(CC-RC-4)+⍳3]←'1.0'
- :EndIf
- ⍝
- ⍝ --- Plot stars ---
- :If 2=⍴⍴STARCOORD
-   BVIS←VE/Data.BRIGHT
-   :For I :In ⍳⊃⍴STARCOORD
-     R←⌊0.5+CR-RR×STARCOORD[I;2]
-     C←⌊0.5+CC+RC×STARCOORD[I;1]
-     :If (R≥1)∧(R≤ROWS)∧(C≥1)∧(C≤COLS)
-       :If GRID[R;C]∊' ─│'
-         GRID[R;C]←'.*'[1+BVIS[I]]
-       :EndIf
-     :EndIf
-   :EndFor
- :EndIf
- ⍝
- ⍝ --- Plot planets (symbol + name label) ---
- PCHARS←(≢VP)↑'☾☉☿♀♂♃♄⛢♆♇☄'
- VPCHARS←VP/PCHARS
- N←(≢VP)↑Data.PLANETNAMES
- VPNAMES←VP/N
- :If 2=⍴⍴PLANETCOORD
-   :For I :In ⍳⊃⍴PLANETCOORD
-     R←⌊0.5+CR-RR×PLANETCOORD[I;2]
-     C←⌊0.5+CC+RC×PLANETCOORD[I;1]
-     :If (R≥1)∧(R≤ROWS)∧(C≥1)∧(C≤COLS)
-       GRID[R;C]←VPCHARS[I]
-       ⍝ Place name label to the right if room
-       NAME←' ',⊃VPNAMES[I]
-       NC←C
-       :If (NC+≢NAME)≤COLS
-         OK←∧/GRID[R;NC+⍳≢NAME]∊' ─│┼'
-         :If OK
-           GRID[R;NC+⍳≢NAME]←NAME
-         :EndIf
-       :EndIf
-     :EndIf
-   :EndFor
- :EndIf
- ⍝
- ⍝ --- Output with margin ---
- :For I :In ⍳ROWS
-   Z,←⊂(MARGIN⍴' '),GRID[I;]
- :EndFor
- Z,←⊂''
- Z,←⊂(MARGIN⍴' '),'  * bright   . faint   ┼ zenith   · horizon'
- :If ∨/VP
-   L←' '
-   :For I :In ⍳≢VPCHARS
-     L←L,' ',VPCHARS[I],'=',⊃VPNAMES[I]
-   :EndFor
-   Z,←⊂(MARGIN⍴' '),L
- :EndIf
+PlotStars←{
+   ⍝ ASCII star map - stereographic projection centered on zenith
+   ⍝ Size adapts to width ⍺. Matches book example layout:
+   ⍝ horizon circle, crosshairs, cardinal directions, planet labels
+    margin←4
+    cols←⍺-2×margin
+    rows←1+⌊cols÷2
+    cr←1+⌊rows÷2 ⋄ cc←1+⌊cols÷2
+    rr←⌊(rows-3)÷2 ⋄ rc←⌊(cols-3)÷2
+    row←{⌊0.5+cr-rr×⍵[;2]} ⋄ col←{⌊0.5+cc+rc×⍵[;1]}
+    inside←{(⍺≥1)∧(⍺≤rows)∧(⍵≥1)∧⍵≤cols}
+   ⍝ Crosshairs
+    grid←rows cols⍴' '
+    grid[cr;]←'─' ⋄ grid[;cc]←'│' ⋄ grid[cr;cc]←'┼'
+   ⍝ Horizon circle (360 points)
+    a←(⍳360)×(○2)÷360
+    hr←1⌈rows⌊⌊0.5+cr-rr×2○a
+    hc←1⌈cols⌊⌊0.5+cc+rc×1○a
+    grid←(⍴grid)⍴'·'@(∪((hr-1)×cols)+hc)⊢,grid
+   ⍝ Cardinal directions, then scale mark, where they fit
+    marks←((cr-rr-1)cc)((cr+rr+1)cc)(cr(cc-rc-1))(cr(cc+rc+1))
+    fit←{⊃inside/⍵}¨marks
+    grid←(fit/'NSEW')@(fit/marks)⊢grid
+    scale←(cc-rc-4)+⍳3
+    grid[cr;(1≤cc-rc-4)/scale]←(1≤cc-rc-4)/'1.0'
+   ⍝ Stars: bright *, faint .; each cell takes the first star to reach it,
+   ⍝ unless it already holds something other than space or crosshair
+    stars←⍵.StarCoord
+    sr←row stars ⋄ sc←col stars
+    in←sr inside sc
+    cell←in/((sr-1)×cols)+sc
+    symbol←in/'.*'[1+⍵.StarsVisible/Data.BRIGHT]
+    put←(≠cell)∧(,grid)[cell]∊' ─│'
+    grid←(⍴grid)⍴(put/symbol)@(put/cell)⊢,grid
+   ⍝ Planets, in order: symbol, and name label to the right if room
+    vp←⍵.PlanetsVisible
+    symbols←vp/(≢vp)↑'☾☉☿♀♂♃♄⛢♆♇☄'
+    names←vp/(≢vp)↑Data.PLANETNAMES
+    pr←row ⍵.PlanetCoord ⋄ pc←col ⍵.PlanetCoord
+    place←{
+        r c symbol name←⍺
+        g←⍵ ⋄ g[r;c]←symbol
+        label←' ',name
+        cols<c+≢label: g
+        ~∧/g[r;c+⍳≢label]∊' ─│┼': g
+        g[r;c+⍳≢label]←label ⋄ g
+    }
+    grid←⊃place/(⌽(pr inside pc)/pr,¨pc,¨symbols,¨⊂¨names),⊂grid
+   ⍝ Output with margin, then key
+    pad←margin⍴' '
+    z←(pad∘,¨↓grid),'' (pad,'  * bright   . faint   ┼ zenith   · horizon')
+    ~∨/vp: z
+    z,⊂pad,' ',∊' ',¨symbols,¨'=',¨names }

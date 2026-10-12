@@ -23,10 +23,10 @@
  R∧←'Parabola'same(k m.Parabola x)(k book'PARABOLA ',⍕x)
 
  :For d :In dates
-     R∧←('EPOCHADJUST ',⍕d)same(d m.EPOCHADJUST p)(d b.EPOCHADJUST p)
-     R∧←('PLANETPOS planets ',⍕d)same(d m.PLANETPOS p)(d b.PLANETPOS p)
-     R∧←('PLANETPOS moon ',⍕d)same(d m.PLANETPOS b.moon)(d b.PLANETPOS b.moon)
-     R∧←('PLANETPOS earth ',⍕d)same(d m.PLANETPOS e)(d b.PLANETPOS e)
+     R∧←('EPOCHADJUST ',⍕d)same(d m.EpochAdjust p)(d b.EPOCHADJUST p)
+     R∧←('PLANETPOS planets ',⍕d)same(d m.PlanetPos p)(d b.PLANETPOS p)
+     R∧←('PLANETPOS moon ',⍕d)same(d m.PlanetPos b.moon)(d b.PLANETPOS b.moon)
+     R∧←('PLANETPOS earth ',⍕d)same(d m.PlanetPos e)(d b.PLANETPOS e)
  :EndFor
  R∧←'EARTH'same(m.EARTH)(b.EARTH)
 

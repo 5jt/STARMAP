@@ -1,3 +1,0 @@
- Z←ARCSIN X
-⍝ Arcsine function (result in radians)
- Z←¯1○X
