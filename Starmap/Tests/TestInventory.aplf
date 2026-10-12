@@ -1,9 +1,10 @@
- R←TestInventory;m;b;table;tradfns;constants;modern;retired;missing;notdfn;nottrad;present;camel;extra
+ R←TestInventory;m;b;table;new;tradfns;constants;modern;retired;missing;notdfn;nottrad;present;camel;extra;src
 ⍝ Every modern function is present under its agreed bicameral name:
 ⍝ a dfn, except the agreed tradfns, which are niladic and not constants.
 ⍝ Immutable constants are upper-case variables.
 ⍝ Book names replaced by modern names are absent, and there are no
-⍝ functions besides these.
+⍝ functions besides these. The WebApp class is the book's, calling the
+⍝ modern names.
  m←## ⋄ b←##.Data ⋄ R←1
 
 ⍝ book name, modern name: converted to dfns, or revised in stages 2–4
@@ -24,13 +25,23 @@
  table,←('CALCULATEPLANETS' 'CalculatePlanets')('CALCULATESTARS' 'CalculateStars')('ENTRY' 'SkyAt')
  table,←('CAPTION' 'Caption')('REPORTPLANETS' 'ReportPlanets')('PLOTSTARS' 'PlotStars')
  table,←('REPORTSTARS' 'ReportStars')('PRINTED' 'Printed')('WORK' 'Work')
+ table,←('PLOTSVG' 'PlotSvg')('FRAMESVG' 'FrameSvg')('SAVESVG' 'SaveSvg')
+ table,←('ANIMATE' 'Animate')('ANIMATEDSVG' 'AnimatedSvg')('MAKEVIDEO' 'MakeVideo')
 
-⍝ niladic tradfns that are not constants: prompts, entry points, demonstration,
-⍝ and Initialise, which sets the constants
+⍝ new dfns, with no book counterpart: shared caption parts, and the parts
+⍝ of PlotSvg and AnimatedSvg, which split the book's long functions
+ new←'Place' 'Clock' 'SvgStyle' 'SvgMap' 'SvgLegend' 'SvgPlanetTable' 'SvgStarTable'
+ new,←'AnimFrames' 'AnimJson' 'AnimHead' 'AnimBodies' 'AnimTables' 'AnimControls'
+ new,←'AnimScript' 'AnimScriptData' 'AnimScriptSky' 'AnimScriptTables' 'AnimScriptPlayback' 'AnimScriptTips'
+
+⍝ niladic tradfns that are not constants: prompts, entry points, demonstrations,
+⍝ the web server, and Initialise, which sets the constants
  tradfns←'GetDate' 'GetTime' 'GetLat' 'GetLong' 'Entry' 'Display' 'ExampleRender' 'Initialise'
+ tradfns,←'ExampleSvg' 'StartServ'
  constants←'PI' 'EARTH'
- modern←2⊃¨table
+ modern←(2⊃¨table),new
  retired←(⊃¨table),'GETDATE' 'GETTIME' 'GETLAT' 'GETLONG' 'DISPLAY' 'EXAMPLE_RENDER' 'IF'
+ retired,←'EXAMPLE_SVG' 'STARTSERV'
 
  missing←(modern,tradfns)/⍨3≠⌊m.⎕NC modern,tradfns
  :If 0≠≢missing
@@ -58,6 +69,14 @@
  extra←(m.⎕NL ¯3)~modern,tradfns
  :If 0≠≢extra
      ⎕←'FAIL: TestInventory: unexpected functions: ',⍕extra ⋄ R←0
+ :EndIf
+ :If 9.4≠m.⎕NC⊂'WebApp'
+     ⎕←'FAIL: TestInventory: WebApp class missing' ⋄ R←0
+ :Else
+     src←'ns\.ANIMATEDSVG' 'ns\.ANIMATE' 'ns\.MAKEVIDEO'⎕R'ns.AnimatedSvg' 'ns.Animate' 'ns.MakeVideo'⊢⎕SRC b.WebApp
+     :If src≢⎕SRC m.WebApp
+         ⎕←'FAIL: TestInventory: WebApp differs from the book''s other than in the names it calls' ⋄ R←0
+     :EndIf
  :EndIf
  present←retired/⍨0≠m.⎕NC retired
  :If 0≠≢present

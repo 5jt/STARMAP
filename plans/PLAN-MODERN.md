@@ -15,7 +15,7 @@ Rewrite STARMAP in idiomatic Dyalog APL 21 alongside the book-faithful version.
 
 7. **Scope.** All the code in `APLSource/` is in scope: the book's functions as corrected by Neil Kirsopp, and the functions he added (output, SVG, animation, web). The modern version must reproduce the book version's results exactly, bugs included; bugs are raised as issues and fixed later.
 8. **Dfns by default, bicameral names throughout.** The modern version demonstrates a modernised STARMAP, not a minimal edit of it. Every function becomes a dfn with a bicameral name (`LATROTATE` becomes `LatRotate`), keeping the book's abbreviations. Nothing is copied unchanged.
-9. **Tradfns** remain only for niladic functions that are not constants: the input prompts (`GetDate`, `GetTime`, `GetLat`, `GetLong`), `Entry`, `Display`, `ExampleRender`, `Initialise`, and in stage 6 `ExampleSvg`, `STARTSERV` (loops for ever) and `MakeVideo`. The `WebApp` class stays a class.
+9. **Tradfns** remain only for niladic functions that are not constants: the input prompts (`GetDate`, `GetTime`, `GetLat`, `GetLong`), `Entry`, `Display`, `ExampleRender`, `Initialise`, and in stage 6 `ExampleSvg` and `StartServ` (which loops for ever). `MakeVideo` takes arguments, so it becomes a dfn, its early returns becoming guards. The `WebApp` class stays a class.
 10. **Constants.** A niladic function that returns an immutable constant becomes a variable named in upper case (`PI←○1`, `EARTH`), set by one niladic function, `Initialise`, which is run after `Data` is set (by the test runner, or by hand after linking). Data tables stay in the book namespace, reached through `Data`.
 11. **Size.** No modern function exceeds 100 lines.
 
@@ -63,8 +63,14 @@ Rewrite STARMAP in idiomatic Dyalog APL 21 alongside the book-faithful version.
 
 ### Stage 6 (#16): SVG, animation and web
 
-- `PLOTSVG`, `FRAMESVG`, `SAVESVG`, `EXAMPLE_SVG`, `ANIMATE`, `ANIMATEDSVG`, `STARTSERV`, `MAKEVIDEO` and `WebApp` take the sky namespace or explicit arguments, following the stage 5 conventions. Large functions (`ANIMATEDSVG`, 642 lines; `PLOTSVG`, 226 lines) are split into smaller single-purpose functions.
-- Tests: SVG output, animation frames and animated SVG are identical to the book version's for the same inputs, and no globals are set.
+- `PLOTSVG`, `FRAMESVG`, `SAVESVG`, `ANIMATE`, `ANIMATEDSVG` and `MAKEVIDEO` become the dfns `PlotSvg`, `FrameSvg`, `SaveSvg`, `Animate`, `AnimatedSvg` and `MakeVideo`, taking the sky namespace or explicit arguments; `EXAMPLE_SVG` and `STARTSERV` become the tradfns `ExampleSvg` and `StartServ`. The `WebApp` class is the book's, calling the modern names.
+- `PlotSvg` takes the minimum height as an optional left argument, replacing the global `PLOTSVG_MINHT`; `FrameSvg` is `3800 PlotSvg`.
+- The long functions are split into dfns of at most 100 lines:
+  - shared: `Place` and `Clock` (caption parts, also used by `Caption`), `SvgStyle` (the style sheet), `SvgLegend` (zenith marker and legend);
+  - `PlotSvg`: `SvgMap`, `SvgPlanetTable`, `SvgStarTable`;
+  - `AnimatedSvg`: `AnimFrames` (planet positions for each frame), `AnimJson`, `AnimHead`, `AnimBodies`, `AnimTables`, `AnimControls`, and `AnimScript` with its parts `AnimScriptData`, `AnimScriptSky`, `AnimScriptTables`, `AnimScriptPlayback` and `AnimScriptTips`. The JavaScript is written as array notation: one string per line.
+- `AnimatedSvg` ignores its HIRES option, as the book's does (#26).
+- Tests: SVG output, animation frames and animated SVG are identical to the book version's for the same inputs; `MakeVideo` with no frames returns what the book's does; no globals are set.
 
 ## Issues
 
